@@ -47,7 +47,6 @@ namespace AspMVC.Areas.ContactArea.Controllers
         }
 
         // GET: ContactArea/Contacts/Create
-        //[HttpGet("/Create-Contact")]
         public IActionResult Create()
         {
             return View();
