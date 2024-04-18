@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AspMVC.Data;
 using AspMVC.Models;
 
-namespace AspMVC.Areas.ContactArea.Controllers
+namespace AspMVC.Areas.ContactArea
 {
     [Area("ContactArea")]
     public class ContactsController : Controller
@@ -57,12 +57,10 @@ namespace AspMVC.Areas.ContactArea.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FullName,Email,Message,Phone")] Contact contact)
+        public async Task<IActionResult> Create([Bind("Id,FullName,Email,DateSent,Message,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                contact.DateSent = DateTime.Now;
-                Console.WriteLine("valid");
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +89,7 @@ namespace AspMVC.Areas.ContactArea.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Email,Message,Phone")] Contact contact)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Email,DateSent,Message,Phone")] Contact contact)
         {
             if (id != contact.Id)
             {

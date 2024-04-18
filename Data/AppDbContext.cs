@@ -1,5 +1,7 @@
 ﻿using AspMVC.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspMVC.Data
@@ -25,8 +27,20 @@ namespace AspMVC.Data
                     entityType.SetTableName(tableName.Substring(6));
                 }
             }
+            modelBuilder.Entity<ProjectPageModel>(entity => {
+                entity.HasIndex(p => p.Slug);
+            });
 
         }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<ProjectPageModel> ProjectPage { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
+        //public DbSet<ProjectModel> ProjectModels { get; set; }
+
+        //public async Task<IActionResult> SeedDataAsync;
+        //Add-Migration ""
+        //Update-Database
     }
 }

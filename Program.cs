@@ -1,10 +1,12 @@
 ﻿using AspMVC.Data;
 using AspMVC.Models;
+using AspMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 namespace AspMVC
 {
@@ -13,16 +15,21 @@ namespace AspMVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddOptions();
+            var mailsetting = builder.Configuration.GetSection("MailSettings");
+            builder.Services.Configure<MailSettings>(mailsetting);
+            builder.Services.AddSingleton<IEmailSender, SendMailService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnectionStrings"));
             });
+            
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                    .AddEntityFrameworkStores<AppDbContext>()
                    .AddDefaultTokenProviders();
 
+            builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
             builder.Services.Configure<RazorViewEngineOptions>(options => {
                 // /View/Controller/Action.cshtml
@@ -118,9 +125,10 @@ namespace AspMVC
                 //});
 
             });
-
-            
-        var app = builder.Build();
+            builder.Services.AddTransient<IEmailSender, SendMailService>();
+            //builder.Services.AddTransient<SignInManager<AppUser>>();
+            //builder.Services.AddTransient<UserManager<AppUser>>();
+            var app = builder.Build();
          
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
