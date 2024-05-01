@@ -4,6 +4,7 @@ using AspMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
@@ -21,17 +22,19 @@ namespace AspMVC
             builder.Services.AddSingleton<IEmailSender, SendMailService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<AppDbContext>(options => {
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnectionStrings"));
             });
-            
+
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                    .AddEntityFrameworkStores<AppDbContext>()
                    .AddDefaultTokenProviders();
 
             builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
-            builder.Services.Configure<RazorViewEngineOptions>(options => {
+            builder.Services.Configure<RazorViewEngineOptions>(options =>
+            {
                 // /View/Controller/Action.cshtml
                 // /MyView/Controller/Action.cshtml
 
@@ -45,7 +48,8 @@ namespace AspMVC
             });
 
             // Truy cập IdentityOptions
-            builder.Services.Configure<IdentityOptions>(options => {
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
                 // Thiết lập về Password
                 options.Password.RequireDigit = false; // Không bắt phải có số
                 options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
@@ -72,7 +76,8 @@ namespace AspMVC
 
             });
 
-            builder.Services.ConfigureApplicationCookie(options => {
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
                 options.LoginPath = "/login/";
                 options.LogoutPath = "/logout/";
                 options.AccessDeniedPath = "/khongduoctruycap.html";
@@ -100,11 +105,15 @@ namespace AspMVC
 
             //builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
-            builder.Services.AddAuthorization(options => {
+            builder.Services.AddAuthorization(options =>
+            {
 
-                options.AddPolicy("AllowEditRole", policyBuilder => {
+                options.AddPolicy("AllowEditRole", policyBuilder =>
+                {
                     policyBuilder.RequireAuthenticatedUser();
                     policyBuilder.RequireClaim("canedit", "user");
+                    policyBuilder.RequireRole(RoleName.Administrator);
+
                 });
 
                 //options.AddPolicy("InGenZ", policyBuilder => {
@@ -116,7 +125,8 @@ namespace AspMVC
 
                 //});
 
-                options.AddPolicy("ShowAdminMenu", pb => {
+                options.AddPolicy("ShowAdminMenu", pb =>
+                {
                     pb.RequireRole("Admin");
                 });
 
@@ -129,7 +139,7 @@ namespace AspMVC
             //builder.Services.AddTransient<SignInManager<AppUser>>();
             //builder.Services.AddTransient<UserManager<AppUser>>();
             var app = builder.Build();
-         
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -138,8 +148,22 @@ namespace AspMVC
                 app.UseHsts();
             }
 
+            //them dinh dang apk cho upload file
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // Set up custom content types - associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            provider.Mappings[".image"] = "image/png";
+            provider.Mappings[".apk"] = "application/vnd.android.package-archive";
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ContentTypeProvider = provider
+            });
+
 
             app.UseRouting();
 
@@ -156,7 +180,7 @@ namespace AspMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            
+
             app.Run();
         }
     }

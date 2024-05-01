@@ -159,9 +159,17 @@ namespace AspMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GenreId")
-                        .IsRequired()
+                    b.Property<int>("GenreId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProjectFileDirectory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Slug")
                         .IsRequired()
