@@ -46,3 +46,22 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function PostData() {
+            $.ajax({
+                type: "POST",
+                data: $("#commentForm").serialize(),    //using this way to get the form data
+                url: '/Blog/Comment/CreateComment',
+                success: function (result) {
+                    $('#tableDiv').html(result);
+                }
+            })
+        }
+    </script>
+}
+

@@ -94,6 +94,44 @@ namespace AspMVC.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("AspMVC.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
+
+                    b.Property<string>("CommentContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ParentCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProjectPageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("ParentCommentId");
+
+                    b.HasIndex("ProjectPageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("AspMVC.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -341,6 +379,27 @@ namespace AspMVC.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AspMVC.Models.Comment", b =>
+                {
+                    b.HasOne("AspMVC.Models.Comment", "ParentComment")
+                        .WithMany("CommentChildren")
+                        .HasForeignKey("ParentCommentId");
+
+                    b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProjectPageId");
+
+                    b.HasOne("AspMVC.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ParentComment");
+
+                    b.Navigation("ProjectPage");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
                     b.HasOne("AspMVC.Models.Genre", "Genre")
@@ -401,6 +460,16 @@ namespace AspMVC.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AspMVC.Models.Comment", b =>
+                {
+                    b.Navigation("CommentChildren");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

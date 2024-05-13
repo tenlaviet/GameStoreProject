@@ -64,14 +64,14 @@ namespace AppMVC.Areas.Identity.Controllers
             if (ModelState.IsValid)
             {
                  
-                var result = await _signInManager.PasswordSignInAsync(model.UserNameOrEmail, model.Password, model.RememberMe, lockoutOnFailure: true);                
+                var result = await _signInManager.PasswordSignInAsync(model.UserNameOrEmail, model.Password, model.RememberMe, lockoutOnFailure: false);                
                 // Tìm UserName theo Email, đăng nhập lại
                 if ((!result.Succeeded) && AppUtilities.IsValidEmail(model.UserNameOrEmail))
                 {
                     var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
                     if (user != null)
                     {
-                        result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: true);
+                        result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                     }
                 } 
 
@@ -151,7 +151,7 @@ namespace AppMVC.Areas.Identity.Controllers
 
                     await _emailSender.SendEmailAsync(model.Email, 
                         "Xác nhận địa chỉ email",
-                        @$"Bạn đã đăng ký tài khoản trên RazorWeb, 
+                        @$"Bạn đã đăng ký tài khoản trên GameStore, 
                            hãy <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>bấm vào đây</a> 
                            để kích hoạt tài khoản.");
 

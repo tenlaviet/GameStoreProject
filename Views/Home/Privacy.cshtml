@@ -1,6 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿    <link rel="stylesheet" href="~/demo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+<textarea id="summernoteEditor" name="editordata"></textarea>
+@{
+    var summernote = new Summernote("summernoteEditor", true, 150, 500);
 
-<p>Use this page to detail your site's privacy policy.</p>
+}
+<partial name ="_SummerNotePartial" model="summernote" />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <input  class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="comment">
+        <div class="comment_con">
+            <div class="button_con">
+                <button><i class="fas fa-caret-up"></i></button>
+                <button><i class="fas fa-caret-down"></i></button>
+            </div>
+            <div class="user_con">
+                <div class="user">
+                    <a class="" href="https://itch.io/profile/mynameistapzz">
+                        <img src="https://img.itch.zone/aW1nLzE2MDYzNDg2LnBuZw==/25x25%23/qu9Uqj.png" >
+                    </a>
+                    @*<img src="~/uploads/FO02_NPC_Frank_Horrigan.png" height = "25" width="25" />*@
+                    <p>mynameistapzz</p>
+                    <p>a day ago</p>
+                </div>
+                <div class="text">
+                    <p>jh</p>
+                </div>
+                <div class="link">
+                    <a href="">Reply</a>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="comment_con" style="left: 4%">
+            <div class="button_con">
+                <button><i class="fas fa-caret-up"></i></button>
+                <button><i class="fas fa-caret-down"></i></button>
+            </div>
+            <div class="user_con">
+                <div class="user">
+                    <img src="~/uploads/FO02_NPC_Frank_Horrigan.png" height = "50" width= "50" />
+                    <p>mynameistapzz</p>
+                    <p>a day ago</p>
+                </div>
+                <div class="text">
+                    <p>jh</p>
+                </div>
+                <div class="link">
+                    <a href="">Reply</a>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="reply comment_con">
+            <div class="button_con">
+                <button><i class="fas fa-caret-up"></i></button>
+                <button><i class="fas fa-caret-down"></i></button>
+            </div>
+            <div class="user_con">
+                <div class="user">
+                    <img src="~/uploads/FO02_NPC_Frank_Horrigan.png" height = "50" width="50" />
+                    <p>mynameistapzz</p>
+                    <p>a day ago</p>
+                </div>
+                <div class="text">
+                    <p>jh</p>
+                </div>
+                <div class="link">
+                    <a href="">Reply</a>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>

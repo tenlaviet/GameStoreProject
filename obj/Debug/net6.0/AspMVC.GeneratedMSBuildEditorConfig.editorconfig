@@ -84,6 +84,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQmxvZ1xWaWV3c1xQcm9qZWN0UGFnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/viet/Source/repos/AspMVC/Areas/Blog/Views/Shared/_CommentCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQmxvZ1xWaWV3c1xTaGFyZWRcX0NvbW1lbnRDYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Areas/Blog/Views/Shared/_CommentSection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQmxvZ1xWaWV3c1xTaGFyZWRcX0NvbW1lbnRTZWN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/viet/Source/repos/AspMVC/Areas/Blog/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQmxvZ1xWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -324,6 +332,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/viet/Source/repos/AspMVC/Views/Shared/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFRlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -338,6 +350,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdGF0dXNNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Views/Shared/_SummerNotePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdW1tZXJOb3RlUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_ValidationScriptsPartial.cshtml]

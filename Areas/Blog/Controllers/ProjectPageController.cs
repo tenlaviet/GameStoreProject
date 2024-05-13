@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AspMVC.Areas.Blog.Models.ProjectViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +6,11 @@ using AspMVC.Data;
 using AspMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using AppMVC.Areas.Identity.Controllers;
+using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.StaticFiles;
+using System.Security.Claims;
+
+
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -32,6 +33,7 @@ namespace AspMVC.Areas.Blog.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+
         }
         private string? uploadedFile;
 
@@ -64,8 +66,14 @@ namespace AspMVC.Areas.Blog.Controllers
         // GET: Blog/ProjectPage/Create
         public IActionResult Create()
         {
-
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { area = "Identity" });
+            }
             return View();
         }
 
@@ -76,12 +84,9 @@ namespace AspMVC.Areas.Blog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProjectPageViewModel projectPageModel)
         {
-            if(User.Identity.IsAuthenticated)
-            {
+            
                 if (ModelState.IsValid)
                 {
-
-
                     if (projectPageModel.FileUpload != null)
                     {
 
@@ -119,11 +124,7 @@ namespace AspMVC.Areas.Blog.Controllers
                 }
                 ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
                 return View(projectPageModel);
-            }
-            else
-            {
-                return RedirectToAction("Login","Account", new {area = "Identity"});
-            }
+
             
         }
 
@@ -142,6 +143,7 @@ namespace AspMVC.Areas.Blog.Controllers
             }
             ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
             return View(projectPageModel);
+
         }
 
         // POST: Blog/ProjectPage/Edit/5
@@ -215,6 +217,17 @@ namespace AspMVC.Areas.Blog.Controllers
             }
 
             await _context.SaveChangesAsync();
+
+            var username = User.Identity.Name;
+            var FileStoragePath = Path.Combine(_environment.ContentRootPath, "Areas", "Blog", "Data", "ProjectsFiles", username, projectPageModel.Title);
+            if(Directory.Exists(FileStoragePath))
+            {
+                //xoa' folder chua' project va tat ca cac file va folder ben trong
+                DirectoryInfo dir = new DirectoryInfo(FileStoragePath);
+                dir.Delete(true);
+            }
+
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -222,5 +235,39 @@ namespace AspMVC.Areas.Blog.Controllers
         {
             return (_context.ProjectPages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Download(int? id)
+        {
+            if (id == null || _context.ProjectPages == null)
+            {
+                return NotFound();
+            }
+
+            var projectPageModel = await _context.ProjectPages
+                                        .FirstOrDefaultAsync(m => m.Id == id);
+            if (projectPageModel == null)
+            {
+                return NotFound();
+            }
+            string DefaultContentType = "application/octet-stream";
+            string FilePath = projectPageModel.ProjectFileDirectory;
+            var provider = new FileExtensionContentTypeProvider();
+            
+            var fileExists = System.IO.File.Exists(FilePath);
+            //doc noi dung file 
+            byte[] FileContent = System.IO.File.ReadAllBytes(FilePath);
+            string fileName = Path.GetFileName(FilePath);
+
+
+            if (!provider.TryGetContentType(FilePath, out string contentType))
+            {
+                contentType = DefaultContentType;
+            }
+
+            return File(FileContent, contentType, fileName);
+
+        }
+        
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using Microsoft.Extensions.Hosting;
 
 namespace AspMVC.Models
 {
@@ -65,5 +66,7 @@ namespace AspMVC.Models
         //Screenshots
 
         public string ProjectFileDirectory { get; set; }
+
+        public ICollection<Comment> Comments { get; } = new List<Comment>();
     }
 }

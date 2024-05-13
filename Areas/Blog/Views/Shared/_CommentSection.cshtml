@@ -1,0 +1,45 @@
+﻿
+@model CommentSectionViewModel
+
+<link rel="stylesheet" href="~/demo.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+<div class="row">
+    <div class="col-md-6">
+        <h2>Comments</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            var summernote = new Summernote("Content", true, 150, 500);
+            @await Html.PartialAsync("_SummerNotePartial",summernote)
+            <form role="form" id="commentForm" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <textarea id="Content" name="Content"></textarea>
+@*                <input type="hidden" id="PageId" name="PageId" value="@Model.PageId">
+*@                <div class="col-md-offset-2 col-md-10">
+                    <button id="post-comment-button" name="post-comment-button" onclick="PostComment" class="btn btn-primary">Post comment</button>
+                </div>
+            </form>
+
+        }
+        else
+        {
+            
+            <p class="form_placeholder">
+                <a class="d-inline" asp-area="Identity" asp-controller="Account" asp-action="Login">Login to Gamestore</a>
+                to leave a comment.
+
+            </p>
+        }
+
+    </div>
+</div>
+@{
+   @foreach(var comment in Model.Comments)
+   {
+        
+        @Html.RenderPartialAsync("_CommentCard", comment);
+   }
+
+}
+@*data: $("#commentForm").serialize(),
+*@
+

@@ -26,6 +26,8 @@ namespace AspMVC
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnectionStrings"));
             });
+            builder.Services.AddRazorPages()
+                            .AddRazorRuntimeCompilation();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                    .AddEntityFrameworkStores<AppDbContext>()
@@ -35,6 +37,8 @@ namespace AspMVC
 
             builder.Services.Configure<RazorViewEngineOptions>(options =>
             {
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
+
                 // /View/Controller/Action.cshtml
                 // /MyView/Controller/Action.cshtml
 
@@ -148,21 +152,16 @@ namespace AspMVC
                 app.UseHsts();
             }
 
-            //them dinh dang apk cho upload file
-            app.UseHttpsRedirection();
-            // Set up custom content types - associating file extension to MIME type
-            var provider = new FileExtensionContentTypeProvider();
-            // Add new mappings
-            provider.Mappings[".myapp"] = "application/x-msdownload";
-            provider.Mappings[".htm3"] = "text/html";
-            provider.Mappings[".image"] = "image/png";
-            provider.Mappings[".image"] = "image/png";
-            provider.Mappings[".apk"] = "application/vnd.android.package-archive";
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                ContentTypeProvider = provider
-            });
+            app.UseHttpsRedirection();
+            //FileExtensionContentTypeProvider contentTypes = new FileExtensionContentTypeProvider();
+            //contentTypes.Mappings[".apk"] = "application/vnd.android.package-archive";
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    ContentTypeProvider = contentTypes
+            //});
+            app.UseStaticFiles();
+
 
 
             app.UseRouting();

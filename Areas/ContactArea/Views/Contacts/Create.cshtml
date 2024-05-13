@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="addTodoForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FullName" class="control-label"></label>
@@ -38,7 +38,7 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" value="Create" class="btn btn-primary" onclick="PostData()" />
             </div>
         </form>
     </div>
@@ -49,5 +49,16 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <script>
+        function PostData() {
+            $.ajax({
+                type: "POST",
+                data: $("#addTodoForm").serialize(),    //using this way to get the form data
+                url: '/ContactArea/Contacts/Create',
+                success: function (result) {
+                    $('#tableDiv').html(result);
+                }
+            })
+        }
+    </script>
+    }

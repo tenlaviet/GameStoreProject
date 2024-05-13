@@ -29,14 +29,12 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Blog\Data\ProjectsFiles\" />
     <Folder Include="Areas\ContactArea\Data\" />
     <Folder Include="Areas\ContactArea\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="mailssave\" />
     <Folder Include="uploads\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
@@ -47,7 +45,17 @@
     <Folder Include="wwwroot\lib\jquery-validation\dist\" />
     <Folder Include="wwwroot\lib\jquery\" />
     <Folder Include="wwwroot\lib\jquery\dist\" />
-    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\StyleSheet.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Blog\Views\Shared\_CommentSection.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.comment{
+    width: 90%;
+    margin: 50px 0;
+    position: relative;
+}
+.comment_con {
+
+    margin: 15px auto;
+
+    display: flex;
+    width: 98%;
+    position: relative;
+
+}
+.comment_con .button_con{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 18px;
+    border: 2px solid #c0bebe;
+    border-radius: 4px;
+}
+.comment_con .button_con button{
+    padding: 0 8px;
+    background: #fff;
+    border: none;
+}
+.comment_con .button_con button .fas{
+    font-size: 25px;
+    cursor: pointer;
+}
+.user{
+    display: flex;
+    
+}
+.user a{
+    margin-right: 18px;
+}
+.user_con {
+    column-gap: 1rem;
+}
+.user p{
+    text-decoration: underline;
+    color: red;
+
+}
+.user p:last-child{
+    text-decoration: none;
+    color: #969696;
+}
+.user .fas{
+    background-color: #dfdede;
+    border-radius: 4px;
+}
+.user .fas,p{
+    margin-right: 14px;
+}
+.text {
+    margin: 12px 0;
+}
+.link a{
+    margin-right: 10px;
+    color: #969696;
+}
+.link a:hover{
+    color: #5666fa;
+}
+.link a:last-child{
+    margin: 0;
+}
+
+

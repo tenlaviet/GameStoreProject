@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g7dGCSuMB8flRbJt1+qDBE2WEUsLm3wDhens7cNKxjo=",
+  "Hash": "S29hFBd/IYmBdparcUzpKEgAk6ZBoXL87cl+1YmIMg4=",
   "Source": "AspMVC",
   "BasePath": "_content/AspMVC",
   "Mode": "Default",
@@ -66,6 +66,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\StyleSheet.css",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "css/StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleSheet.css"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\demo.css",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "demo.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\demo.css"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\favicon.ico",
@@ -4146,6 +4180,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\summernote\\summernote-lite.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\FO02_NPC_Frank_Horrigan.png",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/FO02_NPC_Frank_Horrigan.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\FO02_NPC_Frank_Horrigan.png"
     }
   ]
 }

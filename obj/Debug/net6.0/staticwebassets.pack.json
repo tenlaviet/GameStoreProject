@@ -5,8 +5,16 @@
       "PackagePath": "staticwebassets\\AspMVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\StyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\StyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\demo.css",
+      "PackagePath": "staticwebassets\\demo.css"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\favicon.ico",
@@ -967,6 +975,10 @@
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\lib\\summernote\\summernote.min.js",
       "PackagePath": "staticwebassets\\lib\\summernote\\summernote.min.js"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\FO02_NPC_Frank_Horrigan.png",
+      "PackagePath": "staticwebassets\\uploads\\FO02_NPC_Frank_Horrigan.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.AspMVC.Microsoft.AspNetCore.StaticWebAssets.props",
