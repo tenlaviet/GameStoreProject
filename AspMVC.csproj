@@ -29,6 +29,9 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Blog\Data\ProjectsFiles\kazekami12344\" />
+    <Folder Include="Areas\Blog\Data\ProjectsFiles\nguyenhoangb\" />
+    <Folder Include="Areas\Blog\Data\ProjectsFiles\test\" />
     <Folder Include="Areas\ContactArea\Data\" />
     <Folder Include="Areas\ContactArea\Models\" />
     <Folder Include="Controllers\" />

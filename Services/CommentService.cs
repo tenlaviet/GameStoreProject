@@ -6,7 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspMVC.Services
 {
-    public class CommentService
+    public interface IComment
+    {
+        Task AddCommentAsync(Comment comment);
+
+        Task<List<Comment>> GetComments(int PageID);
+
+    }
+    public class CommentService : IComment
     {
         private readonly AppDbContext _context;
 
@@ -22,7 +29,7 @@ namespace AspMVC.Services
 
         public async Task<List<Comment>> GetComments(int PageID)
         {
-            var commentList = await _context.Comments.Where(c => c.ProjectPageId == PageID).Include(c=> c.User).ToListAsync();
+            var commentList = await _context.Comments.Where(c => c.ProjectPageId == PageID).Include(c => c.Author).OrderByDescending(t => t.TimeStamp).ToListAsync();
             return commentList;
         }
 

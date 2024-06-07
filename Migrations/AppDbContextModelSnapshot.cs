@@ -102,6 +102,10 @@ namespace AspMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
 
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("CommentContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -118,16 +122,13 @@ namespace AspMVC.Migrations
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("CommentId");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("ParentCommentId");
 
                     b.HasIndex("ProjectPageId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -187,11 +188,15 @@ namespace AspMVC.Migrations
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"), 1L, 1);
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -219,7 +224,9 @@ namespace AspMVC.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("CreatorId");
 
                     b.HasIndex("GenreId");
 
@@ -381,32 +388,43 @@ namespace AspMVC.Migrations
 
             modelBuilder.Entity("AspMVC.Models.Comment", b =>
                 {
+                    b.HasOne("AspMVC.Models.AppUser", "Author")
+                        .WithMany("Comments")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("AspMVC.Models.Comment", "ParentComment")
                         .WithMany("CommentChildren")
                         .HasForeignKey("ParentCommentId");
 
                     b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
                         .WithMany("Comments")
-                        .HasForeignKey("ProjectPageId");
+                        .HasForeignKey("ProjectPageId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AspMVC.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.Navigation("Author");
 
                     b.Navigation("ParentComment");
 
                     b.Navigation("ProjectPage");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
+                    b.HasOne("AspMVC.Models.AppUser", "Creator")
+                        .WithMany("Projects")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("AspMVC.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Creator");
 
                     b.Navigation("Genre");
                 });
@@ -460,6 +478,13 @@ namespace AspMVC.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AspMVC.Models.AppUser", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("AspMVC.Models.Comment", b =>

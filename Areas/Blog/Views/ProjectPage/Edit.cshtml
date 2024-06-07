@@ -3,16 +3,19 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+@if (User.Identity.IsAuthenticated)
+{
+    var summernote = new Summernote("Description", true, 150, 500);
+    @await Html.PartialAsync("_SummerNotePartial",summernote)
+}
 <h1>Edit</h1>
 
-<h4>ProjectPageModel</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ProjectId" />
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -20,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +37,7 @@
                 <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <button type="submit" value="Save" class="btn btn-danger">Upload</button>
             </div>
         </form>
     </div>

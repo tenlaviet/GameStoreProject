@@ -1,23 +1,23 @@
 ﻿@model AspMVC.Models.Summernote
 
-@if (Model.LoadLibrary)
+@*@if (Model.LoadLibrary)
 {
     <script src="~/lib/summernote/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" />
-}
+}*@
 
 
 <script>
 
     $(document).ready(function () {
-        $('#@Model.IDEditor').summernote({
+        $('.@Model.IDEditor').summernote({
 
             height: @Model.height,
             width: @Model.width,
             toolbar: @Html.Raw(Model.toolbar)
 
             });
-
+        
     });
 </script>
 

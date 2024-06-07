@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AspMVC.Areas.Blog.Models.ProjectViewModels;
 using Microsoft.EntityFrameworkCore;
 using AspMVC.Data;
 using AspMVC.Models;
@@ -9,8 +8,8 @@ using AppMVC.Areas.Identity.Controllers;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Security.Claims;
-
-
+using AspMVC.Areas.Blog.Models.Project;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -51,29 +50,55 @@ namespace AspMVC.Areas.Blog.Controllers
             {
                 return NotFound();
             }
+            //var query = await (from p in _context.ProjectPages
+            //             join g in _context.Genres on p.GenreId equals g.Id
+            //             join c in _context.Comments on p.Id equals c.ProjectPageId
+            //             join u in _context.Users on c.UserId equals u.Id
+            //             select new
+            //             {
+            //                 pageID = p.Id,
+            //                 projectTitle = p.Title,
+            //                 projectDescription = p.Description,
+            //                 projectGenre = p.Genre,
+            //                 pageComments = p.Comments,
+            //                 commentAuthor = u.UserName
+            //             }).FirstOrDefaultAsync();
 
             var projectPageModel = await _context.ProjectPages
-                .Include(p => p.Genre)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(p => p.Genre).Include(c => c.Comments)
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+
+            var pageCommentsList = await _context.Comments
+                .Where(cp => cp.ProjectPageId == id)
+                .Include(u => u.Author)
+                .OrderByDescending(t => t.TimeStamp)
+                .ToListAsync();
+
             if (projectPageModel == null)
             {
                 return NotFound();
             }
+            CommentSectionViewModel commentSectionViewModel = new CommentSectionViewModel()
+            {
+                PageId = id,
+                Comments = pageCommentsList
+            };
+            ProjectPageDetailViewModel detailViewModel = new ProjectPageDetailViewModel()
+            {
+                ProjectPage = projectPageModel,
+                CommentSection = commentSectionViewModel
 
-            return View(projectPageModel);
+            };
+
+
+            return View(detailViewModel);
         }
-
+        [Authorize]
         // GET: Blog/ProjectPage/Create
         public IActionResult Create()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account", new { area = "Identity" });
-            }
+
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
             return View();
         }
 
@@ -84,48 +109,52 @@ namespace AspMVC.Areas.Blog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProjectPageViewModel projectPageModel)
         {
-            
-                if (ModelState.IsValid)
+
+            if (ModelState.IsValid)
+            {
+                if (projectPageModel.FileUpload != null)
                 {
-                    if (projectPageModel.FileUpload != null)
+
+                    var username = User.Identity.Name;
+                    var FileStoragePath = Path.Combine(_environment.ContentRootPath, "Areas", "Blog", "Data", "ProjectsFiles");
+                    var userDir = Path.Combine(FileStoragePath, username);
+                    var userProjectDir = Path.Combine(userDir, projectPageModel.Title);
+                    if (!Directory.Exists(userDir))
                     {
-
-                        var username = User.Identity.Name;
-                        var FileStoragePath = Path.Combine(_environment.ContentRootPath, "Areas", "Blog", "Data", "ProjectsFiles");
-                        var userDir = Path.Combine(FileStoragePath, username);
-                        var userProjectDir = Path.Combine(userDir, projectPageModel.Title);
-                        if (!Directory.Exists(userDir))
-                        {
-                            Directory.CreateDirectory(userDir);
-                        }
-                        if (!Directory.Exists(userProjectDir))
-                        {
-                            Directory.CreateDirectory(userProjectDir);
-
-                        }
-                        uploadedFile = Path.Combine(userProjectDir, projectPageModel.FileUpload.FileName);
-                        using (var fileStream = new FileStream(uploadedFile, FileMode.Create))
-                        {
-                            await projectPageModel.FileUpload.CopyToAsync(fileStream);
-                        }
+                        Directory.CreateDirectory(userDir);
                     }
-                    ProjectPageModel projectpage = new ProjectPageModel(
-                                    projectPageModel.Title,
-                                    projectPageModel.ShortDescription,
-                                    projectPageModel.Description,
-                                    projectPageModel.GenreId,
-                                    projectPageModel.Slug,
-                                    uploadedFile);
-                    await _context.ProjectPages.AddAsync(projectpage);
+                    if (!Directory.Exists(userProjectDir))
+                    {
+                        Directory.CreateDirectory(userProjectDir);
 
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction(nameof(Index));
+                    }
+                    uploadedFile = Path.Combine(userProjectDir, projectPageModel.FileUpload.FileName);
+                    using (var fileStream = new FileStream(uploadedFile, FileMode.Create))
+                    {
+                        await projectPageModel.FileUpload.CopyToAsync(fileStream);
+                    }
                 }
-                ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
-                return View(projectPageModel);
+                ClaimsPrincipal currentUser = this.User;
+                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                ProjectPageModel projectpage = new ProjectPageModel(
+                                currentUserID,
+                                projectPageModel.Title,
+                                projectPageModel.ShortDescription,
+                                projectPageModel.Description,
+                                projectPageModel.GenreId,
+                                projectPageModel.Slug,
+                                uploadedFile);
 
-            
+                await _context.ProjectPages.AddAsync(projectpage);
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
+            return View(projectPageModel);
+
+
         }
 
         // GET: Blog/ProjectPage/Edit/5
@@ -153,7 +182,8 @@ namespace AspMVC.Areas.Blog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Slug,GenreId")] ProjectPageModel projectPageModel)
         {
-            if (id != projectPageModel.Id)
+
+            if (id != projectPageModel.ProjectId)
             {
                 return NotFound();
             }
@@ -167,7 +197,7 @@ namespace AspMVC.Areas.Blog.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProjectPageModelExists(projectPageModel.Id))
+                    if (!ProjectPageModelExists(projectPageModel.ProjectId))
                     {
                         return NotFound();
                     }
@@ -192,7 +222,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
             var projectPageModel = await _context.ProjectPages
                 .Include(p => p.Genre)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
             if (projectPageModel == null)
             {
                 return NotFound();
@@ -211,21 +241,25 @@ namespace AspMVC.Areas.Blog.Controllers
                 return Problem("Entity set 'AppDbContext.ProjectPages'  is null.");
             }
             var projectPageModel = await _context.ProjectPages.FindAsync(id);
+            //var projectPageModel = await _context.ProjectPages.Where(x => x.Id == id).Include(c => c.Comments).FirstOrDefaultAsync();
             if (projectPageModel != null)
             {
+
+                var FileStoragePath = Path.GetDirectoryName(projectPageModel.ProjectFileDirectory);
+
+                if (Directory.Exists(FileStoragePath))
+                {
+                    //xoa' folder chua' project va tat ca cac file va folder ben trong
+                    DirectoryInfo dir = new DirectoryInfo(FileStoragePath);
+                    dir.Delete(true);
+                }
+
                 _context.ProjectPages.Remove(projectPageModel);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
 
-            var username = User.Identity.Name;
-            var FileStoragePath = Path.Combine(_environment.ContentRootPath, "Areas", "Blog", "Data", "ProjectsFiles", username, projectPageModel.Title);
-            if(Directory.Exists(FileStoragePath))
-            {
-                //xoa' folder chua' project va tat ca cac file va folder ben trong
-                DirectoryInfo dir = new DirectoryInfo(FileStoragePath);
-                dir.Delete(true);
-            }
+
 
 
             return RedirectToAction(nameof(Index));
@@ -233,7 +267,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
         private bool ProjectPageModelExists(int id)
         {
-            return (_context.ProjectPages?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ProjectPages?.Any(e => e.ProjectId == id)).GetValueOrDefault();
         }
 
         public async Task<IActionResult> Download(int? id)
@@ -244,7 +278,7 @@ namespace AspMVC.Areas.Blog.Controllers
             }
 
             var projectPageModel = await _context.ProjectPages
-                                        .FirstOrDefaultAsync(m => m.Id == id);
+                                        .FirstOrDefaultAsync(m => m.ProjectId == id);
             if (projectPageModel == null)
             {
                 return NotFound();
@@ -252,7 +286,7 @@ namespace AspMVC.Areas.Blog.Controllers
             string DefaultContentType = "application/octet-stream";
             string FilePath = projectPageModel.ProjectFileDirectory;
             var provider = new FileExtensionContentTypeProvider();
-            
+
             var fileExists = System.IO.File.Exists(FilePath);
             //doc noi dung file 
             byte[] FileContent = System.IO.File.ReadAllBytes(FilePath);
@@ -267,7 +301,7 @@ namespace AspMVC.Areas.Blog.Controllers
             return File(FileContent, contentType, fileName);
 
         }
-        
+
 
     }
 }

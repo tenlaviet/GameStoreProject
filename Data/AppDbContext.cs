@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace AspMVC.Data
 {
@@ -27,10 +28,19 @@ namespace AspMVC.Data
                     entityType.SetTableName(tableName.Substring(6));
                 }
             }
+            modelBuilder.Entity<AppUser>(entity =>
+            {
+                entity.HasMany(p => p.Projects).WithOne(c => c.Creator).HasForeignKey(c => c.CreatorId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(c => c.Comments).WithOne(a => a.Author).HasForeignKey(a => a.AuthorId).OnDelete(DeleteBehavior.Restrict);
+
+            });
             modelBuilder.Entity<ProjectPageModel>(entity =>
             {
                 entity.HasIndex(p => p.Slug);
+                entity.HasMany(c => c.Comments).WithOne(p => p.ProjectPage).HasForeignKey(p => p.ProjectPageId).OnDelete(DeleteBehavior.Cascade);
             });
+
+
 
         }
         public DbSet<Contact> Contacts { get; set; }
@@ -45,5 +55,6 @@ namespace AspMVC.Data
         //Add-Migration ""
         //Update-Database ""
         //Remove-Migration ""
+
     }
 }

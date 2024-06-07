@@ -1,12 +1,16 @@
-﻿@model AspMVC.Areas.Blog.Models.ProjectViewModels.CreateProjectPageViewModel
+﻿@model AspMVC.Areas.Blog.Models.Project.CreateProjectPageViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    var summernote = new Summernote("Description", true, 150, 500);
+    @await Html.PartialAsync("_SummerNotePartial",summernote)
+}
+<h1>Create new project</h1>
 
-<h4>ProjectPageModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" autocomplete="off" />
+                <textarea asp-for="Description" class="form-control" autocomplete="off"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,19 +56,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        function PostData() {
-            $.ajax({
-                type: "POST",
-                data: $("#commentForm").serialize(),    //using this way to get the form data
-                url: '/Blog/Comment/CreateComment',
-                success: function (result) {
-                    $('#tableDiv').html(result);
-                }
-            })
-        }
-    </script>
+
 }

@@ -29,11 +29,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+@*                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="ContactArea" asp-controller="Contacts" asp-action="Index">Contacts</a>
-                        </li>
+                        </li>*@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Blog" asp-controller="ProjectPage" asp-action="Index">Createnewproject</a>
+                            <a class="nav-link text-dark" asp-area="Blog" asp-controller="ProjectPage" asp-action="Index">Browse</a>
                         </li>
                     </ul>
 
@@ -52,48 +52,10 @@
     @await RenderSectionAsync("Scripts", required: false)
     <footer class="border-top footer text-muted">
         <div class="container">
-            <button id="post-comment-button" name="post-comment-button" onclick="PostComment()" class="btn btn-primary">Post comment</button>
 
             &copy; 2024 - AspMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script>
-        //$(document).ready(function PostComment() {
-        //    var serviceURL = '/tesftfsd';
 
-        //    $.ajax({
-        //        url: '@Url.Action("FirstAjax", "Home")',
-        //        contentType: "application/json; charset=utf-8",
-        //        dataType: "json",
-        //        success: function (response) {
-        //            alert(response.responseText);
-        //        },
-        //        error: function (response) {
-        //            alert(response.responseText);
-        //        }
-
-        //    });
-
-
-        //});
-        function PostComment() {
-            var serviceURL = '/tesftfsd';
-
-            $.ajax({
-                url: '@Url.Action("FirstAjax", "Home")',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-
-            });
-
-
-        }
-    </script>
 </body>
 </html>

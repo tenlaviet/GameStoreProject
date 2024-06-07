@@ -13,9 +13,9 @@ namespace AspMVC.Models
         [DataType(DataType.DateTime)]
         public DateTime TimeStamp { get; set; }
 
-        public string? UserId { get; set; }
-        [ForeignKey("UserId")]
-        public AppUser? User { get; set; }
+        public string AuthorId { get; set; }
+        [ForeignKey("AuthorId")]
+        public AppUser Author { get; set; }
         public int? ProjectPageId { get; set; }
         [ForeignKey("ProjectPageId")]
         public ProjectPageModel? ProjectPage { get; set; }

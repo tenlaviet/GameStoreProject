@@ -1,27 +1,38 @@
-﻿@*@model CommentViewModel
+﻿@model CommentCardViewModel
 
-<div class="comment">
-    <div class="comment_con">
-        <div class="button_con">
-            <button><i class="fas fa-caret-up"></i></button>
-            <button><i class="fas fa-caret-down"></i></button>
+<div class="comment_con" data-comment-id="@Model.CommentID">
+    <div class="button_con">
+        <button><i class="fas fa-caret-up"></i></button>
+        <button><i class="fas fa-caret-down"></i></button>
+    </div>
+    <div class="user_con">
+        <div class="user">
+            <a class="" href="https://itch.io/profile/mynameistapzz">
+                <img src="https://img.itch.zone/aW1nLzE2MDYzNDg2LnBuZw==/25x25%23/qu9Uqj.png">
+            </a>
+            <p>@Model.AuthorName</p>
+            <p>@Model.LastSent</p>
         </div>
-        <div class="user_con">
-            <div class="user">
-                <a class="" href="https://itch.io/profile/mynameistapzz">
-                    <img src="https://img.itch.zone/aW1nLzE2MDYzNDg2LnBuZw==/25x25%23/qu9Uqj.png">
-                </a>
-                <p>@Model.AuthorName</p>
-                <p>@Model.las</p>
+        <div class="comment-card">
+            <div class="comment-content">
+                @Html.Raw(Model.Content)
             </div>
-            <div class="text">
-                <p>@Model.Content</p>
-            </div>
-            <div class="link">
-                <a href="">Reply</a>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
-            </div>
+            <form role="form" class="edit-comment-form" method="post" style="display:none">
+                <textarea class="edit-comment">@Model.Content</textarea>
+                <input type="hidden" class="comment-id" value="@Model.CommentID">
+                <div class="col-md-offset-2 col-md-10">
+                    <button name="post-edit-comment-button" type="submit" class="btn btn-primary post-edit-comment-button">Save</button>
+                    <a href="javascript:;" class="cancel-edit-comment-button">Cancel</a>
+                </div>
+                
+            </form>
+            
+        </div>
+        <div class="comment-card-footer">
+            <a href="javascript:;" class="reply-comment-button">Reply</a>
+            <a href="javascript:;" class="edit-comment-button">Edit</a>
+            <a href="javascript:;" class="delete-comment-button">Delete</a>
         </div>
     </div>
-</div>*@
+</div>
+

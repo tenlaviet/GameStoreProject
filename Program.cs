@@ -32,6 +32,7 @@ namespace AspMVC
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                    .AddEntityFrameworkStores<AppDbContext>()
                    .AddDefaultTokenProviders();
+            builder.Services.AddScoped<IComment, CommentService>();
 
             builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 

@@ -3,19 +3,23 @@
 
 <link rel="stylesheet" href="~/demo.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+<script src="~/lib/summernote/summernote-lite.min.js"></script>
+<link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" />
+
 <div class="row">
-    <div class="col-md-6">
+    <div id="comment-section-div" class="col-md-6">
         <h2>Comments</h2>
         @if (User.Identity.IsAuthenticated)
         {
-            var summernote = new Summernote("Content", true, 150, 500);
-            @await Html.PartialAsync("_SummerNotePartial",summernote)
+
             <form role="form" id="commentForm" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <textarea id="Content" name="Content"></textarea>
-@*                <input type="hidden" id="PageId" name="PageId" value="@Model.PageId">
-*@                <div class="col-md-offset-2 col-md-10">
-                    <button id="post-comment-button" name="post-comment-button" onclick="PostComment" class="btn btn-primary">Post comment</button>
+                <div>
+                    <textarea id="Content" name="Content" class="Content"></textarea>
+                    <span id="comment-error" class="error text-danger"></span>
+                </div>
+                <input type="hidden" id="PageId" name="PageId" value="@Model.PageId">
+               <div class="col-md-offset-2 col-md-10">
+                    <button id="post-comment-button" name="post-comment-button" type="submit" class="btn btn-primary">Post comment</button>
                 </div>
             </form>
 
@@ -32,14 +36,238 @@
 
     </div>
 </div>
+
 @{
-   @foreach(var comment in Model.Comments)
-   {
-        
-        @Html.RenderPartialAsync("_CommentCard", comment);
-   }
+    <div id="comment-list" class="comment">
+    
+    @if (Model.Comments != null)
+    {
+        Console.WriteLine(Model.Comments.Count);
+        foreach (var comment in Model.Comments)
+        {
 
+            string? timeSpanText;
+            double timeSpan;
+            if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalSeconds) < 60)
+            {
+                timeSpanText = "a few seconds ago";
+            }
+            else if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalMinutes) < 60)
+            {
+                if(timeSpan < 2)
+                {
+                    timeSpanText = "a minute ago";
+
+                }
+                else
+                {
+                    timeSpanText = Math.Floor(timeSpan) + " minutes ago";
+                }
+            }
+            else if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalHours) < 24)
+            {
+                if (timeSpan < 2)
+                {
+                    timeSpanText = "an hour ago";
+
+                }
+                else
+                {
+                    timeSpanText = Math.Floor(timeSpan) + " hours ago";
+                }
+            }
+            else if ((timeSpan =  DateTime.Now.Subtract(comment.TimeStamp).Days) < 30)
+            {
+                if (timeSpan < 2)
+                {
+                    timeSpanText = "a day ago";
+
+                }
+                else
+                {
+                    timeSpanText = Math.Floor(timeSpan) + " days ago";
+                }
+            }
+            else if ((timeSpan = (DateTime.Now.Subtract(comment.TimeStamp).TotalDays) / 30) < 12)
+            {
+                if (timeSpan < 2)
+                {
+                    timeSpanText = "a month ago";
+
+                }
+                else
+                {
+                    timeSpanText = Math.Floor(timeSpan) + "months ago";
+                }
+            }
+            else
+            {
+                timeSpanText = comment.TimeStamp.Date.ToString();
+            }
+            var commentCardVM = new CommentCardViewModel()
+                    {
+                        CommentID = comment.CommentId,
+                        AuthorName = comment.Author.UserName,
+                        Content = comment.CommentContent,
+                        LastSent = timeSpanText 
+                    };
+            await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", commentCardVM);
+        }
+    }
+    else
+    {
+        Console.WriteLine("null");
+    }
+    </div>
+    
 }
-@*data: $("#commentForm").serialize(),
-*@
 
+<script>
+    //script apply summernote cho page va add comment
+    $(document).ready(function () {
+        LoadSummernote();
+        $("#commentForm").submit(function (e) {
+            e.preventDefault();
+            var id = $("#PageId").val();
+            var content = $("#Content").val();
+            var comment = {
+                PageId: id,
+                Content: content
+            }
+            if(Validate())
+            {
+                $.ajax({
+                    url: '@Url.Action("CreateComment", "Comment")',
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: gettoken(),
+                        PageId: $("#PageId").val(),
+                        Content: $("#Content").val()
+                    },
+                    success: function (result) {
+                            //window.location.reload();
+                            $('#comment-list').prepend(result);
+                            $('#Content').summernote('code', '<p><br></p>');//reset summernote textarea field value
+                            LoadSummernote();
+                            //ResetInput();
+                            //$('#modalCreateUpdate').modal('hide');
+                    }
+                });
+            }
+        }); 
+
+        
+
+        function Validate() {
+            var check = false;
+            var content = $("#Content").val();
+            if (content === '' || content === '<p><br></p>') {
+                $('#comment-error').html('Bạn chưa nhập comment');
+                check = false;
+            } else {
+                $('#comment-error').html('');
+                check = true;
+            }
+            return check;
+        }
+
+        function ResetInput() {
+            $('#exampleInputName').val('');
+            $('#exampleInputAge').val('');
+            $('#exampleInputClass').val();
+        }
+        function gettoken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
+        function LoadSummernote()
+        {
+            $('.edit-comment').summernote({
+
+                height: 150,
+                width: 500,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['codeview']]
+                ]
+
+            });
+            $('#Content').summernote({
+
+                height: 150,
+                width: 500,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['codeview']]
+                ]
+
+            });
+        }
+        function EditComment()
+        {
+            
+        }
+    });
+</script>
+
+<script>
+    //script sua xoa comment
+    $(document).ready(function () {
+        $('#comment-list').on('click', 'a.delete-comment-button', function () {
+            DeleteComment();
+        });
+        //$('.edit-comment-form').hide();
+        //bat tat edit comment
+        $('#comment-list').on('click', 'a.edit-comment-button', function () {
+            $(this).closest('div').prev('div').children('form').toggle();//toggle form edit
+            $(this).closest('div').prev('div').children('.comment-content').toggle(); //toggle comment content
+        });
+        //submit comment sau khi edit
+        $('#comment-list').on('submit', 'form.edit-comment-form', function (e) {
+            e.preventDefault();
+            var htmlCommentEditForm = $(this);
+            var htmlCommentContent = $(this).siblings('div.comment-content');
+            var id = $(this).children('input.comment-id').val();
+            var edit = $(this).children('textarea.edit-comment').val();
+            console.log(id);
+            console.log(edit);
+            $.ajax({
+                url: '@Url.Action("EditComment", "Comment")',
+                type: 'POST',
+                data: {
+                    commentID: id,
+                    content: edit
+                },
+                success: function (result) {
+                    alert("test");
+                    htmlCommentContent.html(edit);//thay content bang content moi edit
+                    htmlCommentContent.toggle();//toggle hien thi content
+                    htmlCommentEditForm.toggle();//toggle hien thi edit comment
+                }
+            });
+        })
+        //$('a.edit-comment-button').click(function(){
+        //    //$('form.edit-comment-form').toggle();
+        //    $(this).closest('div').prev('div').find('form').toggle();
+
+        //});
+        $('.cancel-edit-comment-button').click(function () {
+            $('.edit-comment-form').hide();
+        });
+    });
+    function DeleteComment()
+    {
+        if (confirm("OK to submit?")) {
+            $.ajax({
+              
+            });
+        }
+    }
+</script>

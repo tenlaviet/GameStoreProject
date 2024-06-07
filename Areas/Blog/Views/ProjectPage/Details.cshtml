@@ -1,53 +1,39 @@
-﻿@model AspMVC.Models.ProjectPageModel
+﻿@model AspMVC.Areas.Blog.Models.Project.ProjectPageDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
-    var commentVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
+    //var commentSectionVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
 }
 
-<h1>Details</h1>
+<h1>@Model.ProjectPage.Title</h1>
 
 <div>
-    <h4>ProjectPageModel</h4>
     <hr />
     <dl class="row">
+
+
+        <div>
+            @Html.Raw(Model.ProjectPage.Description)
+        </div>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.ProjectPage.Genre)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genre.GenreName)
+            @Html.DisplayFor(model => model.ProjectPage.Genre.GenreName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ProjectPage.ProjectId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
 <div>
-    <a asp-action="Download" asp-route-id="@Model?.Id">Download</a>
+    <a asp-action="Download" asp-route-id="@Model.ProjectPage.ProjectId">Download</a>
 </div>
 
 @{
-    var pageId = Model.Id;
-    await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", commentVM);
+    await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
 }
 
 

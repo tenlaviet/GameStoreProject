@@ -10,18 +10,22 @@ namespace AspMVC.Models
     {
 
         public ProjectPageModel() { }
-        public ProjectPageModel(string title, string shdecription, string description, int genreid, string slug, string fileDirectory) {   
-            
-               Title = title;
-               ShortDescription = shdecription;
-               Description = description;
-               GenreId = genreid;
-               Slug = slug;
-               ProjectFileDirectory = fileDirectory;
+        public ProjectPageModel(string creatorid, string title, string shdecription, string description, int genreid, string slug, string fileDirectory)
+        {
+            CreatorId = creatorid;
+            Title = title;
+            ShortDescription = shdecription;
+            Description = description;
+            GenreId = genreid;
+            Slug = slug;
+            ProjectFileDirectory = fileDirectory;
         }
 
         [Key]
-        public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public string CreatorId { get; set; }
+        [ForeignKey("CreatorId")]
+        public AppUser Creator { get; set; }
 
         // Tiều đề Category
         [Required(ErrorMessage = "Phải có tên Title")]
