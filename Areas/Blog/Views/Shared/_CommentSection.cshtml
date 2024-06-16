@@ -1,17 +1,28 @@
-﻿
-@model CommentSectionViewModel
-
-<link rel="stylesheet" href="~/demo.css">
+﻿@using AspMVC.ViewModels
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@model AspMVC.ViewModels.CommentSectionViewModel
+<link rel="stylesheet" href="~/css/demo.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
 <script src="~/lib/summernote/summernote-lite.min.js"></script>
 <link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" />
-
+@{
+    string username = "";
+    string userid = "";
+    if (User.Identity.IsAuthenticated)
+    {
+        
+        userid = userManager.GetUserId(User);
+        username = userManager.GetUserName(User);
+    }
+    
+}
 <div class="row">
     <div id="comment-section-div" class="col-md-6">
         <h2>Comments</h2>
+        
         @if (User.Identity.IsAuthenticated)
         {
-
             <form role="form" id="commentForm" method="post">
                 <div>
                     <textarea id="Content" name="Content" class="Content"></textarea>
@@ -42,75 +53,53 @@
     
     @if (Model.Comments != null)
     {
-        Console.WriteLine(Model.Comments.Count);
         foreach (var comment in Model.Comments)
         {
 
             string? timeSpanText;
             double timeSpan;
+
+
             if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalSeconds) < 60)
             {
                 timeSpanText = "a few seconds ago";
             }
             else if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalMinutes) < 60)
             {
-                if(timeSpan < 2)
-                {
-                    timeSpanText = "a minute ago";
-
-                }
-                else
-                {
                     timeSpanText = Math.Floor(timeSpan) + " minutes ago";
-                }
             }
             else if ((timeSpan = DateTime.Now.Subtract(comment.TimeStamp).TotalHours) < 24)
             {
-                if (timeSpan < 2)
-                {
-                    timeSpanText = "an hour ago";
-
-                }
-                else
-                {
                     timeSpanText = Math.Floor(timeSpan) + " hours ago";
-                }
             }
             else if ((timeSpan =  DateTime.Now.Subtract(comment.TimeStamp).Days) < 30)
             {
-                if (timeSpan < 2)
-                {
-                    timeSpanText = "a day ago";
-
-                }
-                else
-                {
                     timeSpanText = Math.Floor(timeSpan) + " days ago";
-                }
             }
             else if ((timeSpan = (DateTime.Now.Subtract(comment.TimeStamp).TotalDays) / 30) < 12)
             {
-                if (timeSpan < 2)
-                {
-                    timeSpanText = "a month ago";
 
-                }
-                else
-                {
                     timeSpanText = Math.Floor(timeSpan) + "months ago";
-                }
             }
             else
             {
                 timeSpanText = comment.TimeStamp.Date.ToString();
             }
+
+            bool isAuthor = false;
+            if(userid == comment.AuthorId)
+            {
+                   isAuthor = true;
+            }
+
             var commentCardVM = new CommentCardViewModel()
-                    {
-                        CommentID = comment.CommentId,
-                        AuthorName = comment.Author.UserName,
-                        Content = comment.CommentContent,
-                        LastSent = timeSpanText 
-                    };
+            {
+                CommentID = comment.CommentId,
+                AuthorName = comment.Author.UserName,
+                Content = comment.CommentContent,
+                LastSent = timeSpanText,
+                isAuthor = isAuthor
+            };
             await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", commentCardVM);
         }
     }
@@ -122,7 +111,7 @@
     
 }
 
-<script>
+<script name="add-comment">
     //script apply summernote cho page va add comment
     $(document).ready(function () {
         LoadSummernote();
@@ -210,24 +199,18 @@
 
             });
         }
-        function EditComment()
-        {
-            
-        }
+
     });
 </script>
 
-<script>
-    //script sua xoa comment
+<script name ="edit-comment">
+    //script sua comment
     $(document).ready(function () {
-        $('#comment-list').on('click', 'a.delete-comment-button', function () {
-            DeleteComment();
-        });
-        //$('.edit-comment-form').hide();
         //bat tat edit comment
         $('#comment-list').on('click', 'a.edit-comment-button', function () {
-            $(this).closest('div').prev('div').children('form').toggle();//toggle form edit
-            $(this).closest('div').prev('div').children('.comment-content').toggle(); //toggle comment content
+            var commentCard = $(this).closest('div').prev('div'); // comment-card
+            commentCard.children('form').toggle();//toggle form edit
+            commentCard.children('.comment-content').toggle(); //toggle comment content
         });
         //submit comment sau khi edit
         $('#comment-list').on('submit', 'form.edit-comment-form', function (e) {
@@ -236,8 +219,6 @@
             var htmlCommentContent = $(this).siblings('div.comment-content');
             var id = $(this).children('input.comment-id').val();
             var edit = $(this).children('textarea.edit-comment').val();
-            console.log(id);
-            console.log(edit);
             $.ajax({
                 url: '@Url.Action("EditComment", "Comment")',
                 type: 'POST',
@@ -246,28 +227,47 @@
                     content: edit
                 },
                 success: function (result) {
-                    alert("test");
+                    alert("edit thanh cong");
                     htmlCommentContent.html(edit);//thay content bang content moi edit
                     htmlCommentContent.toggle();//toggle hien thi content
                     htmlCommentEditForm.toggle();//toggle hien thi edit comment
                 }
             });
-        })
-        //$('a.edit-comment-button').click(function(){
-        //    //$('form.edit-comment-form').toggle();
-        //    $(this).closest('div').prev('div').find('form').toggle();
+        });
 
-        //});
         $('.cancel-edit-comment-button').click(function () {
             $('.edit-comment-form').hide();
         });
     });
-    function DeleteComment()
-    {
-        if (confirm("OK to submit?")) {
-            $.ajax({
-              
+
+
+
+    
+</script>
+
+<script name ="delete-comment">
+    //script xoa comment
+        $(document).ready(function () {
+            $('#comment-list').on('click', 'a.delete-comment-button', function (e) {
+                e.preventDefault();
+                var commentCon = $(this).parents('div.comment_con')// comment con
+                var id = commentCon.attr('data-comment-id');// id comment
+                if (confirm("Are you sure you want to delete this comment?")) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteComment", "Comment")',
+                        type: 'POST',
+                        data: {
+                            commentID: id
+                        },
+                        success: function (result) {
+                            alert("xoa thanh cong");
+                            commentCon.remove();
+                        }
+                    });
+                }
             });
-        }
-    }
+
+        });
+        
+        
 </script>

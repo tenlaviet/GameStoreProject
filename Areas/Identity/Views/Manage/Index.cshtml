@@ -67,16 +67,13 @@
                 <a asp-controller="Manage" asp-action="SetPassword">Tạo mật khẩu</a>
             }
         </dd>
-        <dt class = "col-sm-4">Liên kết tài khoản ngoài:</dt>
+@*        <dt class = "col-sm-4">Liên kết tài khoản ngoài:</dt>
         <dd class = "col-sm-6">
             Có @Model.Logins.Count liên kết. <a asp-controller="Manage" asp-action="ManageLogins">Quản lý liên kết ngoài</a>
-        </dd>
+        </dd>*@
 
         <dt class="col-sm-4">Số điện thoại:</dt>
         <dd class = "col-sm-6">
-            <p>
-                Số điện thoại dùng để xác thực hai yêu tố
-            </p>
             @(Model.PhoneNumber ?? "không có")
                 @if (Model.PhoneNumber != null)
                 {
@@ -92,7 +89,7 @@
                 }
         </dd>
 
-        <dt class="col-sm-4">Xác thực hai yếu tố:</dt>
+        @*<dt class="col-sm-4">Xác thực hai yếu tố:</dt>
         <dd class = "col-sm-6">
             <!--<p>
                 There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
@@ -129,6 +126,6 @@
                    <p>Mã phục hồi sử dụng để xác thực hai yếu tố</p>
                 </form>
             }
-        </dd>
+        </dd>*@
     </dl>
 </div>

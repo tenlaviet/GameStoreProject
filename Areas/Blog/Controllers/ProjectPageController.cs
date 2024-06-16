@@ -8,8 +8,11 @@ using AppMVC.Areas.Identity.Controllers;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Security.Claims;
-using AspMVC.Areas.Blog.Models.Project;
+using AspMVC.ViewModels;
+
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.Design;
+
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -21,6 +24,8 @@ namespace AspMVC.Areas.Blog.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<AccountController> _logger;
+
+        private string? uploadedFile;
         public ProjectPageController(AppDbContext context,
             IWebHostEnvironment environment,
             UserManager<AppUser> userManager,
@@ -34,12 +39,13 @@ namespace AspMVC.Areas.Blog.Controllers
             _logger = logger;
 
         }
-        private string? uploadedFile;
+        
 
         // GET: Blog/ProjectPage
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.ProjectPages.Include(p => p.Genre);
+            var userid = _userManager.GetUserId(HttpContext.User);
+            var appDbContext = _context.ProjectPages.Where(u => u.CreatorId == userid).Include(p => p.Genre);
             return View(await appDbContext.ToListAsync());
         }
 
@@ -165,13 +171,23 @@ namespace AspMVC.Areas.Blog.Controllers
                 return NotFound();
             }
 
-            var projectPageModel = await _context.ProjectPages.FindAsync(id);
-            if (projectPageModel == null)
+            var projectPage = await _context.ProjectPages.FindAsync(id);
+            if (projectPage == null)
             {
                 return NotFound();
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
-            return View(projectPageModel);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPage.GenreId);
+
+            EditProjectPageViewModel viewModel = new EditProjectPageViewModel()
+            {
+                ProjectID = projectPage.ProjectId,
+                Title = projectPage.Title,
+                Description = projectPage.Description,
+                ShortDescription = projectPage.ShortDescription,
+                Slug = projectPage.Slug,
+                GenreId = projectPage.GenreId
+            };
+            return View(viewModel);
 
         }
 
@@ -180,32 +196,22 @@ namespace AspMVC.Areas.Blog.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Slug,GenreId")] ProjectPageModel projectPageModel)
+        public async Task<IActionResult> Edit(EditProjectPageViewModel projectPageModel)
         {
-
-            if (id != projectPageModel.ProjectId)
-            {
-                return NotFound();
-            }
-
+            
             if (ModelState.IsValid)
             {
-                try
+                var project = await _context.ProjectPages.FirstOrDefaultAsync(p => p.ProjectId == projectPageModel.ProjectID);
+                if (project != null)
                 {
-                    _context.Update(projectPageModel);
-                    await _context.SaveChangesAsync();
+                    project.Title = projectPageModel.Title;
+                    project.ShortDescription = projectPageModel.ShortDescription;
+                    project.Description = projectPageModel.Description;
+                    project.Slug = projectPageModel.Slug;
+                    project.GenreId = projectPageModel.GenreId;
+
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProjectPageModelExists(projectPageModel.ProjectId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);

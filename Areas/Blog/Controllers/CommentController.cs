@@ -1,4 +1,5 @@
-﻿using AspMVC.Data;
+﻿using AspMVC.ViewModels;
+using AspMVC.Data;
 using AspMVC.Models;
 using AspMVC.Services;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +32,7 @@ namespace AspMVC.Areas.Blog.Controllers
         {
             ClaimsPrincipal currentUser = this.User;
             var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            Comment comment = new Comment()
+            Comment newComment = new Comment()
             {
                 CommentContent = commentForm.Content,
                 TimeStamp = DateTime.Now,
@@ -42,17 +43,19 @@ namespace AspMVC.Areas.Blog.Controllers
             };
 
 
-            await _context.Comments.AddAsync(comment);
+            await _context.Comments.AddAsync(newComment);
             try
             {
                 await _context.SaveChangesAsync();
-                var addedComment = await _context.Comments.Where(c => c.CommentId == comment.CommentId).Include(a => a.Author).FirstOrDefaultAsync();
+                var addedComment = await _context.Comments.Where(c => c.CommentId == newComment.CommentId).Include(a => a.Author).FirstOrDefaultAsync();
 
                 var addedCommentVM = new CommentCardViewModel()
                 {
+                    CommentID = addedComment.CommentId,
                     LastSent = "a few seconds ago",
                     AuthorName = addedComment.Author.UserName,
-                    Content = addedComment.CommentContent
+                    Content = addedComment.CommentContent,
+                    isAuthor = true
                 };
                 return PartialView("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", addedCommentVM);
                 //return Json(new { success = true });
@@ -65,25 +68,11 @@ namespace AspMVC.Areas.Blog.Controllers
             //return new JsonResult(Ok());
         }
         [HttpGet("GetComments/{pageID}")]
-        public async Task<IActionResult> GetComments(int pageID)
-        {
-            //var result = await _context.Comments.FirstOrDefaultAsync();
-            //var results = await _context.Comments.Where(p => p.ProjectPageId == pageID).Include(a => a.Author).OrderByDescending(c => c.CommentId).ToListAsync();
-            //var result = new CommentCardViewModel()
-            //{
-            //    LastSent = "just now",
-            //    AuthorName = ,
-            //    Content = "test"
-            //};
 
-            //return Json(new { Data = PartialViewResults, TotalItems = PartialViewResults.Count });
-            //return PartialView("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", result);
-            return Json(Ok());
-        }
         [HttpPost("/EditComment")]
         public async Task<IActionResult> EditComment(int commentID, string content)
         {
-            var com = await _context.Comments.FindAsync(commentID);
+            var com = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == commentID);
             if(com != null)
             {
                 com.CommentContent = content;
@@ -91,10 +80,16 @@ namespace AspMVC.Areas.Blog.Controllers
             }
             return Json(new { success = true });
         }
-        [HttpPost]
-        public async Task<IActionResult> DetleteComment(int commentID)
+        [HttpPost("/DeleteComment")]
+        public async Task<IActionResult> DeleteComment(int commentID)
         {
-            return Json(new { commentID });
+            var com = await _context.Comments.FindAsync(commentID); 
+            if(com != null)
+            {
+                _context.Comments.Remove(com);
+                await _context.SaveChangesAsync();
+            }
+            return Json(new { success = true });
         }
 
     }

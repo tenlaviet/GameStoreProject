@@ -332,8 +332,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/viet/Source/repos/AspMVC/Views/Shared/Test.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFRlc3QuY3NodG1s
+[C:/Users/viet/Source/repos/AspMVC/Views/Shared/_GameGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HYW1lR3JpZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Views/Shared/_LayoutTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_LoginPartial.cshtml]
@@ -342,6 +346,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_MenuManagePartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZW51TWFuYWdlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Views/Shared/_MenuSideBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZW51U2lkZUJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/viet/Source/repos/AspMVC/Views/Shared/_PagingXTL.cshtml]

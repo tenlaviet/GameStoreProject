@@ -1,6 +1,6 @@
-﻿@model CommentCardViewModel
+﻿@model AspMVC.ViewModels.CommentCardViewModel
 
-<div class="comment_con" data-comment-id="@Model.CommentID">
+<div class="comment_con" name="test" data-comment-id="@Model.CommentID">
     <div class="button_con">
         <button><i class="fas fa-caret-up"></i></button>
         <button><i class="fas fa-caret-down"></i></button>
@@ -8,7 +8,7 @@
     <div class="user_con">
         <div class="user">
             <a class="" href="https://itch.io/profile/mynameistapzz">
-                <img src="https://img.itch.zone/aW1nLzE2MDYzNDg2LnBuZw==/25x25%23/qu9Uqj.png">
+                <img src="https://img.itch.zone/aW1nLzE2NTAyNDQzLnBuZw==/25x25%23/uWUPa7.png">
             </a>
             <p>@Model.AuthorName</p>
             <p>@Model.LastSent</p>
@@ -28,11 +28,21 @@
             </form>
             
         </div>
-        <div class="comment-card-footer">
-            <a href="javascript:;" class="reply-comment-button">Reply</a>
-            <a href="javascript:;" class="edit-comment-button">Edit</a>
-            <a href="javascript:;" class="delete-comment-button">Delete</a>
-        </div>
+        @if(Model.isAuthor)
+        {
+            <div class="comment-card-footer">
+                <a href="javascript:;" class="reply-comment-button">Reply</a>
+                <a href="javascript:;" class="edit-comment-button">Edit</a>
+                <a href="javascript:;" class="delete-comment-button">Delete</a>
+            </div>
+        }
+        else
+        {
+            <div class="comment-card-footer">
+                <a href="javascript:;" class="reply-comment-button">Reply</a>
+                <a href="javascript:;" class="report-comment-button">Report</a>
+            </div>
+        }
     </div>
 </div>
 
