@@ -1,8 +1,10 @@
-﻿using AspMVC.Data;
+﻿using AspMVC.AdminMenu;
+using AspMVC.Data;
 using AspMVC.Models;
 using AspMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
@@ -141,6 +143,9 @@ namespace AspMVC
 
             });
             builder.Services.AddTransient<IEmailSender, SendMailService>();
+            builder.Services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+            builder.Services.AddTransient<AdminSidebarService>();
+
             //builder.Services.AddTransient<SignInManager<AppUser>>();
             //builder.Services.AddTransient<UserManager<AppUser>>();
             var app = builder.Build();

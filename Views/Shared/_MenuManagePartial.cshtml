@@ -20,7 +20,7 @@
 
 }
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         Dropdown button
     </button>
     <ul class="dropdown-menu">
@@ -41,13 +41,19 @@
                 </a>
             }
         }
-        
-        <a class="dropdown-item" asp-area="Blog" asp-controller="ProjectPage" asp-action="Index">
-            Dashboard
-        </a>
-        <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
-            View Profile
-        </a>
+        <li>
+            <a class="dropdown-item" asp-area="Blog" asp-controller="ProjectPage" asp-action="Index">
+                Dashboard
+            </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li><h6 class="dropdown-header">Dropdown header</h6></li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
+                View Profile
+            </a>
+        </li>
  
     </ul>
 </div>

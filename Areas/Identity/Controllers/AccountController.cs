@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace AppMVC.Areas.Identity.Controllers
+namespace AspMVC.Areas.Identity.Controllers
 {
     [Authorize]
     [Area("Identity")]
@@ -63,21 +63,29 @@ namespace AppMVC.Areas.Identity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                 
+                string username = model.UserNameOrEmail;
                 var result = await _signInManager.PasswordSignInAsync(model.UserNameOrEmail, model.Password, model.RememberMe, lockoutOnFailure: false);                
                 // Tìm UserName theo Email, đăng nhập lại
                 if ((!result.Succeeded) && AppUtilities.IsValidEmail(model.UserNameOrEmail))
                 {
                     var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
+                    
                     if (user != null)
                     {
                         result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+                        username = user.UserName;
                     }
                 } 
 
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(username);
                     _logger.LogInformation(1, "User logged in.");
+                    if((await _userManager.IsInRoleAsync(user,"Administrator")))
+                    {
+                        return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
+
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

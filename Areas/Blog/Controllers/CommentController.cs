@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace AspMVC.Areas.Blog.Controllers
 {
+    [Area("Blog")]
     public class CommentController : Controller
     {
         private readonly AppDbContext _context;

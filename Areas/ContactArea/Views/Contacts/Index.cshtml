@@ -1,9 +1,14 @@
-﻿@model IEnumerable<AspMVC.Models.Contact>
+﻿@using AspMVC.AdminMenu
+@inject AdminSidebarService _AdminSidebarService
+@model IEnumerable<AspMVC.Models.Contact>
 
 @{
+    //Layout = "/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "Index";
 }
-
+@section Sidebar{
+    @Html.Raw(_AdminSidebarService.renderHtml())
+}
 <h1>Index</h1>
 
 <p>

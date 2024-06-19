@@ -8,85 +8,39 @@
     //string returnUrl = Url.Content("~/");
     //ViewData["ReturnUrl"] = returnUrl;
     ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Areas/Identity/Views/Account/_LoginLayout.cshtml";
 }
-
-<h1>@ViewData["Title"].</h1>
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewData["ReturnUrl"] }, FormMethod.Post))
-            {
-                <h4>Sử dụng tài khoản đã đăng ký để đăng nhập</h4>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserNameOrEmail" class="control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="UserNameOrEmail" class="form-control" />
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+            <div class="card-body">
+                <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
+                    <div class="form-floating mb-3">
+                        <input asp-for="UserNameOrEmail" class="form-control" placeholder="name@example.com" />
+                        <label asp-for="UserNameOrEmail"></label>
                         <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
+                    <div class="form-floating mb-3">
+                        <input asp-for="Password" class="form-control" placeholder="Password" />
+                        <label asp-for="Password" class="control-label"></label>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
+                    <div class="form-check mb-3">
+                        <label asp-for="RememberMe" class="form-check-label" type="checkbox"></label>
+                        <input asp-for="RememberMe" class="form-check-input" />
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <a asp-action="ForgotPassword" class="small">Forgot Password?</a>
+                        <button type="submit" class="btn btn-primary">Login</button>
                     </div>
-                </div>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Chưa có tài khoản? Đăng ký</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Quên mật khẩu?</a>
-                </p>
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Đăng nhập bằng tài khoản.</h4>
-            <hr />
-            @{
-                var schemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
-                var loginProviders = schemes.ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
-                        <p>
-                            Ứng dụng chưa hỗ trợ đăng nhập từ tài khoản ngoài
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.Name account">@provider.Name</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+
+                </form>
+            </div>
+            <div class="card-footer text-center py-3">
+                <div class="small"><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Chưa có tài khoản? Đăng ký</a></div>
+            </div>
+        </div>
     </div>
 </div>
 

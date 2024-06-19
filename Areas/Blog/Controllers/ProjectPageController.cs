@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using AspMVC.Data;
 using AspMVC.Models;
 using Microsoft.AspNetCore.Identity;
-using AppMVC.Areas.Identity.Controllers;
+using AspMVC.Areas.Identity.Controllers;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Security.Claims;
 using AspMVC.ViewModels;
-
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
 
