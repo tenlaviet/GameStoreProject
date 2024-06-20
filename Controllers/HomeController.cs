@@ -18,7 +18,7 @@ namespace AspMVC.Controllers
 
             return View();
         }
-        public IActionResult Test()
+        public IActionResult HomePage()
         {
             return View();
         }

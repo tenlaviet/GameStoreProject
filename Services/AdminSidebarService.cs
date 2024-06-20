@@ -46,21 +46,21 @@ namespace AspMVC.AdminMenu
                                 Type = AdminSidebarItemType.NavItem,
                                 Controller = "Role",
                                 Action = "Index",
-                                Area = "Identity",
+                                Area = "Admin",
                                 Title = "Các vai trò (role)"
                         },
                          new AdminSidebarItem() {
                                 Type = AdminSidebarItemType.NavItem,
                                 Controller = "Role",
                                 Action = "Create",
-                                Area = "Identity",
+                                Area = "Admin",
                                 Title = "Tạo role mới"
                         },
                         new AdminSidebarItem() {
                                 Type = AdminSidebarItemType.NavItem,
                                 Controller = "User",
                                 Action = "Index",
-                                Area = "Identity",
+                                Area = "Admin",
                                 Title = "Danh sách thành viên"
                         },
                     },

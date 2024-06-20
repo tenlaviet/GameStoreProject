@@ -306,6 +306,11 @@ namespace AspMVC.Areas.Blog.Controllers
             return File(FileContent, contentType, fileName);
 
         }
+        public async Task<IActionResult> Home()
+        {
+
+            return View();
+        }
 
 
     }
