@@ -1,14 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspMVC.Areas.Identity.Controllers;
+using AspMVC.Data;
+using AspMVC.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspMVC.Areas.Main.Controllers
 {
     [Area("Main")]
     public class HomePageController : Controller
     {
-        [Route("main")]
-        public IActionResult Index()
+        private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _environment;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly ILogger<AccountController> _logger;
+
+        private string? uploadedFile;
+        public HomePageController(AppDbContext context,
+            IWebHostEnvironment environment,
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            ILogger<AccountController> logger)
         {
-            return View();
+            _context = context;
+            _environment = environment;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
+
+        }
+        [Route("main")]
+        public async Task<IActionResult> Index()
+        {
+            var appDbContext = await _context.ProjectPages.Take(7).ToListAsync();
+            return View(appDbContext);
         }
     }
 }

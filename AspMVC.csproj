@@ -34,7 +34,6 @@
     <Folder Include="Areas\ContactArea\Data\" />
     <Folder Include="Areas\ContactArea\Models\" />
     <Folder Include="Areas\Main\Data\" />
-    <Folder Include="Areas\Main\Models\" />
     <Folder Include="Areas\Main\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
