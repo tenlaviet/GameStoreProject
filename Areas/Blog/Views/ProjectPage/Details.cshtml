@@ -4,37 +4,64 @@
     ViewData["Title"] = "Details";
     //var commentSectionVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
 }
+<style>
+    .view_game_page .screenshot_list img {
+        display: block;
+        margin-bottom: 10px;
+        max-width: 347px;
+    }
 
+
+    
+    /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
 <h1>@Model.ProjectPage.Title</h1>
 
-<div>
+<div class="view_game_page">
     <hr />
     <dl class="row">
 
+        <div class="col">
+            <div>
+                @Html.Raw(Model.ProjectPage.Description)
+            </div>
 
-        <div>
-            @Html.Raw(Model.ProjectPage.Description)
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectPage.Genre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectPage.Genre.GenreName)
+            </dd>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.ProjectPage.ProjectId">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+            <div>
+                <a asp-action="Download" asp-route-id="@Model.ProjectPage.ProjectId">Download</a>
+            </div>
+            @{
+                await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
+            }
         </div>
+        <div class="col screenshot_list">
+            @foreach (var img in Model.ProjectPage.ProjectPictures)
+            {
+                //var name = img.ProjectPage.;
+                <img src="@Url.Content(img.ProjectPictureRelativePath)" class="screenshot" />
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectPage.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjectPage.Genre.GenreName)
-        </dd>
+            }
+
+            
+        </div>
+        
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectPage.ProjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-<div>
-    <a asp-action="Download" asp-route-id="@Model.ProjectPage.ProjectId">Download</a>
+
+
+
 </div>
 
-@{
-    await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
-}
+
+
 
 
 @section Scripts {

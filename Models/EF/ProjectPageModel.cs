@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using Microsoft.Extensions.Hosting;
+using AspMVC.Models.EF;
 
 namespace AspMVC.Models
 {
@@ -10,7 +11,7 @@ namespace AspMVC.Models
     {
 
         public ProjectPageModel() { }
-        public ProjectPageModel(string creatorid, string title, string shdecription, string description, int genreid, string slug, string fileDirectory)
+        public ProjectPageModel(string creatorid, string title, string shdecription, string description, int genreid, string slug)
         {
             CreatorId = creatorid;
             Title = title;
@@ -18,7 +19,6 @@ namespace AspMVC.Models
             Description = description;
             GenreId = genreid;
             Slug = slug;
-            ProjectFileDirectory = fileDirectory;
         }
 
         [Key]
@@ -44,16 +44,8 @@ namespace AspMVC.Models
         [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
         public string ShortDescription { get; set; }
 
-        //public ProjectClass Classification { get; set; }
-        //public ProjectStatus ReleaseStatus { get; set; }
-        //[Pricing]
-        //[Upload]
-
-
-        /// <summary>
-        /// Details
-        /// </summary>
-        // Nội dung, thông tin chi tiết về Category
+        [DataType(DataType.DateTime)]
+        public DateTime ProjectPageDatePosted { get; set; }
         [DataType(DataType.Text)]
         [Display(Name = "Description")]
         public string Description { get; set; }
@@ -68,9 +60,14 @@ namespace AspMVC.Models
         //Coverimage
         //VideoLink
         //Screenshots
+        [Display(Name = "CoverImage")]
+        public ProjectUploadedCoverImage? ProjectCoverImage { get; set; }
 
-        public string ProjectFileDirectory { get; set; }
+        public ICollection<ProjectUploadedFile> ProjectFiles { get; } = new List<ProjectUploadedFile>();
+
+        public ICollection<ProjectUploadedPicture> ProjectPictures { get; } = new List<ProjectUploadedPicture>();
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
+
     }
 }

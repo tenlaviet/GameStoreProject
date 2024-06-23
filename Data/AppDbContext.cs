@@ -1,4 +1,5 @@
 ﻿using AspMVC.Models;
+using AspMVC.Models.EF;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -41,12 +42,14 @@ namespace AspMVC.Data
             });
 
 
-
         }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<ProjectPageModel> ProjectPages { get; set; }
-        
+        public DbSet<ProjectUploadedPicture> ProjectUploadedPicture { get; set; }
+        public DbSet<ProjectUploadedFile> ProjectUploadedFile { get; set; }
+        public DbSet<ProjectUploadedCoverImage> ProjectUploadedCoverImage { get; set; }
+
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
         //public DbSet<ProjectModel> ProjectModels { get; set; }

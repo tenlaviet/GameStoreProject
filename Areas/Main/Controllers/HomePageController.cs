@@ -33,8 +33,9 @@ namespace AspMVC.Areas.Main.Controllers
         [Route("main")]
         public async Task<IActionResult> Index()
         {
-            var appDbContext = await _context.ProjectPages.Take(7).ToListAsync();
-            return View(appDbContext);
+            var gamesCollumn = await _context.ProjectPages.Include(c=>c.ProjectCoverImage).Take(21).ToListAsync();
+            
+            return View(gamesCollumn);
         }
     }
 }

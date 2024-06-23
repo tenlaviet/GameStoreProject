@@ -168,6 +168,81 @@ namespace AspMVC.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
+                {
+                    b.Property<int>("CoverID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoverID"), 1L, 1);
+
+                    b.Property<string>("ProjectCoverImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectCoverImageRelativePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectPageID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoverID");
+
+                    b.HasIndex("ProjectPageID")
+                        .IsUnique();
+
+                    b.ToTable("ProjectUploadedCoverImage");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedFile", b =>
+                {
+                    b.Property<int>("FileID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileID"), 1L, 1);
+
+                    b.Property<string>("ProjectFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectPageID")
+                        .HasColumnType("int");
+
+                    b.HasKey("FileID");
+
+                    b.HasIndex("ProjectPageID");
+
+                    b.ToTable("ProjectUploadedFile");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedPicture", b =>
+                {
+                    b.Property<int>("PictureID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureID"), 1L, 1);
+
+                    b.Property<int>("ProjectPageID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProjectPicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectPictureRelativePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PictureID");
+
+                    b.HasIndex("ProjectPageID");
+
+                    b.ToTable("ProjectUploadedPicture");
+                });
+
             modelBuilder.Entity("AspMVC.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
@@ -205,9 +280,8 @@ namespace AspMVC.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProjectFileDirectory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ProjectPageDatePosted")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
@@ -410,6 +484,39 @@ namespace AspMVC.Migrations
                     b.Navigation("ProjectPage");
                 });
 
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
+                {
+                    b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
+                        .WithOne("ProjectCoverImage")
+                        .HasForeignKey("AspMVC.Models.EF.ProjectUploadedCoverImage", "ProjectPageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectPage");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedFile", b =>
+                {
+                    b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
+                        .WithMany("ProjectFiles")
+                        .HasForeignKey("ProjectPageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectPage");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedPicture", b =>
+                {
+                    b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
+                        .WithMany("ProjectPictures")
+                        .HasForeignKey("ProjectPageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectPage");
+                });
+
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
                     b.HasOne("AspMVC.Models.AppUser", "Creator")
@@ -495,6 +602,12 @@ namespace AspMVC.Migrations
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("ProjectCoverImage");
+
+                    b.Navigation("ProjectFiles");
+
+                    b.Navigation("ProjectPictures");
                 });
 #pragma warning restore 612, 618
         }

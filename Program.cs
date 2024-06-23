@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using System.Configuration;
 
 namespace AspMVC
@@ -160,13 +161,14 @@ namespace AspMVC
 
 
             app.UseHttpsRedirection();
-            //FileExtensionContentTypeProvider contentTypes = new FileExtensionContentTypeProvider();
-            //contentTypes.Mappings[".apk"] = "application/vnd.android.package-archive";
+
+            app.UseStaticFiles();
+
             //app.UseStaticFiles(new StaticFileOptions
             //{
-            //    ContentTypeProvider = contentTypes
+            //    FileProvider = new PhysicalFileProvider(@"C:\Users\viet\Source\repos\AspMVC\Areas\Blog\Data\ProjectsFiles\"),
+            //    RequestPath = new PathString("/MyPath")
             //});
-            app.UseStaticFiles();
 
 
 

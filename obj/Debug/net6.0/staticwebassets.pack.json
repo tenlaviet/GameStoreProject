@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets\\AspMVC.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\Header.css",
-      "PackagePath": "staticwebassets\\css\\Header.css"
-    },
-    {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\StyleSheet.css",
       "PackagePath": "staticwebassets\\css\\StyleSheet.css"
     },
@@ -1197,8 +1193,28 @@
       "PackagePath": "staticwebassets\\lib\\summernote\\summernote.min.js"
     },
     {
-      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\FO02_NPC_Frank_Horrigan.png",
-      "PackagePath": "staticwebassets\\uploads\\FO02_NPC_Frank_Horrigan.png"
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\CoverImage\\b.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\CoverImage\\b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\CoverImage\\mason_in_paris.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\CoverImage\\mason_in_paris.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\a.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\a.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\b.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\c.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\c.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\mason_in_paris.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\project\\Screenshots\\mason_in_paris.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.AspMVC.Microsoft.AspNetCore.StaticWebAssets.props",

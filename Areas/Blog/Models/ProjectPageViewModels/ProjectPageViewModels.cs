@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using System.Collections;
 
 namespace AspMVC.ViewModels
 {
@@ -16,7 +17,6 @@ namespace AspMVC.ViewModels
     }
     public class CreateProjectPageViewModel
     {
-
         public int ProjectID { get; }
         [Required(ErrorMessage = "Phải có tên Title")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
@@ -38,12 +38,19 @@ namespace AspMVC.ViewModels
         //Genre
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
-
-        //[Required(ErrorMessage = "Chọn một file")]
+  
         [DataType(DataType.Upload)]
-        //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]
         [Display(Name = "Chọn file upload")]
-        public IFormFile? FileUpload { get; set; }
+        //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]
+        //[Required(ErrorMessage = "Chọn một file")]
+        public ICollection<IFormFile>? FileUpload { get; set; }
+        
+        [DataType(DataType.Upload)]
+        [Display(Name = "Chọn picture upload")]
+        //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]
+        //[Required(ErrorMessage = "Chọn một file")]
+        public ICollection<IFormFile>? PictureUpload { get; set; }
+        public IFormFile? CoverPictureUpload { get; set; }
 
     }
     public class EditProjectPageViewModel
