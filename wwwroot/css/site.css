@@ -1,3 +1,9 @@
+.view_game_page .screenshot_list img {
+    display: block;
+    margin-bottom: 10px;
+    max-width: 347px;
+}
+
 html {
   font-size: 14px;
 }

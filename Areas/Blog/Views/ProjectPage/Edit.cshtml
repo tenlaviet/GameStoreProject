@@ -2,56 +2,111 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var removeFileList = ViewData["RemoveFiles"] as MultiSelectList;
 }
 @if (User.Identity.IsAuthenticated)
 {
+
     var summernote = new Summernote("Description", true, 150, 500);
     @await Html.PartialAsync("_SummerNotePartial",summernote)
 }
 <h1>Edit</h1>
 
-
-<div class="row">
-    <div class="col-md-4">
+<div class="view_game_page">
         <form asp-action="Edit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProjectID" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" autocomplete="off" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProjectID" />
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShortDescription" class="control-label"></label>
+                        <input asp-for="ShortDescription" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control "></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Slug" class="control-label"></label>
+                        <input asp-for="Slug" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Slug" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GenreId" class="control-label"></label>
+                        <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenreId"></select>
+                        <span asp-validation-for="GenreId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RemoveFileIDs" class="control-label"></label>
+                        <select asp-for="RemoveFileIDs" multiple="multiple" asp-items="removeFileList" class="w-100"></select>
+                        <span asp-validation-for="RemoveFileIDs" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FileUpload" class="control-label"></label>
+                        <input asp-for="FileUpload" class="form-control" multiple />
+                        <span asp-validation-for="FileUpload"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PictureUpload" class="control-label"></label>
+                        <input asp-for="PictureUpload" class="form-control" accept="image/*" multiple />
+                        <span asp-validation-for="PictureUpload"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CoverPictureUpload" class="control-label"></label>
+                        <input asp-for="CoverPictureUpload" class="form-control" accept="image/*" />
+                        <span asp-validation-for="CoverPictureUpload"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" value="Save" class="btn btn-danger">Upload</button>
+                    </div>
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+                <div class="col screenshot_list">
+                    <h3>Cover Image</h3>
+                    <div class="custom-control custom-checkbox image-checkbox">
+                        @Html.HiddenFor(x => x.RemoveCover.PictureID)
+                        @Html.CheckBoxFor(x => x.RemoveCover.Selected)
+                        <img src="@Model.ProjectCover.ProjectCoverImageRelativePath)" class="" height="240" width="300" style="border:solid;" />
+                    </div>
+                    <h3>Gallery</h3>
+                    @for (int i = 0; i < Model.RemoveGallery.Count; i++)
+                    {
+                    <div class="custom-control custom-checkbox image-checkbox">
+                        @Html.HiddenFor(x => x.RemoveGallery[i].PictureID)
+                        @Html.CheckBoxFor(x => x.RemoveGallery[i].Selected)
+                        <img src="@Url.Content(Model.ProjectGallery[i].ProjectPictureRelativePath)" class="screenshot" style="border:solid" />
+                    </div>
+                    }
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label"></label>
-                <input asp-for="ShortDescription" class="form-control" autocomplete="off" />
-                <span asp-validation-for="ShortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control "></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Slug" class="control-label"></label>
-                <input asp-for="Slug" class="form-control" autocomplete="off" />
-                <span asp-validation-for="Slug" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GenreId" class="control-label"></label>
-                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenreId"></select>
-                <span asp-validation-for="GenreId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <button type="submit" value="Save" class="btn btn-danger">Upload</button>
-            </div>
+
         </form>
-    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+    <link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
+
+    <script>
+        $("#RemoveFileID").multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false,
+        });
+    </script>
+
+
+    <partial name="_ValidationScriptsPartial" />
 }

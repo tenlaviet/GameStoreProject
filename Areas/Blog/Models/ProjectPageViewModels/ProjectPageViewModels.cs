@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using System.Collections;
+using AspMVC.Models.EF;
 
 namespace AspMVC.ViewModels
 {
@@ -17,7 +18,7 @@ namespace AspMVC.ViewModels
     }
     public class CreateProjectPageViewModel
     {
-        public int ProjectID { get; }
+        public int ProjectID { get; set;}
         [Required(ErrorMessage = "Phải có tên Title")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
         [Display(Name = "Title")]
@@ -26,15 +27,15 @@ namespace AspMVC.ViewModels
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} dài {1} đến {2}")]
         [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Chỉ dùng các ký tự [a-z0-9-]")]
         [Display(Name = "Project Url")]
-        public string Slug { set; get; }
+        public string? Slug { set; get; }
 
         [Display(Name = "Short Description")]
         [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
 
         [Display(Name = "Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         //Genre
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
@@ -53,30 +54,13 @@ namespace AspMVC.ViewModels
         public IFormFile? CoverPictureUpload { get; set; }
 
     }
-    public class EditProjectPageViewModel
+    public class EditProjectPageViewModel : CreateProjectPageViewModel
     {
-        public int ProjectID { get; set; }
-        [Required(ErrorMessage = "Phải có tên Title")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
-        [Display(Name = "Title")]
-        public string Title { get; set; }
-        [Required(ErrorMessage = "Phải tạo url")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} dài {1} đến {2}")]
-        [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Chỉ dùng các ký tự [a-z0-9-]")]
-        [Display(Name = "Project Url")]
-        public string Slug { set; get; }
-
-        [Display(Name = "Short Description")]
-        [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
-        public string ShortDescription { get; set; }
-
-
-        [Display(Name = "Description")]
-        public string Description { get; set; }
-        //Genre
-        [Display(Name = "Genre")]
-        public int GenreId { get; set; }
-
+        public ProjectUploadedCoverImage? ProjectCover { get; set; }
+        public RemovePictureCheckBox? RemoveCover { get; set; }
+        public List<ProjectUploadedPicture>? ProjectGallery { get; set; }
+        public List<RemovePictureCheckBox>? RemoveGallery { get;set; }
+        public List<int>? RemoveFileIDs { get; set; }
 
     }
 }

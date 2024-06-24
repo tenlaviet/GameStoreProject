@@ -205,9 +205,18 @@
                             {
                                 <div data-game_id="@item.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
                                     <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
-                                        <a aria-hidden="true" tabindex="-1" data-action="game_grid" data-label="game:2556612" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                            <img src="@Url.Content(item.ProjectCoverImage.ProjectCoverImageRelativePath)" height="240" width="300" class="lazy_loaded" />
-                                        </a>
+                                        @if (item.ProjectCoverImage == null)
+                                        {
+                                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                                                <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:100px;width:180px">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                                                <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:100px;width:180px">
+                                            </a>
+                                        }
                                     </div>
                                     <div class="label">
                                         <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" title="@item.Title" class="title">@item.Title</a>
@@ -215,6 +224,7 @@
                                     <div class="sub">@item.ShortDescription</div>
                                 </div>
                             }
+
                 </div>
             </section>
             <section data-ca_source="13" class="game_section">

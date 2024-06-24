@@ -160,5 +160,32 @@ namespace AspMVC.Areas.ContactArea
         {
           return (_context.Contacts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public ActionResult test()
+        {
+            var model = new TestViewModel
+            {
+                // Obviously those could come from some data source
+                RemovePicture = new[]
+                {
+                    new RemovePictureCheckBox { PictureID = 1, Selected=false },
+                    new RemovePictureCheckBox { PictureID = 21, Selected=false },
+                    new RemovePictureCheckBox { PictureID = 3, Selected=false },
+                    new RemovePictureCheckBox { PictureID = 4, Selected=false },
+                    new RemovePictureCheckBox { PictureID = 5, Selected=false },
+
+                   }.ToList()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult test(TestViewModel model)
+        {
+            // The view model will be correctly populated here
+            // TODO: do some processing with them and redirect or
+            // render the same view passing it the view model
+            return View(model);
+        }
+
     }
 }

@@ -15,13 +15,25 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="~/images/FO02_NPC_Frank_Horrigan.png" class="img-fluid" alt="...">
+                    @if (item.ProjectCoverImage == null)
+                    {
+                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                            <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:100px;width:180px">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:100px;width:180px">
+                        </a>
+                    }
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">@item.Title</h5>
+                        <a class="card-title link-underline-dark text-black" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" style="text-decoration: none;">
+                            <h5 class="card-title">@item.Title</h5>
+                        </a>
                         <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
                     </div>
                 </div>

@@ -176,6 +176,9 @@ namespace AspMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoverID"), 1L, 1);
 
+                    b.Property<string>("CoverName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProjectCoverImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -203,6 +206,9 @@ namespace AspMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileID"), 1L, 1);
 
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProjectFile")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -224,6 +230,9 @@ namespace AspMVC.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureID"), 1L, 1);
+
+                    b.Property<string>("PictureName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProjectPageID")
                         .HasColumnType("int");
@@ -279,6 +288,12 @@ namespace AspMVC.Migrations
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProjectFilesDir")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectImagesDir")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ProjectPageDatePosted")
                         .HasColumnType("datetime2");

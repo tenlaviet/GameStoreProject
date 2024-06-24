@@ -4,23 +4,12 @@
     ViewData["Title"] = "Details";
     //var commentSectionVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
 }
-<style>
-    .view_game_page .screenshot_list img {
-        display: block;
-        margin-bottom: 10px;
-        max-width: 347px;
-    }
 
-
-    
-    /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style>
 <h1>@Model.ProjectPage.Title</h1>
 
 <div class="view_game_page">
     <hr />
     <dl class="row">
-
         <div class="col">
             <div>
                 @Html.Raw(Model.ProjectPage.Description)
@@ -46,18 +35,11 @@
         <div class="col screenshot_list">
             @foreach (var img in Model.ProjectPage.ProjectPictures)
             {
-                //var name = img.ProjectPage.;
                 <img src="@Url.Content(img.ProjectPictureRelativePath)" class="screenshot" />
-
             }
-
-            
         </div>
         
     </dl>
-
-
-
 </div>
 
 

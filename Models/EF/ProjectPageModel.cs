@@ -60,6 +60,11 @@ namespace AspMVC.Models
         //Coverimage
         //VideoLink
         //Screenshots
+
+        public string? ProjectImagesDir { get; set; }
+        public string? ProjectFilesDir { get; set; }
+
+
         [Display(Name = "CoverImage")]
         public ProjectUploadedCoverImage? ProjectCoverImage { get; set; }
 

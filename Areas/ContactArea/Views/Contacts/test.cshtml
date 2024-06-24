@@ -1,0 +1,32 @@
+﻿@model TestViewModel
+
+@using (Html.BeginForm())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Select</th>
+                <th>Add</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.RemovePicture.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.RemovePicture[i].PictureID)
+                        @Html.HiddenFor(x => x.RemovePicture[i].PictureID)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(x => x.RemovePicture[i].Selected)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit">OK</button>
+}

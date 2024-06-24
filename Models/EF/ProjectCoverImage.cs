@@ -8,6 +8,7 @@ namespace AspMVC.Models.EF
     {
         [Key]
         public int CoverID { get; set; }
+        public string? CoverName { get; set; }
 
         [Display(Name = "ProjectPage")]
         public int ProjectPageID { get; set; }

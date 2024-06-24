@@ -8,6 +8,7 @@ namespace AspMVC.Models.EF
     {
         [Key]
         public int PictureID { get; set; }
+        public string? PictureName { get; set; }
 
         [Display(Name = "ProjectPage")]
         public int ProjectPageID { get; set; }

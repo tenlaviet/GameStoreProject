@@ -10,6 +10,7 @@ namespace AspMVC.Models.EF
         [Key]
         public int FileID { get; set; }
 
+        public string? FileName { get; set; }
         [Display(Name = "ProjectPage")]
 
         public int ProjectPageID { get; set; }

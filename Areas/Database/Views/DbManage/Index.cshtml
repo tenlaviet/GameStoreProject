@@ -13,8 +13,8 @@
 
 }
 
-@*<partial name="_AlertMessage" />
-*@
+<partial name="_AlertMessage" />
+
 <h2>Thông tin</h2>
 <p>- Database: @dbname</p>
 <p>- Source: @connect.DataSource</p>
@@ -36,10 +36,10 @@
 
 @if (dbContext.Database.GetPendingMigrations().Any())
 {
-  <form method="post">
-      <button class = "btn btn-success" asp-action="Migrate">Tạo Db (Cập nhật migration)</button>
-  </form>
-  
+    <form method="post">
+        <button class="btn btn-success" asp-action="Migrate">Tạo Db (Cập nhật migration)</button>
+    </form>
+
 }
 
 @if (can_connect)
@@ -48,14 +48,14 @@
     await dbContext.Database.OpenConnectionAsync();
     var table = dbContext.Database.GetDbConnection().GetSchema("Tables");
     <ul>
-      @foreach (System.Data.DataRow row in table.Rows)
-      {
-          <li>@row["TABLE_NAME"]</li>
-      }
+        @foreach (System.Data.DataRow row in table.Rows)
+        {
+            <li>@row["TABLE_NAME"]</li>
+        }
     </ul>
 
-    <a class = "btn btn-danger" asp-action="DeleteDb">Xóa Db:  @dbname</a>
-    <a class = "btn btn-danger" asp-action="SeedData">Seed Data</a>
+    <a class="btn btn-danger" asp-action="DeleteDb">Xóa Db:  @dbname</a>
+    <a class="btn btn-danger" asp-action="SeedData">Seed Data</a>
 
 
 }

@@ -2,6 +2,7 @@
 using AspMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspMVC.Areas.Database.Controllers
 {
@@ -19,10 +20,40 @@ namespace AspMVC.Areas.Database.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DeleteDb()
+        {
+            return View();
+        }
+
+        [TempData]
+        public string StatusMessage { get; set; }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteDbAsync()
+        {
+            var success = await _dbContext.Database.EnsureDeletedAsync();
+
+            StatusMessage = success ? "Xóa Database thành công" : "Không xóa được Db";
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> Migrate()
+        {
+            await _dbContext.Database.MigrateAsync();
+
+            StatusMessage = "Cập nhật Database thành công";
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public async Task<IActionResult> SeedDataAsync()
         {
             // Create Roles
@@ -38,7 +69,7 @@ namespace AspMVC.Areas.Database.Controllers
             }
 
             // admin, pass=admin123, admin@example.com
-            var useradmin = await _userManager.FindByEmailAsync("admin@example.com");
+            var useradmin = await _userManager.FindByEmailAsync("admin");
             if (useradmin == null)
             {
                 useradmin = new AppUser()
@@ -52,15 +83,12 @@ namespace AspMVC.Areas.Database.Controllers
                 await _userManager.AddToRoleAsync(useradmin, RoleName.Administrator);
 
             }
-
-            //SeedPostCategory();
-
-            //StatusMessage = "Vừa seed Database";
+            StatusMessage = "Vừa seed Database";
             return RedirectToAction("Index");
 
 
-
-
         }
+
     }
 }
+
