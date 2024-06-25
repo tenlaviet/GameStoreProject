@@ -56,6 +56,7 @@ namespace AspMVC.ViewModels
     }
     public class EditProjectPageViewModel : CreateProjectPageViewModel
     {
+
         public ProjectUploadedCoverImage? ProjectCover { get; set; }
         public RemovePictureCheckBox? RemoveCover { get; set; }
         public List<ProjectUploadedPicture>? ProjectGallery { get; set; }

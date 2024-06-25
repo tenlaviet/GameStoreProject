@@ -16,18 +16,16 @@
             </div>
 
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ProjectPage.Genre)
+                Download
             </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ProjectPage.Genre.GenreName)
-            </dd>
-            <div>
-                <a asp-action="Edit" asp-route-id="@Model.ProjectPage.ProjectId">Edit</a> |
-                <a asp-action="Index">Back to List</a>
-            </div>
-            <div>
-                <a asp-action="Download" asp-route-id="@Model.ProjectPage.ProjectId">Download</a>
-            </div>
+
+            @foreach(var file in Model.ProjectPage.ProjectFiles)
+            {
+                <div>
+                    <a asp-action="Download" asp-route-id="@file.FileID">@file.FileName</a>
+                </div>
+            }
+            
             @{
                 await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
             }

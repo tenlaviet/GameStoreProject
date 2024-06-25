@@ -14,6 +14,7 @@ using System.ComponentModel.Design;
 using AspMVC.Services;
 using AspMVC.Models.EF;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -147,8 +148,8 @@ namespace AspMVC.Areas.Blog.Controllers
                 //////////////////////////////////////////////////
 
                 //xu ly upload file len server va them du lieu vao sql
-                var uploadedProjectPictureList = projectPageModel.PictureUpload;
-                var uploadedProjectFileList = projectPageModel.FileUpload;
+                //var uploadedProjectPictureList = projectPageModel.PictureUpload;
+                //var uploadedProjectFileList = projectPageModel.FileUpload;
 
                 //uploaded file directories
                 var projectImageGalleryStorageDir = Path.Combine(projectImageStorageDir, "Screenshots");
@@ -179,7 +180,6 @@ namespace AspMVC.Areas.Blog.Controllers
                             PictureName = file.FileName
                         };
                         await _context.ProjectUploadedPicture.AddAsync(addUploadedPicture);
-
                     }
                 }
                 //
@@ -259,12 +259,18 @@ namespace AspMVC.Areas.Blog.Controllers
             //var pictureIDList = await _context.ProjectUploadedPicture.Where(i => i.ProjectPageID == id).Select(i => i.PictureID).ToListAsync();
             var pictureIDList = projectPage.ProjectPictures.Select(i=>i.PictureID).ToList();
             var removePictureList = new List<RemovePictureCheckBox>();
-            
+            RemovePictureCheckBox removeCover = null;
+            if (projectPage.ProjectCoverImage!=null)
+            {
+                removeCover = new RemovePictureCheckBox() { PictureID = projectPage.ProjectCoverImage.CoverID, Selected = false };
+
+            }
+
             foreach (var pictureID in pictureIDList)
             {
                 removePictureList.Add(new RemovePictureCheckBox { PictureID = pictureID, Selected = false });
             }
-           
+            
             EditProjectPageViewModel viewModel = new EditProjectPageViewModel()
             {
                 ProjectID = projectPage.ProjectId,
@@ -276,7 +282,8 @@ namespace AspMVC.Areas.Blog.Controllers
                 ProjectGallery = projectPage.ProjectPictures.ToList(),
                 RemoveGallery = removePictureList,
                 ProjectCover = projectPage.ProjectCoverImage,
-                
+                RemoveCover = removeCover,
+
             };
             return View(viewModel);
 
@@ -292,7 +299,11 @@ namespace AspMVC.Areas.Blog.Controllers
             
             if (ModelState.IsValid)
             {
-                var project = await _context.ProjectPages.FirstOrDefaultAsync(p => p.ProjectId == projectPageModel.ProjectID);
+                ClaimsPrincipal currentUser = this.User;
+                var currentUserName = currentUser.Identity.Name;
+                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var project = await _context.ProjectPages.Include(p => p.ProjectPictures).Include(p => p.ProjectCoverImage).Include(p => p.ProjectFiles).FirstOrDefaultAsync(p => p.ProjectId == projectPageModel.ProjectID);
                 if (project != null)
                 {
                     project.Title = projectPageModel.Title;
@@ -373,11 +384,89 @@ namespace AspMVC.Areas.Blog.Controllers
                 }
 
                 await _context.SaveChangesAsync();
+                //add new pictures to database and server
+                if (projectPageModel.PictureUpload != null && projectPageModel.PictureUpload.Count > 0)
+                {
+                    foreach (var file in projectPageModel.PictureUpload)
+                    {
+                        string projectImageGalleryStorageDir = Path.Combine(project.ProjectImagesDir, "Screenshots");
+                        string uploadedFile = Path.Combine(projectImageGalleryStorageDir, file.FileName);
+                        using (var fileStream = System.IO.File.Create(uploadedFile))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                        string fileRelativePath = $"/uploads/Users/{currentUserName}/Projects/{projectPageModel.Title}/Screenshots/{file.FileName}";
+                        ProjectUploadedPicture addUploadedPicture = new ProjectUploadedPicture()
+                        {
+                            ProjectPageID = project.ProjectId,
+                            ProjectPicture = uploadedFile,
+                            ProjectPictureRelativePath = fileRelativePath,
+                            PictureName = file.FileName
+                        };
+                        await _context.ProjectUploadedPicture.AddAsync(addUploadedPicture);
+
+                    }
+                }
+                //add new cover to database and server
+                if (projectPageModel.CoverPictureUpload != null)
+                {
+                    var file = projectPageModel.CoverPictureUpload;
+
+                    string projectCoverImageDir = Path.Combine(project.ProjectImagesDir, "CoverImage");
+                    string uploadedFile = Path.Combine(projectCoverImageDir, file.FileName);
+                    using (var fileStream = System.IO.File.Create(uploadedFile))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    string fileRelativePath = $"/uploads/Users/{currentUserName}/Projects/{projectPageModel.Title}/CoverImage/{file.FileName}";
+                    ProjectUploadedCoverImage addUploadedPicture = new ProjectUploadedCoverImage()
+                    {
+                        ProjectPageID = project.ProjectId,
+                        ProjectCoverImage = uploadedFile,
+                        ProjectCoverImageRelativePath = fileRelativePath,
+                        CoverName = file.FileName
+                    };
+                    if(project.ProjectCoverImage !=null)
+                    {
+                        _context.ProjectUploadedCoverImage.Remove(project.ProjectCoverImage);
+                    }
+                    await _context.ProjectUploadedCoverImage.AddAsync(addUploadedPicture);
+
+                }
+                //add new file to database and server
+                if (projectPageModel.FileUpload != null)
+                {
+                    foreach (var file in projectPageModel.FileUpload)
+                    {
+                        string projectFileStorageDir = project.ProjectFilesDir;
+                        string uploadedFile = Path.Combine(projectFileStorageDir, file.FileName);
+                        using (var fileStream = System.IO.File.Create(uploadedFile))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                        ProjectUploadedFile addUploadedFile = new ProjectUploadedFile()
+                        {
+                            ProjectPageID = project.ProjectId,
+                            ProjectFile = uploadedFile,
+                            FileName = file.FileName
+                        };
+                        await _context.ProjectUploadedFile.AddAsync(addUploadedFile);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Details), new { id = project.ProjectId.ToString() });
 
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
-            return View(projectPageModel);
+            else
+            {
+                //de phong xay ra loi model, xu ly sau nay
+                IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return NotFound();
+            }
+            //ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
+            //return View(projectPageModel);
         }
 
         // GET: Blog/ProjectPage/Delete/5

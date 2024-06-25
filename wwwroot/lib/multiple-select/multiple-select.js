@@ -147,7 +147,7 @@
             this.$el.attr('placeholder') || '';
         this.$choice = $(sprintf([
                 '<button type="button" class="ms-choice">',
-                '<span class="placeholder">%s</span>',
+                '<span class=""></span>',
                 '<div></div>',
                 '</button>'
             ].join(''),
@@ -485,7 +485,7 @@
                 sl = selects.length;
 
             if (sl === 0) {
-                $span.addClass('placeholder').html(this.options.placeholder);
+                $span.addClass('').html(this.options.placeholder);
             } else if (this.options.formatAllSelected() && sl === this.$selectItems.length + this.$disableItems.length) {
                 $span.removeClass('placeholder').html(this.options.formatAllSelected());
             } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {

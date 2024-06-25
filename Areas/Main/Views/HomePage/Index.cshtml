@@ -201,29 +201,30 @@
                     <a href="/games/new-and-popular/featured" class="button outline forward_link">View all</a>
                 </div>
                 <div data-always_show data-max_rows="3" id="featured_game_grid_5198206" data-overflow_into="featured_games" class="featured_game_grid_widget base_widget">
-                            @foreach(var item in Model)
-                            {
-                                <div data-game_id="@item.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
-                                    <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
-                                        @if (item.ProjectCoverImage == null)
-                                        {
-                                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                                <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:100px;width:180px">
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                                <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:100px;width:180px">
-                                            </a>
-                                        }
-                                    </div>
-                                    <div class="label">
-                                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" title="@item.Title" class="title">@item.Title</a>
-                                    </div>
-                                    <div class="sub">@item.ShortDescription</div>
+                        @foreach(var item in Model)
+                        {
+                            <div data-game_id="@item.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
+                                <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
+                                    @if (item.ProjectCoverImage == null)
+                                    {
+                                        <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                                            <img src="/images/no-image.jpg" height="240" width="300" class="lazy_loaded">
+                                        </a>
+                                        
+                                    }
+                                    else
+                                    {
+                                        <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" height="240" width="300" class="lazy_loaded">
+                                        </a>
+                                    }
                                 </div>
-                            }
+                                <div class="label">
+                                    <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" title="@item.Title" class="title">@item.Title</a>
+                                </div>
+                                <div class="sub">@item.ShortDescription</div>
+                            </div>
+                        }
 
                 </div>
             </section>
