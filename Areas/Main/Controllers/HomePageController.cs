@@ -30,18 +30,37 @@ namespace AspMVC.Areas.Main.Controllers
             _logger = logger;
 
         }
-        [Route("main")]
+        [Route("/main")]
         public async Task<IActionResult> Index()
         {
             var gamesCollumn = await _context.ProjectPages.Include(c=>c.ProjectCoverImage).Take(21).ToListAsync();
             
             return View(gamesCollumn);
         }
-        public async Task<IActionResult> Search()
+        [Route("/browse")]
+        public async Task<IActionResult> Browse()
         {
             var gamesCollumn = await _context.ProjectPages.Include(c => c.ProjectCoverImage).Take(21).ToListAsync();
 
             return View(gamesCollumn);
+        }
+        [Route("/search")]
+        public async Task<IActionResult> Search(string searchString)
+        {
+            if (_context == null)
+            {
+                return Problem("Entity set  is null.");
+            }
+            var games = _context.ProjectPages.Include(c => c.ProjectCoverImage).Take(21);
+
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(s => s.Title.Contains(searchString));
+                return View(await games.ToListAsync());
+            }
+            return RedirectToAction("Index");
         }
     }
 }

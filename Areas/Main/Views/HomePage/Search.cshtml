@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<AspMVC.Models.ProjectPageModel>
+@{
     ViewData["Title"] = "Search";
 }
 
@@ -159,10 +160,11 @@
         </div>
         <div class="grid_outer">
             <div class="game_grid_widget base_widget browse_game_grid" id="game_grid_0">
+                @foreach(var game in Model) {
                 <div dir="auto" data-game_id="1293693" class="game_cell has_cover">
                     <div class="game_thumb">
                         <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:thumb">
-                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzc1MjY0MDkuanBn/315x250%23c/brbUrJ.jpg" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1nLzc1MjY0MDkuanBn/315x250%23c/brbUrJ.jpg">
+                            <img width="315" class="lazy_loaded" height="250" src="@game.ProjectCoverImage.ProjectCoverImageRelativePath">
                         </a>
                         <div class="game_cell_tools">
                             <a class="action_btn add_to_collection_btn" href="/g/free-game-assets/car-constructor-pixel-art/add-to-collection?source=search">
@@ -172,13 +174,13 @@
                     </div>
                     <div class="game_cell_data">
                         <div class="game_title">
-                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:title">Car Constructor Cyberpunk</a>
+                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:title">@game.Title</a>
                             <a title="Pay $4.20 or more for this asset pack" href="/s/11302/june-2024-mega-bundle-game-assets-save-98" class="price_tag meta_tag sale">
                                 <div class="price_value">$4.20</div>
                                 <div class="sale_tag">-30%</div>
                             </a>
                         </div>
-                        <div class="game_text" title="Car Constructor Cyberpunk for your game projects">Car Constructor Cyberpunk for your game projects</div>
+                        <div class="game_text" title="@game.ShortDescription">@game.ShortDescription</div>
                         <div class="game_author">
                             <a data-action="game_grid" href="https://free-game-assets.itch.io" data-label="user:218217">Free Game Assets (GUI, Sprite, Tilesets)</a>
                         </div>
@@ -204,6 +206,7 @@
                         </div>
                     </div>
                 </div>
+                }
                 <div dir="auto" data-game_id="40409" class="game_cell has_cover">
                     <div class="game_thumb">
                         <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://ryoganzx.itch.io/cartoon-game-gui-pack" data-label="game:40409:thumb">

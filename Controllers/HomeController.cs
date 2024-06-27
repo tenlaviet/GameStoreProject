@@ -1,5 +1,6 @@
 ﻿using AspMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
 
 namespace AspMVC.Controllers
@@ -33,6 +34,11 @@ namespace AspMVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [Route("/test")]
+        public IActionResult Search()
+        {
+            return View();
         }
 
     }

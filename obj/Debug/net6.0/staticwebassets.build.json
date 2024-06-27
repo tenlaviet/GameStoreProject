@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gj45TS1goki7WJkYdg86lOzUcITrYugmGuR6t20KnXQ=",
+  "Hash": "ZgVSrRQso3NBmQ7hXVd0d4uFd9HezMnEoW6HjoHm5hY=",
   "Source": "AspMVC",
   "BasePath": "_content/AspMVC",
   "Mode": "Default",
@@ -68,12 +68,12 @@
       "OriginalItemSpec": "wwwroot\\css\\demo.css"
     },
     {
-      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\itchio.css",
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\GameStore.css",
       "SourceId": "AspMVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
       "BasePath": "_content/AspMVC",
-      "RelativePath": "css/itchio.css",
+      "RelativePath": "css/GameStore.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,7 +82,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\itchio.css"
+      "OriginalItemSpec": "wwwroot\\css\\GameStore.css"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\site.css",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\200x200.png",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "images/200x200.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\200x200.png"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\FO02_NPC_Frank_Horrigan.png",
@@ -5200,6 +5217,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\summernote\\summernote-lite.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/admin/Projects/Grand Theft Auto V/CoverImage/Grand_Theft_Auto_V.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/CoverImage/6-1-624965-52.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg",

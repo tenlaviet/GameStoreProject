@@ -70,16 +70,16 @@ namespace AspMVC.AdminMenu
             Items.Add(new AdminSidebarItem()
             {
                 Type = AdminSidebarItemType.NavItem,
-                Title = "Quản lý bài viết",
+                Title = "Quản lý Game",
                 AwesomeIcon = "far fa-folder",
                 collapseID = "blog",
                 Items = new List<AdminSidebarItem>() {
                         new AdminSidebarItem() {
                                 Type = AdminSidebarItemType.NavItem,
-                                Controller = "Category",
+                                Controller = "Genre",
                                 Action = "Index",
-                                Area = "Blog",
-                                Title = "Các chuyên mục"
+                                Area = "Admin",
+                                Title = "Các Genre"
                         },
                          new AdminSidebarItem() {
                                 Type = AdminSidebarItemType.NavItem,

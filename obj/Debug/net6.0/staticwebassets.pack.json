@@ -5,16 +5,16 @@
       "PackagePath": "staticwebassets\\AspMVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\GameStore.css",
+      "PackagePath": "staticwebassets\\css\\GameStore.css"
+    },
+    {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\StyleSheet.css",
       "PackagePath": "staticwebassets\\css\\StyleSheet.css"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\demo.css",
       "PackagePath": "staticwebassets\\css\\demo.css"
-    },
-    {
-      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\itchio.css",
-      "PackagePath": "staticwebassets\\css\\itchio.css"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\site.css",
@@ -27,6 +27,10 @@
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\200x200.png",
+      "PackagePath": "staticwebassets\\images\\200x200.png"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\FO02_NPC_Frank_Horrigan.png",
@@ -1215,6 +1219,14 @@
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\lib\\summernote\\summernote.min.js",
       "PackagePath": "staticwebassets\\lib\\summernote\\summernote.min.js"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg",
