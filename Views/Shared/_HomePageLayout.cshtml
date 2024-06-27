@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AspMVC</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AspMVC.styles.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <link rel="stylesheet" href="~/css/Card.css">
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- itchio related style/scripts -->
-
-    <link href="~/css/itchio.css" rel="stylesheet">
-    @*    <script type="text/javascript">window.itchio_translations_url = 'https://static.itch.io/translations';</script>
-    *@
     <script type="text/javascript" src="https://static.itch.io/lib.min.js?1718312711"></script>
     <script defer="" type="text/javascript" src="https://static.itch.io/react.min.js?1718312711"></script>
     <script type="text/javascript" src="https://static.itch.io/index.min.js?1718312711"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- itchio related style/scripts -->
+    <link href="~/css/itchio.css" rel="stylesheet">
+    <link href="https://static.itch.io/game.css?1718920491" rel="stylesheet">
+    <link href="https://static.itch.io/redactor.css" rel="stylesheet">
+    <script type="text/javascript" src="https://static.itch.io/lib.min.js?1718312711"></script>
+    <script defer="" type="text/javascript" src="https://static.itch.io/react.min.js?1718312711"></script>
+    <script type="text/javascript" src="https://static.itch.io/index.min.js?1718312711"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -41,6 +41,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" asp-area="Main" asp-controller="HomePage" asp-action="Index">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="Main" asp-controller="HomePage" asp-action="Search">Search</a>
                         </li>
                     </ul>
 

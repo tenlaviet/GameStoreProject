@@ -15,6 +15,7 @@ using AspMVC.Services;
 using AspMVC.Models.EF;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Humanizer;
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -171,6 +172,7 @@ namespace AspMVC.Areas.Blog.Controllers
                         {
                             await file.CopyToAsync(fileStream);
                         }
+
                         string fileRelativePath = $"/uploads/Users/{currentUserName}/Projects/{projectPageModel.Title}/Screenshots/{file.FileName}";
                         ProjectUploadedPicture addUploadedPicture = new ProjectUploadedPicture()
                         {
@@ -212,6 +214,7 @@ namespace AspMVC.Areas.Blog.Controllers
                 {
                     foreach (var file in projectPageModel.FileUpload)
                     {
+                        string size = file.Length.Bytes().Humanize();
                         string uploadedFile = Path.Combine(projectFileStorageDir, file.FileName);
                         using (var fileStream = System.IO.File.Create(uploadedFile))
                         {
@@ -221,7 +224,8 @@ namespace AspMVC.Areas.Blog.Controllers
                         {
                             ProjectPageID = projectpage.ProjectId,
                             ProjectFile = uploadedFile,
-                            FileName = file.FileName
+                            FileName = file.FileName,
+                            FileSize = size
                         };
                         await _context.ProjectUploadedFile.AddAsync(addUploadedFile);
                     }
@@ -526,37 +530,35 @@ namespace AspMVC.Areas.Blog.Controllers
             return (_context.ProjectPages?.Any(e => e.ProjectId == id)).GetValueOrDefault();
         }
 
-        //public async Task<IActionResult> Download(int? id)
-        //{
-        //    if (id == null || _context.ProjectPages == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Download(int? id)
+        {
+            if (id == null || _context.ProjectPages == null)
+            {
+                return NotFound();
+            }
 
-        //    var projectPageModel = await _context.ProjectPages
-        //                                .FirstOrDefaultAsync(m => m.ProjectId == id);
-        //    if (projectPageModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    string DefaultContentType = "application/octet-stream";
-        //    string FilePath = projectPageModel.ProjectFileDirectory;
-        //    var provider = new FileExtensionContentTypeProvider();
+            var file = await _context.ProjectUploadedFile.FirstOrDefaultAsync(m => m.FileID == id);
+            if (file == null)
+            {
+                return NotFound();
+            }
+            string DefaultContentType = "application/octet-stream";
+            string FilePath = file.ProjectFile;
+            var provider = new FileExtensionContentTypeProvider();
 
-        //    var fileExists = System.IO.File.Exists(FilePath);
-        //    //doc noi dung file 
-        //    byte[] FileContent = System.IO.File.ReadAllBytes(FilePath);
-        //    string fileName = Path.GetFileName(FilePath);
+            var fileExists = System.IO.File.Exists(FilePath);
+            //doc noi dung file 
+            byte[] FileContent = System.IO.File.ReadAllBytes(FilePath);
+            string fileName = Path.GetFileName(FilePath);
 
 
-        //    if (!provider.TryGetContentType(FilePath, out string contentType))
-        //    {
-        //        contentType = DefaultContentType;
-        //    }
+            if (!provider.TryGetContentType(FilePath, out string contentType))
+            {
+                contentType = DefaultContentType;
+            }
+            return File(FileContent, contentType, fileName);
 
-        //    return File(FileContent, contentType, fileName);
-
-        //}
+        }
 
 
 

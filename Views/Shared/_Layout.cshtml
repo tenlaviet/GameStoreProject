@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AspMVC</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AspMVC.styles.css" asp-append-version="true" />
@@ -32,6 +32,9 @@
                             </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" asp-area="Main" asp-controller="HomePage" asp-action="Index">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="Main" asp-controller="HomePage" asp-action="Search">Search</a>
                         </li>
                         </ul>
 

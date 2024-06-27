@@ -1,0 +1,1922 @@
+﻿@{
+    ViewData["Title"] = "Search";
+}
+
+    <div id="header_743962" class="header_widget base_widget small_logo">
+        <div class="primary_header">
+            <h1 class="title" title="itch.io - indie game hosting marketplace">
+                <a title="itch.io - indie game hosting marketplace" href="/" class="header_logo shrinkable">
+                    <span class="visually_hidden">itch.io</span>
+                    <img alt="itch.io logo &amp; title" height="199" class="full_logo" width="775" src="https://static.itch.io/images/logo-black-new.svg">
+                    <img alt="itch.io logo" height="235" class="minimal_logo" width="262" src="https://static.itch.io/images/itchio-textless-black.svg">
+                </a>
+            </h1>
+            <div class="header_buttons">
+                <a class="header_button browse_btn" href="/games" data-label="browse">Browse</a>
+                <a class="header_button devlogs_btn" href="/devlogs" data-label="devlogs">Developer Logs</a>
+                <a class="header_button jams_btn" href="/jams" data-label="jams">Jams</a>
+                <a class="header_button dashboard_btn" href="/dashboard" data-label="dashboard">Dashboard</a>
+                <span class="alt_button">
+                    <a class="header_button my_feed_btn" href="/my-feed" data-label="my_feed">Feed</a>
+                </span>
+                <a class="header_button community.home_btn" href="/community" data-label="community.home">Community</a>
+            </div>
+            <form class="game_search search_autocomplete_input_widget" action="/search">
+                <input type="hidden" name="classification" value="assets">
+                <input type="hidden" name="type" value="games">
+                <div class="input_wrapper">
+                    <input type="text" required="" name="q" class="search_input autocomplete_search_input" placeholder="Search for games or creators" autocomplete="off" value="car">
+                </div>
+                <button class="submit_btn is_active" aria-label="Search">
+                    <svg class="svgicon icon_search" role="img" version="1.1" viewBox="0 0 24 24" width="18" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+            <div id="user_panel_5559442" class="user_panel_widget base_widget logged_in">
+                <a title="No new notifications" class="notifications_bell" href="/notifications">
+                    <svg width="20" height="20" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_bell" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round">
+                        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+                <a href="https://mynameistapzz.itch.io" class="profile_link" data-label="my_profile">
+                    <img srcset="https://img.itch.zone/aW1nLzE2NTAyNDQzLnBuZw==/35x35%23/ImLyvI.png 1x, https://img.itch.zone/aW1nLzE2NTAyNDQzLnBuZw==/70x70%23/x1Vyfq.png 2x" class="profile_avatar" src="https://img.itch.zone/aW1nLzE2NTAyNDQzLnBuZw==/35x35%23/ImLyvI.png">
+                    <span class="user_name">mynameistapzz</span>
+                </a>
+                <div class="drop_menu_wrap">
+                    <button aria-label="Account Menu" type="button" class="menu_tick" data-label="menu_tick">
+                        <svg width="24" height="24" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_down_tick2" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="drop_menu">
+                        <div class="menu_group">
+                            <div class="group_header">
+                                Explore <form method="post" class="theme_toggle_form" action="/user/settings/toggle-dark-mode">
+                                    <input type="hidden" value="WyJaU3VEIiwxNzE0NzkwNTQwLCI4dmpvSWVGN3ZnR2dUNzUiXQ==.PV6zsvp6gXsvbUudAdlM9+OTAug=" name="csrf_token">
+                                    <button>
+                                        <svg width="18" height="18" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_moon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round">
+                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                            <a href="/my-feed" class="link_row has_bubble" data-label="my_feed"></a>
+                            <a class="link_row" href="/my-collections" data-label="my_collections">My library</a>
+                            <a class="link_row" href="/library/recommendations" data-label="my_recommendations">Recommendations</a>
+                            <a class="link_row" href="/jams" data-label="jams">Game jams</a>
+                        </div>
+                        <div class="menu_group">
+                            <div class="group_header">Create</div>
+                            <a class="link_row" href="/dashboard" data-label="dashboard">Dashboard</a>
+                            <a class="link_row" href="/dashboard/posts" data-label="posts">Posts</a>
+                            <a class="link_row" href="/game/new" data-label="new_game">Upload new project</a>
+                            <a class="link_row" href="/dashboard/sales" data-label="host_sale">Sales &amp; bundles</a>
+                            <a class="link_row" href="/dashboard/jams" data-label="host_jam">Host game jam</a>
+                        </div>
+                        <div class="menu_group">
+                            <div class="group_header">Account</div>
+                            <a class="link_row" href="https://mynameistapzz.itch.io" data-label="view_profile">View profile</a>
+                            <a class="link_row" href="/user/settings" data-label="user_settings">Settings</a>
+                            <a class="link_row" href="/logout?token=WyJaU3VEIiwxNzE0NzkwNTQwLCI4dmpvSWVGN3ZnR2dUNzUiXQ%3D%3D.PV6zsvp6gXsvbUudAdlM9%2BOTAug%3D" data-label="log_out">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header_dropdown" data-target="browse">
+            <a href="/games">Games</a>
+            <a href="/tools">Game development</a>
+            <a href="/game-assets">Assets</a>
+            <a href="/comics">Comics</a>
+            <div class="divider"></div>
+            <a href="/sales">Sales</a>
+            <a href="/bundles">Bundles</a>
+            <div class="divider"></div>
+            <a href="/jobs">Jobs</a>
+            <div class="divider"></div>
+            <a href="/tags">Tags</a>
+        </div>
+    </div>
+    <div id="search_5676586" class="search_page grid_results_page page_widget base_widget">
+        <div class="search_header grid_header has_filters">
+            <h2>Search results for 'car'</h2>
+            <section class="filters_row">
+                <div class="filter_group">
+                    <div class="filter_label">Type</div>
+                    <a href="/search?classification=2&amp;type=games&amp;q=car" class="filter_btn active">Projects</a>
+                    <a href="/search?type=jams&amp;q=car" class="filter_btn">Jams</a>
+                </div>
+                <div class="filter_group">
+                    <div class="filter_label">
+                        <svg width="12" role="img" class="svgicon icon_right_arrow" viewBox="0 0 22 20" fill="currentColor" version="1.1" height="10" aria-hidden="">
+                            <path d="M10.0042 1.54499C9.57183 0.879736 10.0492 0 10.8427 0H14.4573C14.7958 0 15.1113 0.171219 15.2958 0.455012L21.1458 9.45501C21.3612 9.78641 21.3612 10.2136 21.1458 10.545L15.2958 19.545C15.1113 19.8288 14.7958 20 14.4573 20H10.8427C10.0492 20 9.57183 19.1203 10.0042 18.455L15.1458 10.545C15.3612 10.2136 15.3612 9.78641 15.1458 9.45501L10.0042 1.54499Z"></path>
+                            <path d="M1.00424 1.54499C0.571829 0.879736 1.04925 0 1.84269 0H5.45731C5.79579 0 6.11129 0.171219 6.29576 0.455012L12.1458 9.45501C12.3612 9.78641 12.3612 10.2136 12.1458 10.545L6.29576 19.545C6.11129 19.8288 5.79579 20 5.45731 20H1.84269C1.04925 20 0.571828 19.1203 1.00424 18.455L6.14576 10.545C6.36117 10.2136 6.36117 9.78641 6.14576 9.45501L1.00424 1.54499Z"></path>
+                        </svg>
+                    </div>
+                    <a href="/search?type=games&amp;q=car" class="filter_btn">Everything</a>
+                    <a href="/search?classification=game&amp;type=games&amp;q=car" class="filter_btn">Games</a>
+                    <a href="/search?classification=assets&amp;type=games&amp;q=car" class="filter_btn active">Game assets</a>
+                    <a href="/search?classification=game_mod&amp;type=games&amp;q=car" class="filter_btn">Game mods</a>
+                    <a href="/search?classification=physical_game&amp;type=games&amp;q=car" class="filter_btn">Physical games</a>
+                    <a href="/search?classification=soundtrack&amp;type=games&amp;q=car" class="filter_btn">Albums &amp; soundtracks</a>
+                    <a href="/search?classification=tool&amp;type=games&amp;q=car" class="filter_btn">Tools</a>
+                    <a href="/search?classification=comic&amp;type=games&amp;q=car" class="filter_btn">Comics</a>
+                    <a href="/search?classification=book&amp;type=games&amp;q=car" class="filter_btn">Books</a>
+                </div>
+            </section>
+        </div>
+        <div class="related_tags tag_results">
+            <div class="results_label">
+                <svg width="22" height="22" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_tag" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7" y2="7"></line>
+                </svg>
+                <span class="label_text">Tags</span>
+                <span class="browse_top_tags"> ( <a href="/tags">View all tags</a>) </span>
+            </div>
+            <div class="tag_list">
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="Card Game games" href="/game-assets/tag-card-game" data-label="card-game">Card Game</a>
+                </div>
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="Cartoon games" href="/game-assets/tag-cartoon" data-label="cartoon">Cartoon</a>
+                </div>
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="business-card games" href="/game-assets/tag-business-card" data-label="business-card">business-card</a>
+                </div>
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="Deck Building games" href="/game-assets/tag-deck-building" data-label="deck-building">Deck Building</a>
+                </div>
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="PICO-8 games" href="/game-assets/tag-pico-8" data-label="pico-8">PICO-8</a>
+                </div>
+                <div class="tag_segmented_btn">
+                    <a data-action="related_tags" class="outline_button" title="Tabletop games" href="/game-assets/tag-tabletop" data-label="tabletop">Tabletop</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid_outer">
+            <div class="game_grid_widget base_widget browse_game_grid" id="game_grid_0">
+                <div dir="auto" data-game_id="1293693" class="game_cell has_cover">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzc1MjY0MDkuanBn/315x250%23c/brbUrJ.jpg" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1nLzc1MjY0MDkuanBn/315x250%23c/brbUrJ.jpg">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/free-game-assets/car-constructor-pixel-art/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:title">Car Constructor Cyberpunk</a>
+                            <a title="Pay $4.20 or more for this asset pack" href="/s/11302/june-2024-mega-bundle-game-assets-save-98" class="price_tag meta_tag sale">
+                                <div class="price_value">$4.20</div>
+                                <div class="sale_tag">-30%</div>
+                            </a>
+                        </div>
+                        <div class="game_text" title="Car Constructor Cyberpunk for your game projects">Car Constructor Cyberpunk for your game projects</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://free-game-assets.itch.io" data-label="user:218217">Free Game Assets (GUI, Sprite, Tilesets)</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="40409" class="game_cell has_cover">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://ryoganzx.itch.io/cartoon-game-gui-pack" data-label="game:40409:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvNDA0MDkvMTc0MTYzLnBuZw==/315x250%23c/5BAq0v.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvNDA0MDkvMTc0MTYzLnBuZw==/315x250%23c/5BAq0v.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/ryoganzx/cartoon-game-gui-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://ryoganzx.itch.io/cartoon-game-gui-pack" data-label="game:40409:title">Cartoon Game Gui Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $8 or more for this asset pack">
+                                <div class="price_value">$8</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A complete set of graphical user interface (GUI) to build 2D video games.">A complete set of graphical user interface (GUI) to build 2D video games.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://ryoganzx.itch.io" data-label="user:32176">Sieg Art</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="49557" class="game_cell has_cover">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://msrana.itch.io/bright-cartoon-game-ui-buttons" data-label="game:49557:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvNDk1NTcvMjE3NDc3LmpwZw==/315x250%23c/Ua0q4G.jpg" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvNDk1NTcvMjE3NDc3LmpwZw==/315x250%23c/Ua0q4G.jpg">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/msrana/bright-cartoon-game-ui-buttons/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://msrana.itch.io/bright-cartoon-game-ui-buttons" data-label="game:49557:title">Bright Cartoon Game User Interface Buttons</a>
+                            <div class="price_tag meta_tag" title="Pay $1.50 or more for this asset pack">
+                                <div class="price_value">$1.50</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Cartoonish buttons">Cartoonish buttons</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://msrana.itch.io" data-label="user:82372">MsRanaApps</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="82850" class="game_cell has_cover">
+                    <div class="game_thumb" style="background-color:#bc8a61;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://sharm.itch.io/cartograph" data-label="game:82850:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvODI4NTAvMzkwMjcxLnBuZw==/315x250%23c/A9RfPO.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvODI4NTAvMzkwMjcxLnBuZw==/315x250%23c/A9RfPO.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/sharm/cartograph/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://sharm.itch.io/cartograph" data-label="game:82850:title">Cartograph</a>
+                            <div class="price_tag meta_tag" title="Pay $1 or more for this asset pack">
+                                <div class="price_value">$1</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="The look of hand drawn maps with the ease of tiles.">The look of hand drawn maps with the ease of tiles.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://sharm.itch.io" data-label="user:198335">Sharm</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 5 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(5 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="111497" class="game_cell has_cover">
+                    <div class="game_thumb" style="background-color:#eeeeee;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://jordan97.itch.io/cartoon-character-kit" data-label="game:111497:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMTExNDk3LzUyMjI1My5wbmc=/315x250%23c/EyAmDR.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvMTExNDk3LzUyMjI1My5wbmc=/315x250%23c/EyAmDR.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/jordan97/cartoon-character-kit/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://jordan97.itch.io/cartoon-character-kit" data-label="game:111497:title">Cartoon Character Kit</a>
+                        </div>
+                        <div class="game_text" title="Ready to go characters for use in your game">Ready to go characters for use in your game</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://jordan97.itch.io" data-label="user:127354">jordan97</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="114848" class="game_cell has_cover">
+                    <div class="game_thumb" style="background-color:#726d6d;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://mikemac2d.itch.io/cartoon-rpg-pack" data-label="game:114848:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMTE0ODQ4LzUzMTk0Mi5wbmc=/315x250%23c/nBYxS2.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvMTE0ODQ4LzUzMTk0Mi5wbmc=/315x250%23c/nBYxS2.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/mikemac2d/cartoon-rpg-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://mikemac2d.itch.io/cartoon-rpg-pack" data-label="game:114848:title">Cartoon RPG Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $10 or more for this asset pack">
+                                <div class="price_value">$10</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://mikemac2d.itch.io" data-label="user:248829">MikeMac2D</a>
+                        </div>
+                        <div class="game_rating" title="4.80 average rating from 5 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 4.8 out of 5 stars</span>
+                                <div class="star_fill" style="width: 96.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(5 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="283357" class="game_cell has_cover">
+                    <div class="game_thumb" style="background-color:#1b1b1b;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://battlerabbit.itch.io/cartoon-pack" data-label="game:283357:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjgzMzU3LzEzNzcyMTUucG5n/315x250%23c/RyJOGW.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1hZ2UvMjgzMzU3LzEzNzcyMTUucG5n/315x250%23c/RyJOGW.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/battlerabbit/cartoon-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://battlerabbit.itch.io/cartoon-pack" data-label="game:283357:title">cartoon items set</a>
+                            <div class="price_tag meta_tag" title="Pay $2 or more for this asset pack">
+                                <div class="price_value">$2</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Graphical asset in Cartoon style">Graphical asset in Cartoon style</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://battlerabbit.itch.io" data-label="user:1160380">BattleRabbit</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="393108" class="game_cell has_cover">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://stealthix.itch.io/cards" data-label="game:393108:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE5NDY5MzkucG5n/315x250%23c/3mVhZD.png" class="lazy_loaded" height="250" src="https://img.itch.zone/aW1nLzE5NDY5MzkucG5n/315x250%23c/3mVhZD.png">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/stealthix/cards/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://stealthix.itch.io/cards" data-label="game:393108:title">Modular Card Assets</a>
+                            <div class="price_tag meta_tag" title="Pay $2 or more for this asset pack">
+                                <div class="price_value">$2</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://stealthix.itch.io" data-label="user:958107">Stealthix</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="613902" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#37cfe7;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://natetreme.itch.io/cartographykit" data-label="game:613902:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzMyNjY2MjAucG5n/315x250%23c/Cs7GCy.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/natetreme/cartographykit/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://natetreme.itch.io/cartographykit" data-label="game:613902:title">HPS Cartography Kit</a>
+                            <div class="price_tag meta_tag" title="Pay $10 or more for this asset pack">
+                                <div class="price_value">$10</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Hex tiles for custom cartography!">Hex tiles for custom cartography!</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://natetreme.itch.io" data-label="user:217235">Highland Paranormal Society</a>
+                            <svg width="14" height="14" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_verified" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" stroke-linecap="round">
+                                <title>Verified Account</title>
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="game_rating" title="4.92 average rating from 114 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 4.9 out of 5 stars</span>
+                                <div class="star_fill" style="width: 98.42105%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(114 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="949676" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#3c3c3c;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://v3x3d.itch.io/cartoon-classic" data-label="game:949676:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzU0MjAxMDYuZ2lm/315x250%23cm/wTo%2BaS.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzU0MjAxMDYuZ2lm/original/vwLLfe.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/v3x3d/cartoon-classic/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://v3x3d.itch.io/cartoon-classic" data-label="game:949676:title">Cartoon Classic - 16x16 Mario-like Platformer Assets</a>
+                            <a title="Pay $4.55 or more for this asset pack" href="/s/119330/eclectic-collcetion" class="price_tag meta_tag sale">
+                                <div class="price_value">$4.55</div>
+                                <div class="sale_tag">-35%</div>
+                            </a>
+                        </div>
+                        <div class="game_text" title="A cute cartoony platformer pack inspired by some of the classics.">A cute cartoony platformer pack inspired by some of the classics.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://v3x3d.itch.io" data-label="user:1320977">VEXED</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 3 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(3 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1213783" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#c7b299;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://under-score-lab.itch.io/cartography-bigpack" data-label="game:1213783:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzcwODg5MTMucG5n/315x250%23c/VPW%2B7y.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/under-score-lab/cartography-bigpack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://under-score-lab.itch.io/cartography-bigpack" data-label="game:1213783:title">cartography_BIGpack</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Cartography pixel-art asset">Cartography pixel-art asset</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://under-score-lab.itch.io" data-label="user:4915976">under_score_lab</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 3 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(3 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1250473" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#f26732;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://wowsound.itch.io/cartoon-action-music-pack" data-label="game:1250473:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzcyODY5ODAuanBn/315x250%23c/IC3jgN.jpg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/wowsound/cartoon-action-music-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://wowsound.itch.io/cartoon-action-music-pack" data-label="game:1250473:title">Cartoon Action Music Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $35 or more for this asset pack">
+                                <div class="price_value">$35</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="5 Music Tracks and 8 Sound Effects">5 Music Tracks and 8 Sound Effects</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://wowsound.itch.io" data-label="user:180287">WOW Sound</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1363470" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#eeeeee;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://alan-dalcastagne.itch.io/cartoon-games-sound-effects" data-label="game:1363470:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE2MTA0MDQwLnBuZw==/315x250%23c/sLwcq1.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/alan-dalcastagne/cartoon-games-sound-effects/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://alan-dalcastagne.itch.io/cartoon-games-sound-effects" data-label="game:1363470:title">Cartoon Games - Sound Effects</a>
+                            <div class="price_tag meta_tag" title="Pay $4.99 or more for this asset pack">
+                                <div class="price_value">$4.99</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Alot of high quality cartoon sound effects for your game! :D">Alot of high quality cartoon sound effects for your game! :D</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://alan-dalcastagne.itch.io" data-label="user:3600280">Alan Dalcastagne</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="2043033" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#eee;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://rhosgfx.itch.io/cartoony-ui-pack" data-label="game:2043033:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzEzNjIzNDc1LnBuZw==/315x250%23c/f7X7w2.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/rhosgfx/cartoony-ui-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://rhosgfx.itch.io/cartoony-ui-pack" data-label="game:2043033:title">Cartoony UI Pack</a>
+                            <a title="Pay $9.99 or more for this asset pack" href="/s/103025/rhosgfx-icon-bundle" class="price_tag meta_tag">
+                                <div class="price_value">$9.99</div>
+                                <div class="sale_tag">In bundle</div>
+                            </a>
+                        </div>
+                        <div class="game_text" title="A full set of UI elements and prefabs for your first game!">A full set of UI elements and prefabs for your first game!</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://rhosgfx.itch.io" data-label="user:5816768">Rhos</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="365184" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://venogear.itch.io/2d-pixel-car-pack" data-label="game:365184:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE4Mjc3MzYucG5n/315x250%23c/wPWJ9l.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/venogear/2d-pixel-car-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://venogear.itch.io/2d-pixel-car-pack" data-label="game:365184:title">2D Pixel Car Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $9.99 or more for this asset pack">
+                                <div class="price_value">$9.99</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Car &amp; Truck">Car &amp; Truck</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://venogear.itch.io" data-label="user:1456326">Venogear</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="392683" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://samuelesciacca.itch.io/car-3d-fake" data-label="game:392683:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE5NDQ1MzkuZ2lm/315x250%23cm/FcrI2j.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE5NDQ1MzkuZ2lm/original/mMDj3l.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/samuelesciacca/car-3d-fake/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://samuelesciacca.itch.io/car-3d-fake" data-label="game:392683:title">Fake 3D Car</a>
+                        </div>
+                        <div class="game_text" title="I am very happy to share this simple fake 3D car. (2D slices)">I am very happy to share this simple fake 3D car. (2D slices)</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://samuelesciacca.itch.io" data-label="user:47889">Samuele Sciacca</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1041751" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#393c44;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://sergeygrigorev.itch.io/car-ai-for-godot" data-label="game:1041751:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzU5NTExNTIucG5n/315x250%23c/5dvmlr.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/sergeygrigorev/car-ai-for-godot/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://sergeygrigorev.itch.io/car-ai-for-godot" data-label="game:1041751:title">Car AI for Godot</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Vehicle AI for the Godot game engine.">Vehicle AI for the Godot game engine.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://sergeygrigorev.itch.io" data-label="user:4345710">sergeygrigorev</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 3 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(3 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1294574" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#353535;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://sungraphica.itch.io/car-collection" data-label="game:1294574:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzc1MzE2ODkuanBn/315x250%23c/Kpe6Xo.jpg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/sungraphica/car-collection/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://sungraphica.itch.io/car-collection" data-label="game:1294574:title">Car collection</a>
+                        </div>
+                        <div class="game_text" title="collection of flat and cartoon style car in different views">collection of flat and cartoon style car in different views</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://sungraphica.itch.io" data-label="user:5104724">SunGraphica</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="1637005" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#fc0035;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://touati.itch.io/car-game-sfx-pack" data-label="game:1637005:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzk2MjU5MzMucG5n/315x250%23c/eqX%2BoT.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/touati/car-game-sfx-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://touati.itch.io/car-game-sfx-pack" data-label="game:1637005:title">Cool Car game Soundeffects pack</a>
+                            <div class="price_tag meta_tag" title="Pay $4.23 or more for this asset pack">
+                                <div class="price_value">$4.23</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="https://youtu.be/nr-jyJSln74">https://youtu.be/nr-jyJSln74</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://touati.itch.io" data-label="user:6388955">TF_studios</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 2 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(2 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="371478" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://elvair.itch.io/bank-armored-car" data-label="game:371478:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE4NjIxNjEuanBn/315x250%23c/TX1Hj9.jpg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/elvair/bank-armored-car/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://elvair.itch.io/bank-armored-car" data-label="game:371478:title">Bank Armored Car</a>
+                            <div class="price_tag meta_tag" title="Pay $28 or more for this asset pack">
+                                <div class="price_value">$28</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Carro blindado Prossegur">Carro blindado Prossegur</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://elvair.itch.io" data-label="user:1473741">Elvair Lima</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="37784" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://ahninniah.itch.io/cartoon-planet-pack" data-label="game:37784:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMzc3ODQvMTY1NDIwLnBuZw==/315x250%23c/Jgqah2.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/ahninniah/cartoon-planet-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://ahninniah.itch.io/cartoon-planet-pack" data-label="game:37784:title">Cartoon Planet Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $7 or more for this asset pack">
+                                <div class="price_value">$7</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A set of objects for your game">A set of objects for your game</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://ahninniah.itch.io" data-label="user:78498">AhNinniah</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="37786" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://ahninniah.itch.io/cartoon-animals-pack" data-label="game:37786:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMzc3ODYvMTY1NDMwLmpwZWc=/315x250%23c/QuRSBS.jpeg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/ahninniah/cartoon-animals-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://ahninniah.itch.io/cartoon-animals-pack" data-label="game:37786:title">Cartoon Animals Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $12 or more for this asset pack">
+                                <div class="price_value">$12</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="​4 backgrounds with fantastic cartoon creatures​">​4 backgrounds with fantastic cartoon creatures​</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://ahninniah.itch.io" data-label="user:78498">AhNinniah</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="51350" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#303030;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://siri.itch.io/cartoon-vehicles-pack-1" data-label="game:51350:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvNTEzNTAvMjI2NjQwLnBuZw==/315x250%23c/u4rEZ3.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/siri/cartoon-vehicles-pack-1/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://siri.itch.io/cartoon-vehicles-pack-1" data-label="game:51350:title">Cartoon Vehicles Pack 1</a>
+                        </div>
+                        <div class="game_text" title="Cartoon Vehicles Pack 1">Cartoon Vehicles Pack 1</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://siri.itch.io" data-label="user:44161">Siri</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 2 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(2 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="76577" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://althaj.itch.io/cartoon-city-pack" data-label="game:76577:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvNzY1NzcvMzU2NjQ0LnBuZw==/315x250%23c/tBRAFp.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/althaj/cartoon-city-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://althaj.itch.io/cartoon-city-pack" data-label="game:76577:title">Cartoon City Pack</a>
+                        </div>
+                        <div class="game_text" title="Assets to create cartoon city">Assets to create cartoon city</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://althaj.itch.io" data-label="user:79308">althaj</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="140588" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://free-game-assets.itch.io/cartoon-vertical-game-2d-backgrounds" data-label="game:140588:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMTQwNTg4LzY0NDE1MC5qcGc=/315x250%23c/deVC4J.jpg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/free-game-assets/cartoon-vertical-game-2d-backgrounds/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/cartoon-vertical-game-2d-backgrounds" data-label="game:140588:title">Cartoon Vertical Game 2D Backgrounds</a>
+                        </div>
+                        <div class="game_text" title="Cartoon vertical backgrounds for 2D video games">Cartoon vertical backgrounds for 2D video games</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://free-game-assets.itch.io" data-label="user:218217">Free Game Assets (GUI, Sprite, Tilesets)</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="145367" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://bjornh.itch.io/cartoony-food-items" data-label="game:145367:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMTQ1MzY3LzY2NjI1NS5wbmc=/315x250%23c/rxkQfu.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/bjornh/cartoony-food-items/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://bjornh.itch.io/cartoony-food-items" data-label="game:145367:title">Cartoony Food Items</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A collection of food items">A collection of food items</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://bjornh.itch.io" data-label="user:143781">BjornH</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="157623" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#a4efe8;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://bjornh.itch.io/cartoony-ice-cream-collection" data-label="game:157623:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMTU3NjIzLzcyMzY5NS5wbmc=/315x250%23c/UrZe%2BM.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/bjornh/cartoony-ice-cream-collection/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://bjornh.itch.io/cartoony-ice-cream-collection" data-label="game:157623:title">Cartoony Ice Cream Collection</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A collection of stylized ice cream">A collection of stylized ice cream</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://bjornh.itch.io" data-label="user:143781">BjornH</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="237395" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#eeeeee;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://bitrunade.itch.io/carousel-characters-selection" data-label="game:237395:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjM3Mzk1LzExMjk2MzkucG5n/315x250%23c/igkjRV.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/bitrunade/carousel-characters-selection/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://bitrunade.itch.io/carousel-characters-selection" data-label="game:237395:title">Carousel Characters Selection For GameMaker: Studio</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Add Cool Menus To Your Game!">Add Cool Menus To Your Game!</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://bitrunade.itch.io" data-label="user:1020222">BiTrunade</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="254374" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://sinestesia.itch.io/cartoon-animations-" data-label="game:254374:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjU0Mzc0LzEyMTgzODEucG5n/315x250%23c/6kjN5u.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/sinestesia/cartoon-animations-/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://sinestesia.itch.io/cartoon-animations-" data-label="game:254374:title">Cartoon Animations !</a>
+                            <div class="price_tag meta_tag" title="Pay $2.50 or more for this asset pack">
+                                <div class="price_value">$2.50</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Comic Style. Frame by frame.">Comic Style. Frame by frame.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://sinestesia.itch.io" data-label="user:256967">Sinestesia Studio</a>
+                        </div>
+                        <div class="game_rating" title="4.75 average rating from 4 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 4.8 out of 5 stars</span>
+                                <div class="star_fill" style="width: 95.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(4 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="255204" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#eeeeee;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://rrfreelance.itch.io/isometriccars" data-label="game:255204:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjU1MjA0LzEyMjIyMjYucG5n/315x250%23c/ilpv7D.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/rrfreelance/isometriccars/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://rrfreelance.itch.io/isometriccars" data-label="game:255204:title">Isometric Cars</a>
+                        </div>
+                        <div class="game_text" title="Cars rendered into sprites">Cars rendered into sprites</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://rrfreelance.itch.io" data-label="user:41899">RRFreelance</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="273103" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#f65652;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://tjloudon.itch.io/cartoon-mouths-pack" data-label="game:273103:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjczMTAzLzEzMjEyOTUucG5n/315x250%23c/vwl1lT.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/tjloudon/cartoon-mouths-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://tjloudon.itch.io/cartoon-mouths-pack" data-label="game:273103:title">Cartoon Mouths Pack</a>
+                        </div>
+                        <div class="game_text" title="A small little pack of mouths, free for commercial use.">A small little pack of mouths, free for commercial use.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://tjloudon.itch.io" data-label="user:966481">T.J. Loudon</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="273190" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#b983d8;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://tjloudon.itch.io/cartoon-eyes-pack" data-label="game:273190:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1hZ2UvMjczMTkwLzEzMjE4MjUucG5n/315x250%23c/a5%2B8MV.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/tjloudon/cartoon-eyes-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://tjloudon.itch.io/cartoon-eyes-pack" data-label="game:273190:title">Cartoon Eyes Pack</a>
+                        </div>
+                        <div class="game_text" title="A cartoon eye pack, free for commercial use.">A cartoon eye pack, free for commercial use.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://tjloudon.itch.io" data-label="user:966481">T.J. Loudon</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="340977" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://alx-software-development.itch.io/cartoon-skins-for-minecraft-mcpe" data-label="game:340977:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE2ODkyNTQucG5n/315x250%23c/NhaoHX.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/alx-software-development/cartoon-skins-for-minecraft-mcpe/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://alx-software-development.itch.io/cartoon-skins-for-minecraft-mcpe" data-label="game:340977:title">Cartoon skins for Minecraft MCPE</a>
+                        </div>
+                        <div class="game_text" title="Skins from cartoons for the game Minecraft Free!">Skins from cartoons for the game Minecraft Free!</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://alx-software-development.itch.io" data-label="user:1271165">ALX Software Development</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="343606" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://hugues-laborde.itch.io/cartoon-warrior-character-pack" data-label="game:343606:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE3MDQ3NzguZ2lm/315x250%23cm/WgGtQi.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE3MDQ3NzguZ2lm/original/Hl44zU.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/hugues-laborde/cartoon-warrior-character-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://hugues-laborde.itch.io/cartoon-warrior-character-pack" data-label="game:343606:title">Cartoon Warrior Character Pack</a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://hugues-laborde.itch.io" data-label="user:935411">hugues laborde</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 9 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(9 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="347394" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://hugues-laborde.itch.io/cartoon-viking-character-pack" data-label="game:347394:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE3Mjk0NDUuZ2lm/315x250%23cm/LZQXRM.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE3Mjk0NDUuZ2lm/original/95YGcy.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/hugues-laborde/cartoon-viking-character-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://hugues-laborde.itch.io/cartoon-viking-character-pack" data-label="game:347394:title">Cartoon Viking Character Pack</a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://hugues-laborde.itch.io" data-label="user:935411">hugues laborde</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 8 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(8 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="353659" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://hugues-laborde.itch.io/cartoon-detective-pack" data-label="game:353659:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE3NjM0NTQuZ2lm/315x250%23cm/ho9uB1.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE3NjM0NTQuZ2lm/original/adWvrG.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/hugues-laborde/cartoon-detective-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://hugues-laborde.itch.io/cartoon-detective-pack" data-label="game:353659:title">Cartoon Detective Pack</a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://hugues-laborde.itch.io" data-label="user:935411">hugues laborde</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 9 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(9 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="354223" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://hugues-laborde.itch.io/cartoon-side-scroller-character" data-label="game:354223:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE3NjY5MzMuZ2lm/315x250%23cm/IGb5wF.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE3NjY5MzMuZ2lm/original/0PFpC7.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/hugues-laborde/cartoon-side-scroller-character/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://hugues-laborde.itch.io/cartoon-side-scroller-character" data-label="game:354223:title">Cartoon Futuristic Character Pack</a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://hugues-laborde.itch.io" data-label="user:935411">hugues laborde</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 2 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(2 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="355150" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://hugues-laborde.itch.io/cartoon-secret-agent-pack" data-label="game:355150:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE3NzIwODcuZ2lm/315x250%23cm/8%2FIGxn.gif" class="lazy_loaded" height="250">
+                            <div class="gif_label">GIF</div>
+                            <div class="gif_overlay" data-gif="https://img.itch.zone/aW1nLzE3NzIwODcuZ2lm/original/t4iGa9.gif"></div>
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/hugues-laborde/cartoon-secret-agent-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://hugues-laborde.itch.io/cartoon-secret-agent-pack" data-label="game:355150:title">Cartoon Secret Agent Pack</a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://hugues-laborde.itch.io" data-label="user:935411">hugues laborde</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 5 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(5 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="364257" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://renslzr.itch.io/cartoon-animal-character-pack" data-label="game:364257:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE4MjIxMzAucG5n/315x250%23c/%2BxFg3C.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/renslzr/cartoon-animal-character-pack/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://renslzr.itch.io/cartoon-animal-character-pack" data-label="game:364257:title">Cartoon Animal Character Pack</a>
+                            <div class="price_tag meta_tag" title="Pay $5 or more for this asset pack">
+                                <div class="price_value">$5</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A 2D asset pack (Tiger, Toucan, Camel, Clownfish) for your 2D games.">A 2D asset pack (Tiger, Toucan, Camel, Clownfish) for your 2D games.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://renslzr.itch.io" data-label="user:357291">RenSLZR</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="366210" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://renslzr.itch.io/cartoon-animal-characters-pack-ii" data-label="game:366210:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE4MzMyNzIucG5n/315x250%23c/QaXkaz.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/renslzr/cartoon-animal-characters-pack-ii/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://renslzr.itch.io/cartoon-animal-characters-pack-ii" data-label="game:366210:title">Cartoon Animal Character Pack II</a>
+                            <div class="price_tag meta_tag" title="Pay $7 or more for this asset pack">
+                                <div class="price_value">$7</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A 2D animated asset pack of animals">A 2D animated asset pack of animals</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://renslzr.itch.io" data-label="user:357291">RenSLZR</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="366636" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://alexeiab.itch.io/card-template" data-label="game:366636:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE4MzUzNzYucG5n/315x250%23c/0LYeOw.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/alexeiab/card-template/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://alexeiab.itch.io/card-template" data-label="game:366636:title">CARD TEMPLATE</a>
+                            <div class="price_tag meta_tag" title="Pay $6 or more for this asset pack">
+                                <div class="price_value">$6</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="In a set of two sides of the card">In a set of two sides of the card</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://alexeiab.itch.io" data-label="user:1468511">AlexeiAB</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="383855" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#000000;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://jamesarndt.itch.io/carolina-p28-light-aircraft" data-label="game:383855:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzE5MjY4MTcucG5n/315x250%23c/lohjSc.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/jamesarndt/carolina-p28-light-aircraft/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://jamesarndt.itch.io/carolina-p28-light-aircraft" data-label="game:383855:title">Carolina P28 Light Aircraft</a>
+                            <div class="price_tag meta_tag" title="Pay $15 or more for this asset pack">
+                                <div class="price_value">$15</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="A low-poly light aircraft for your mobile or web projects.">A low-poly light aircraft for your mobile or web projects.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://jamesarndt.itch.io" data-label="user:907256">James Arndt</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="436460" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://sprite-sheet.itch.io/cartoon-effects-explosions-fire-water-smoke-flashes-stylized" data-label="game:436460:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzIxODk3ODEucG5n/315x250%23c/4oItOn.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/sprite-sheet/cartoon-effects-explosions-fire-water-smoke-flashes-stylized/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://sprite-sheet.itch.io/cartoon-effects-explosions-fire-water-smoke-flashes-stylized" data-label="game:436460:title">Cartoon Effects Explosions Fire Water Smoke Flashes Stylized</a>
+                            <div class="price_tag meta_tag" title="Pay $49 or more for this asset pack">
+                                <div class="price_value">$49</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://sprite-sheet.itch.io" data-label="user:1658854">sprite-sheet</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="452194" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://banism.itch.io/cartoon-hotel" data-label="game:452194:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzIyOTIxMjYucG5n/315x250%23c/z3c0H4.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/banism/cartoon-hotel/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://banism.itch.io/cartoon-hotel" data-label="game:452194:title">Cartoon Hotel</a>
+                            <div class="price_tag meta_tag" title="Pay $8 or more for this asset pack">
+                                <div class="price_value">$8</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="3D Cartoon Hotel Created and Rendered in Blender">3D Cartoon Hotel Created and Rendered in Blender</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://banism.itch.io" data-label="user:1718740">banism</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="481950" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-blocks" data-label="game:481950:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI0ODM4NDcucG5n/315x250%23c/02rR29.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-blocks/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-blocks" data-label="game:481950:title">Cartoon blocks</a>
+                            <div class="price_tag meta_tag" title="Pay £4.25 or more for this asset pack">
+                                <div class="price_value">£4.25</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Cartoon block faces game assets">Cartoon block faces game assets</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="484136" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://free-game-assets.itch.io/cartoon-halloween-2d-backgrounds" data-label="game:484136:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI0OTc3OTgucG5n/315x250%23c/w2C9sc.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/free-game-assets/cartoon-halloween-2d-backgrounds/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/cartoon-halloween-2d-backgrounds" data-label="game:484136:title">Cartoon Halloween 2D Backgrounds</a>
+                            <a title="Pay $4.20 or more for this asset pack" href="/s/11302/june-2024-mega-bundle-game-assets-save-98" class="price_tag meta_tag sale">
+                                <div class="price_value">$4.20</div>
+                                <div class="sale_tag">-30%</div>
+                            </a>
+                        </div>
+                        <div class="game_text" title="Cartoon Halloween 2D Backgrounds for your projects">Cartoon Halloween 2D Backgrounds for your projects</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://free-game-assets.itch.io" data-label="user:218217">Free Game Assets (GUI, Sprite, Tilesets)</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="492127" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-bird-1" data-label="game:492127:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI1NDQ4MjEucG5n/315x250%23c/tp0F1%2F.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-bird-1/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-bird-1" data-label="game:492127:title">Cartoon bird 1</a>
+                            <div class="price_tag meta_tag" title="Pay £1.95 or more for this asset pack">
+                                <div class="price_value">£1.95</div>
+                            </div>
+                        </div>
+                        <div class="game_text" title="Animated cartoon style bird game asset for 2d games">Animated cartoon style bird game asset for 2d games</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="492131" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-bird-2" data-label="game:492131:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI1NDQ4NDQucG5n/315x250%23c/NIm9Nc.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-bird-2/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-bird-2" data-label="game:492131:title">Cartoon bird 2</a>
+                            <div class="price_tag meta_tag" title="Pay £1.95 or more for this asset pack">
+                                <div class="price_value">£1.95</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="492133" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-bird-3" data-label="game:492133:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI1NDQ4NDkucG5n/315x250%23c/upL5li.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-bird-3/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-bird-3" data-label="game:492133:title">Cartoon bird 3</a>
+                            <div class="price_tag meta_tag" title="Pay £1.95 or more for this asset pack">
+                                <div class="price_value">£1.95</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="492136" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-bird-4" data-label="game:492136:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI1NDQ4NTMucG5n/315x250%23c/QNK9Xx.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-bird-4/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-bird-4" data-label="game:492136:title">Cartoon bird 4</a>
+                            <div class="price_tag meta_tag" title="Pay £1.95 or more for this asset pack">
+                                <div class="price_value">£1.95</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="492137" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://gamedeveloperstudio.itch.io/cartoon-bird-5" data-label="game:492137:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI1NDQ4NTUucG5n/315x250%23c/7F7i0Y.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/gamedeveloperstudio/cartoon-bird-5/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://gamedeveloperstudio.itch.io/cartoon-bird-5" data-label="game:492137:title">Cartoon bird 5</a>
+                            <div class="price_tag meta_tag" title="Pay £1.95 or more for this asset pack">
+                                <div class="price_value">£1.95</div>
+                            </div>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://gamedeveloperstudio.itch.io" data-label="user:153936">Robert Brooks - gamedeveloperstudio.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="511866" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://tmd-studios.itch.io/cars" data-label="game:511866:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI2NTc5NjgucG5n/315x250%23c/E%2FiSfK.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/tmd-studios/cars/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://tmd-studios.itch.io/cars" data-label="game:511866:title">Cars</a>
+                        </div>
+                        <div class="game_text" title="A collection of pixel vehicles">A collection of pixel vehicles</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://tmd-studios.itch.io" data-label="user:1518798">TMD_Studios</a>
+                        </div>
+                        <div class="game_rating" title="4.33 average rating from 3 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 4.3 out of 5 stars</span>
+                                <div class="star_fill" style="width: 86.66667%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(3 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="552328" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb" style="background-color:#202020;">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://wenrexa.itch.io/cartoon-fishes" data-label="game:552328:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzc3MzI2NDYuanBn/315x250%23c/mPe%2FpP.jpg" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/wenrexa/cartoon-fishes/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://wenrexa.itch.io/cartoon-fishes" data-label="game:552328:title">Assets: Cartoon Fishes [Pack]</a>
+                            <a title="Pay $0.18 or more for this asset pack" href="/s/122702/all-game-assets-gui-icons" class="price_tag meta_tag sale">
+                                <div class="price_value">$0.18</div>
+                                <div class="sale_tag">-85%</div>
+                            </a>
+                        </div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://wenrexa.itch.io" data-label="user:1664685">Wenrexa</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 2 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(2 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+                <div dir="auto" data-game_id="563691" class="game_cell has_cover lazy_images">
+                    <div class="game_thumb">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://badim.itch.io/cards-negative" data-label="game:563691:thumb">
+                            <img width="315" data-lazy_src="https://img.itch.zone/aW1nLzI5NTk3MjQucG5n/315x250%23c/msLdva.png" class="lazy_loaded" height="250">
+                        </a>
+                        <div class="game_cell_tools">
+                            <a class="action_btn add_to_collection_btn" href="/g/badim/cards-negative/add-to-collection?source=search">
+                                <span class="icon icon-playlist_add"></span>Add to collection
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game_cell_data">
+                        <div class="game_title">
+                            <a class="title game_link" data-action="game_grid" href="https://badim.itch.io/cards-negative" data-label="game:563691:title">Icons Negative (Cards)</a>
+                        </div>
+                        <div class="game_text" title="Pack of HQ Icons for negative conditions and curses.">Pack of HQ Icons for negative conditions and curses.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://badim.itch.io" data-label="user:116564">Badim</a>
+                        </div>
+                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
+                            <div class="star_value">
+                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
+                                <div class="star_fill" style="width: 100.00000%">
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                    <span aria-hidden="true" class="star icon-star"></span>
+                                </div>
+                                <div class="star_holes">
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                    <span aria-hidden="true" class="star icon-star2"></span>
+                                </div>
+                            </div>
+                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

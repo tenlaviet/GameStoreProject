@@ -15,15 +15,17 @@
                 @Html.Raw(Model.ProjectPage.Description)
             </div>
 
-            <dt class="col-sm-2">
-                Download
-            </dt>
+            <h3>Download:</h3>
 
             @foreach(var file in Model.ProjectPage.ProjectFiles)
             {
-                <div>
-                    <a asp-action="Download" asp-route-id="@file.FileID">@file.FileName</a>
+                <div class="mb-1" style="width: 500px;">
+                    <a asp-action="Download" asp-route-id="@file.FileID" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Download</a>
+                    <strong class="file-name" title="@file.FileName">@file.FileName</strong>
+                    <span>@file.FileSize</span>
                 </div>
+                
+
             }
             
             @{

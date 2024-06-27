@@ -209,6 +209,10 @@ namespace AspMVC.Migrations
                     b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FileSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProjectFile")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -290,9 +294,11 @@ namespace AspMVC.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ProjectFilesDir")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectImagesDir")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ProjectPageDatePosted")

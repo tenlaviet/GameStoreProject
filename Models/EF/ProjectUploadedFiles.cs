@@ -20,5 +20,7 @@ namespace AspMVC.Models.EF
         public ProjectPageModel ProjectPage { get; set; }
 
         public string ProjectFile { get; set; }
+
+        public string FileSize { get; set; }
     }
 }

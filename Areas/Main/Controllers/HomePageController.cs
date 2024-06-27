@@ -37,5 +37,11 @@ namespace AspMVC.Areas.Main.Controllers
             
             return View(gamesCollumn);
         }
+        public async Task<IActionResult> Search()
+        {
+            var gamesCollumn = await _context.ProjectPages.Include(c => c.ProjectCoverImage).Take(21).ToListAsync();
+
+            return View(gamesCollumn);
+        }
     }
 }
