@@ -1,9 +1,11 @@
 ﻿using AspMVC.Areas.Identity.Controllers;
+using AspMVC.Areas.Main.Models;
 using AspMVC.Data;
 using AspMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace AspMVC.Areas.Main.Controllers
 {
@@ -37,15 +39,63 @@ namespace AspMVC.Areas.Main.Controllers
             
             return View(gamesCollumn);
         }
-        [Route("/browse")]
-        public async Task<IActionResult> Browse()
+        [HttpGet("/browse/{genre?}")]
+        public async Task<IActionResult> Browse(string? genreSlug)
         {
-            var gamesCollumn = await _context.ProjectPages.Include(c => c.ProjectCoverImage).Take(21).ToListAsync();
+            List<GameCell> games = new List<GameCell>();
+            List<Genre> genres = new List<Genre>();
+            if (string.IsNullOrEmpty(genreSlug))
+            {
+                games = await _context.ProjectPages.Include(c => c.ProjectCoverImage).
+                                                    Include(c => c.Creator).
+                                                    Include(g => g.Genre).
+                                                    Take(20).
+                                                    Select(c =>
+                                                    new GameCell
+                                                    {
+                                                        GameId = c.ProjectId,
+                                                        Title = c.Title,
+                                                        CreatorID = c.CreatorId,
+                                                        CreatorName = c.Creator.UserName,
+                                                        ShortDescription = c.ShortDescription,
+                                                        GenreName = c.Genre.GenreName,
+                                                        CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath
+                                                    }).ToListAsync();
+            }
+            else
+            {
+                games = await _context.ProjectPages.Include(c => c.ProjectCoverImage).
+                                                    Include(c => c.Creator).
+                                                    Include(g => g.Genre).
+                                                    Where(s => s.Genre.Slug == genreSlug).
+                                                    Take(20).
+                                                    Select(c =>
+                                                    new GameCell
+                                                    {
+                                                        GameId = c.ProjectId,
+                                                        Title = c.Title,
+                                                        CreatorID = c.CreatorId,
+                                                        CreatorName = c.Creator.UserName,
+                                                        ShortDescription = c.ShortDescription,
+                                                        GenreName = c.Genre.GenreName,
+                                                        CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath
+                                                    }).ToListAsync();
+            }
 
-            return View(gamesCollumn);
+            genres = await _context.Genres.ToListAsync();
+
+            BrowseViewModel vm = new BrowseViewModel()
+            {
+                gameCells = games,
+                Genres = genres
+            };
+            return View(vm);
+
+
+
         }
         [Route("/search")]
-        public async Task<IActionResult> Search(string searchString)
+        public async Task<IActionResult> Search(string? search, string? genre, string? when)
         {
             if (_context == null)
             {
@@ -54,10 +104,11 @@ namespace AspMVC.Areas.Main.Controllers
             var games = _context.ProjectPages.Include(c => c.ProjectCoverImage).Take(21);
 
 
-
-            if (!String.IsNullOrEmpty(searchString))
+            
+            if (!String.IsNullOrEmpty(search))
             {
-                games = games.Where(s => s.Title.Contains(searchString));
+                games = games.Where(s => s.Title.Contains(search));
+                ViewData["q"] = search;
                 return View(await games.ToListAsync());
             }
             return RedirectToAction("Index");

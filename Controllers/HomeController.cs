@@ -35,9 +35,10 @@ namespace AspMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [Route("/test")]
-        public IActionResult Search()
+        [HttpGet("/test/{sortby?}/{genre?}/{when?}/{platform?}")]
+        public IActionResult test(string? sortby, string? genre, string? when, string? platform)
         {
+            string url = sortby + genre + when + platform;
             return View();
         }
 
