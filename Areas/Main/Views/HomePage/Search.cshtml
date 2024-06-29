@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AspMVC.Models.ProjectPageModel>
+﻿@model IEnumerable<AspMVC.Models.GameCell>
 @{
     ViewData["Title"] = "Search";
     
@@ -104,86 +104,23 @@
     <div id="search_5676586" class="search_page grid_results_page page_widget base_widget">
         <div class="search_header grid_header has_filters">
             <h2>Search results for '@ViewData["q"]'</h2>
-            <section class="filters_row">
-                <div class="filter_group">
-                    <div class="filter_label">Type</div>
-                    <a href="/search?classification=2&amp;type=games&amp;q=car" class="filter_btn active">Projects</a>
-                    <a href="/search?type=jams&amp;q=car" class="filter_btn">Jams</a>
-                </div>
-                <div class="filter_group">
-                    <div class="filter_label">
-                        <svg width="12" role="img" class="svgicon icon_right_arrow" viewBox="0 0 22 20" fill="currentColor" version="1.1" height="10" aria-hidden="">
-                            <path d="M10.0042 1.54499C9.57183 0.879736 10.0492 0 10.8427 0H14.4573C14.7958 0 15.1113 0.171219 15.2958 0.455012L21.1458 9.45501C21.3612 9.78641 21.3612 10.2136 21.1458 10.545L15.2958 19.545C15.1113 19.8288 14.7958 20 14.4573 20H10.8427C10.0492 20 9.57183 19.1203 10.0042 18.455L15.1458 10.545C15.3612 10.2136 15.3612 9.78641 15.1458 9.45501L10.0042 1.54499Z"></path>
-                            <path d="M1.00424 1.54499C0.571829 0.879736 1.04925 0 1.84269 0H5.45731C5.79579 0 6.11129 0.171219 6.29576 0.455012L12.1458 9.45501C12.3612 9.78641 12.3612 10.2136 12.1458 10.545L6.29576 19.545C6.11129 19.8288 5.79579 20 5.45731 20H1.84269C1.04925 20 0.571828 19.1203 1.00424 18.455L6.14576 10.545C6.36117 10.2136 6.36117 9.78641 6.14576 9.45501L1.00424 1.54499Z"></path>
-                        </svg>
-                    </div>
-                    <a href="/search?type=games&amp;q=car" class="filter_btn">Everything</a>
-                    <a href="/search?classification=game&amp;type=games&amp;q=car" class="filter_btn">Games</a>
-                    <a href="/search?classification=assets&amp;type=games&amp;q=car" class="filter_btn active">Game assets</a>
-                    <a href="/search?classification=game_mod&amp;type=games&amp;q=car" class="filter_btn">Game mods</a>
-                    <a href="/search?classification=physical_game&amp;type=games&amp;q=car" class="filter_btn">Physical games</a>
-                    <a href="/search?classification=soundtrack&amp;type=games&amp;q=car" class="filter_btn">Albums &amp; soundtracks</a>
-                    <a href="/search?classification=tool&amp;type=games&amp;q=car" class="filter_btn">Tools</a>
-                    <a href="/search?classification=comic&amp;type=games&amp;q=car" class="filter_btn">Comics</a>
-                    <a href="/search?classification=book&amp;type=games&amp;q=car" class="filter_btn">Books</a>
-                </div>
-            </section>
-        </div>
-        <div class="related_tags tag_results">
-            <div class="results_label">
-                <svg width="22" height="22" stroke-linejoin="round" version="1.1" aria-hidden="" role="img" class="svgicon icon_tag" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round">
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                    <line x1="7" y1="7" x2="7" y2="7"></line>
-                </svg>
-                <span class="label_text">Tags</span>
-                <span class="browse_top_tags"> ( <a href="/tags">View all tags</a>) </span>
-            </div>
-            <div class="tag_list">
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="Card Game games" href="/game-assets/tag-card-game" data-label="card-game">Card Game</a>
-                </div>
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="Cartoon games" href="/game-assets/tag-cartoon" data-label="cartoon">Cartoon</a>
-                </div>
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="business-card games" href="/game-assets/tag-business-card" data-label="business-card">business-card</a>
-                </div>
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="Deck Building games" href="/game-assets/tag-deck-building" data-label="deck-building">Deck Building</a>
-                </div>
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="PICO-8 games" href="/game-assets/tag-pico-8" data-label="pico-8">PICO-8</a>
-                </div>
-                <div class="tag_segmented_btn">
-                    <a data-action="related_tags" class="outline_button" title="Tabletop games" href="/game-assets/tag-tabletop" data-label="tabletop">Tabletop</a>
-                </div>
-            </div>
         </div>
         <div class="grid_outer">
             <div class="game_grid_widget base_widget browse_game_grid" id="game_grid_0">
                 @foreach(var game in Model) {
-                <div dir="auto" data-game_id="@game.ProjectId" class="game_cell has_cover">
+                <div dir="auto" data-game_id="@game.GameId" class="game_cell has_cover">
                     <div class="game_thumb">
-                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:thumb">
-                            <img width="315" class="lazy_loaded" height="250" src="@game.ProjectCoverImage.ProjectCoverImageRelativePath">
+                        <a tabindex="-1" data-action="game_grid" class="thumb_link game_link" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId" data-label="">
+                            <img width="315" class="lazy_loaded" height="250" src="@game.CoverImage">
                         </a>
-                        <div class="game_cell_tools">
-                            <a class="action_btn add_to_collection_btn" href="/g/free-game-assets/car-constructor-pixel-art/add-to-collection?source=search">
-                                <span class="icon icon-playlist_add"></span>Add to collection
-                            </a>
-                        </div>
                     </div>
                     <div class="game_cell_data">
                         <div class="game_title">
-                            <a class="title game_link" data-action="game_grid" href="https://free-game-assets.itch.io/car-constructor-pixel-art" data-label="game:1293693:title">@game.Title</a>
-                            <a title="Pay $4.20 or more for this asset pack" href="/s/11302/june-2024-mega-bundle-game-assets-save-98" class="price_tag meta_tag sale">
-                                <div class="price_value">$4.20</div>
-                                <div class="sale_tag">-30%</div>
-                            </a>
+                            <a class="title game_link" data-action="game_grid" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId" data-label="">@game.Title</a>
                         </div>
                         <div class="game_text" title="@game.ShortDescription">@game.ShortDescription</div>
                         <div class="game_author">
-                            <a data-action="game_grid" href="https://free-game-assets.itch.io" data-label="user:218217">Free Game Assets (GUI, Sprite, Tilesets)</a>
+                            <a data-action="game_grid" href="" data-label="user:218217">Author</a>
                         </div>
                         <div class="game_rating" title="5.00 average rating from 1 total ratings">
                             <div class="star_value">

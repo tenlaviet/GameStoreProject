@@ -72,7 +72,7 @@ namespace AspMVC.Areas.Blog.Controllers
             //                 commentAuthor = u.UserName
             //             }).FirstOrDefaultAsync();
 
-            var projectPageModel = await _context.ProjectPages
+            var projectPage = await _context.ProjectPages
                 .Include(p => p.Genre).Include(c => c.Comments).Include(f =>f.ProjectFiles).Include(p => p.ProjectPictures)
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
 
@@ -82,7 +82,7 @@ namespace AspMVC.Areas.Blog.Controllers
                 .OrderByDescending(t => t.TimeStamp)
                 .ToListAsync();
 
-            if (projectPageModel == null)
+            if (projectPage == null)
             {
                 return NotFound();
             }
@@ -93,11 +93,12 @@ namespace AspMVC.Areas.Blog.Controllers
             };
             ProjectPageDetailViewModel detailViewModel = new ProjectPageDetailViewModel()
             {
-                ProjectPage = projectPageModel,
+                ProjectPage = projectPage,
                 CommentSection = commentSectionViewModel
 
             };
-
+            projectPage.ViewCount++;
+            _context.SaveChanges();
 
             return View(detailViewModel);
         }
@@ -105,7 +106,7 @@ namespace AspMVC.Areas.Blog.Controllers
         // GET: Blog/ProjectPage/Create
         public IActionResult Create()
         {
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName");
+            ViewData["GenreId"] = new SelectList(_context.Genres, "GenreId", "GenreName");
             return View();
         }
 
@@ -135,10 +136,13 @@ namespace AspMVC.Areas.Blog.Controllers
                     ShortDescription = projectPageModel.ShortDescription,
                     Description = projectPageModel.Description,
                     GenreId = projectPageModel.GenreId,
+                    PlatformId = projectPageModel.PlatformId,
                     Slug = projectPageModel.Slug,
                     ProjectPageDatePosted = DateTime.Now,
                     ProjectFilesDir = projectFileStorageDir,
                     ProjectImagesDir = projectImageStorageDir
+                    
+                    
                     
                 };
 
@@ -235,7 +239,9 @@ namespace AspMVC.Areas.Blog.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "GenreId", "GenreName", projectPageModel.GenreId);
+            ViewData["PlatformId"] = new SelectList(_context.Platform, "PlatformId", "PlatformName", projectPageModel.GenreId);
+
             return View(projectPageModel);
 
 
@@ -254,9 +260,11 @@ namespace AspMVC.Areas.Blog.Controllers
             {
                 return NotFound();
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPage.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "GenreId", "GenreName", projectPage.GenreId);
+            ViewData["PlatformId"] = new SelectList(_context.Platform, "PlatformId", "PlatformName", projectPage.PlatformId);
+
             //ViewData["Gallery"] = new MultiSelectList(_context.ProjectUploadedPicture.Where(p=>p.ProjectPageID == id), "PictureID", "PictureName");
-            
+
             //var projectFiles = await _context.ProjectUploadedFile.Where(p => p.ProjectPageID == id).ToListAsync();
             ViewData["RemoveFiles"] = new MultiSelectList(projectPage.ProjectFiles, "FileID", "FileName");
 
@@ -283,6 +291,7 @@ namespace AspMVC.Areas.Blog.Controllers
                 ShortDescription = projectPage.ShortDescription,
                 Slug = projectPage.Slug,
                 GenreId = projectPage.GenreId,
+                PlatformId = projectPage.PlatformId,
                 ProjectGallery = projectPage.ProjectPictures.ToList(),
                 RemoveGallery = removePictureList,
                 ProjectCover = projectPage.ProjectCoverImage,
@@ -315,6 +324,7 @@ namespace AspMVC.Areas.Blog.Controllers
                     project.Description = projectPageModel.Description;
                     project.Slug = projectPageModel.Slug;
                     project.GenreId = projectPageModel.GenreId;
+                    project.PlatformId = projectPageModel.PlatformId;
                 }
                 var pictureIdToRemoveList = projectPageModel.RemoveGallery;
                 var coverIdToRemove = projectPageModel.RemoveCover;
@@ -469,8 +479,9 @@ namespace AspMVC.Areas.Blog.Controllers
                 IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return NotFound();
             }
-            //ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
-            //return View(projectPageModel);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "GenreName", projectPageModel.GenreId);
+            ViewData["PlatformId"] = new SelectList(_context.Platform, "PlatformId", "PlatformName", projectPageModel.GenreId);
+            return View(projectPageModel);
         }
 
         // GET: Blog/ProjectPage/Delete/5

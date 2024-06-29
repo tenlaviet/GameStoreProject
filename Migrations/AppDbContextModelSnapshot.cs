@@ -130,7 +130,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Contact", b =>
@@ -165,7 +165,30 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.Platform", b =>
+                {
+                    b.Property<int>("PlatformId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlatformId"), 1L, 1);
+
+                    b.Property<string>("PlatformName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PlatformSlug")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PlatformId");
+
+                    b.ToTable("Platform", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
@@ -195,7 +218,7 @@ namespace AspMVC.Migrations
                     b.HasIndex("ProjectPageID")
                         .IsUnique();
 
-                    b.ToTable("ProjectUploadedCoverImage");
+                    b.ToTable("ProjectUploadedCoverImage", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedFile", b =>
@@ -224,7 +247,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedFile");
+                    b.ToTable("ProjectUploadedFile", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedPicture", b =>
@@ -253,30 +276,30 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedPicture");
+                    b.ToTable("ProjectUploadedPicture", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"), 1L, 1);
 
                     b.Property<string>("GenreName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Slug")
+                    b.Property<string>("GenreSlug")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                    b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
@@ -296,6 +319,9 @@ namespace AspMVC.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlatformId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProjectFilesDir")
@@ -324,15 +350,20 @@ namespace AspMVC.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
                     b.HasKey("ProjectId");
 
                     b.HasIndex("CreatorId");
 
                     b.HasIndex("GenreId");
 
+                    b.HasIndex("PlatformId");
+
                     b.HasIndex("Slug");
 
-                    b.ToTable("ProjectPage");
+                    b.ToTable("ProjectPage", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Tag", b =>
@@ -350,7 +381,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -557,9 +588,17 @@ namespace AspMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AspMVC.Models.EF.Platform", "Platform")
+                        .WithMany()
+                        .HasForeignKey("PlatformId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Creator");
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Platform");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

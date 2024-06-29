@@ -39,7 +39,10 @@ namespace AspMVC.ViewModels
         //Genre
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
-  
+
+        [Display(Name = "Platform")]
+        public int PlatformId { get; set; }
+
         [DataType(DataType.Upload)]
         [Display(Name = "Chọn file upload")]
         //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]

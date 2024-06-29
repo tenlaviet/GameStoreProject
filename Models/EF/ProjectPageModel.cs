@@ -56,6 +56,13 @@ namespace AspMVC.Models
         [ForeignKey("GenreId")]
         [Display(Name = "Genre")]
         public Genre Genre { set; get; }
+
+        [Display(Name = "Platform")]
+        public int PlatformId { get; set; }
+
+        [ForeignKey("PlatformId")]
+        [Display(Name = "Platform")]
+        public Platform Platform { set; get; }
         //Tag
         //Coverimage
         //VideoLink
@@ -71,6 +78,8 @@ namespace AspMVC.Models
         public ICollection<ProjectUploadedFile> ProjectFiles { get; } = new List<ProjectUploadedFile>();
 
         public ICollection<ProjectUploadedPicture> ProjectPictures { get; } = new List<ProjectUploadedPicture>();
+
+        public int ViewCount { get; set; }
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
 

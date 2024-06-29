@@ -8,7 +8,7 @@ namespace AspMVC.Models
     public class Genre
     {
         [Key]
-        public int Id { get; set; }
+        public int GenreId { get; set; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(50)]
@@ -20,7 +20,7 @@ namespace AspMVC.Models
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} dài {1} đến {2}")]
         [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Chỉ dùng các ký tự [a-z0-9-]")]
         [Display(Name = "Project Url")]
-        public string Slug { set; get; }
+        public string GenreSlug { set; get; }
 
     }
 }

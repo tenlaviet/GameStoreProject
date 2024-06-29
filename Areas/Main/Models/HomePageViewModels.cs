@@ -1,4 +1,5 @@
 ﻿using AspMVC.Models;
+using AspMVC.Models.EF;
 
 namespace AspMVC.Areas.Main.Models
 {
@@ -10,8 +11,10 @@ namespace AspMVC.Areas.Main.Models
 
     public class BrowseViewModel
     {
-        public List<GameCell> gameCells { get; set; }
+        public List<GameCell> GameCells { get; set; }
 
         public List<Genre> Genres { get; set; }
+
+        public List<Platform> Platforms { get; set; }
     }
 }

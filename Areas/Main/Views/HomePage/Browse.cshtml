@@ -11,9 +11,31 @@
                     <div class="filters_header">
                         <h2>Filter Results</h2>
                     </div>
+                    <!-- Filters -->
                     <div class="filter_pickers">
+                    <!-- Platform -->
+                    <div id="browse_filter_group_8751780" class="browse_filter_group_widget base_widget filters_open">
+                        <div class="filter_group_label">
+                            <button type="button" onclick="$(this).closest('.browse_filter_group_widget').toggleClass('filters_open')" class="group_toggle_btn">
+                                <span class="filter_arrow">
+                                    <span aria-hidden="true" class="icon icon-triangle-down"></span>
+                                    <span aria-hidden="true" class="icon icon-triangle-right"></span>
+                                </span>Platform
+                            </button>
+                        </div>
+                        <ul>
+                            @foreach(var p in Model.Platforms)
+                            {
+                                <li class="@(ViewBag.Platform == p.PlatformSlug ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@p.PlatformSlug">
+                                        <i class="fa-brands fa-@(p.PlatformName)"></i> @p.PlatformName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <!-- Platform -->
                     <!-- Price -->
-
                         <div class="browse_filter_group_widget base_widget filters_open" id="browse_filter_group_200751">
                             <div class="filter_group_label">
                                 <button class="group_toggle_btn" type="button" onclick="$(this).closest(&#039;.browse_filter_group_widget&#039;).toggleClass(&#039;filters_open&#039;)">
@@ -24,6 +46,12 @@
                                 </button>
                             </div>
                             <ul>
+                                <li>
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="free" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform">
+                                        <span class="icon icon-star" aria-hidden="true"></span>
+                                        test
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="/games/free">
                                         <span class="icon icon-star" aria-hidden="true"></span>Free
@@ -64,18 +92,18 @@
                                 </button>
                             </div>
                             <ul>
-                                <li>
-                                    <a href="/games/last-day">
+                                <li class="@(ViewBag.When == "last-day" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-day" asp-route-platform="@ViewBag.Platform">
                                         <span class="icon icon-stopwatch" aria-hidden="true"></span>Last Day
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="/games/last-7-days">
+                                <li class="@(ViewBag.When == "last-7-days" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-7-days" asp-route-platform="@ViewBag.Platform">
                                         <span class="icon icon-stopwatch" aria-hidden="true"></span>Last 7 days
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="/games/last-30-days">
+                                <li class="@(ViewBag.When == "last-30-days" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-30-days" asp-route-platform="@ViewBag.Platform">
                                         <span class="icon icon-stopwatch" aria-hidden="true"></span>Last 30 days
                                     </a>
                                 </li>
@@ -95,8 +123,8 @@
                             <ul>
                                 @foreach (var g in Model.Genres)
                                 {
-                                    <li>
-                                        <a href="/browse/@g.Slug">
+                                    <li class="@(ViewBag.Genre == g.GenreSlug ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@g.GenreSlug" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" class="@(ViewBag.Genre == g.GenreSlug ? "active" : string.Empty)">
                                             <span class="icon icon-tag" aria-hidden="true"></span>
                                             @g.GenreName
                                         </a>
@@ -247,20 +275,15 @@
                                 <div>Sort by</div>
                             </span>
                             <ul class="sorts">
-                                <li>
-                                    <button class="active">Popular</button>
+                                <li class="">
+                                    <a asp-action="Browse" asp-route-sort="most-popular" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" data-action="sort" class="@(ViewBag.Sort == "most-popular" ? "active" : string.Empty)">
+                                    Popular
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="/games/new-and-popular" data-label="popularity2" data-action="sort">New &amp; Popular</a>
-                                </li>
-                                <li>
-                                    <a href="/games/top-sellers" data-label="purchases" data-action="sort">Top sellers</a>
-                                </li>
-                                <li>
-                                    <a href="/games/top-rated" data-label="rating" data-action="sort">Top rated</a>
-                                </li>
-                                <li>
-                                    <a href="/games/newest" data-label="newest" data-action="sort">Most Recent</a>
+                                    <a asp-action="Browse" asp-route-sort="most-recent" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" data-action="sort" class="@(ViewBag.Sort == "most-recent" ? "active" : string.Empty)">
+                                    Most Recent
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -287,32 +310,27 @@
                     </div>
                     <div class="grid_outer">
                         <div class="game_grid_widget base_widget browse_game_grid">
-                            @foreach(var game in Model.gameCells){
-                            <div dir="auto" class="game_cell has_cover lazy_images" data-game_id="2765061">
-                                <div style="background-color:#000000;" class="game_thumb">
-                                    <a tabindex="-1" class="thumb_link game_link" data-action="game_grid" href="https://steelkrill.itch.io/baby-blues-nightmares-chapter-1" data-label="game:2765061:thumb">
-                                        <img width="315" class="lazy_loaded" height="250" src="@game.CoverImage" />
-                                    </a>
-                                    <div class="game_cell_tools">
-                                        <a href="/g/steelkrill/baby-blues-nightmares-chapter-1/add-to-collection?source=browse" class="action_btn add_to_collection_btn">
-                                            <span class="icon icon-playlist_add"></span>Add to collection
+                            @foreach(var game in Model.GameCells){
+                                <div dir="auto" class="game_cell has_cover lazy_images" data-game_id="@game.GameId">
+                                    <div style="background-color:#000000;" class="game_thumb">
+                                        <a tabindex="-1" class="thumb_link game_link" data-action="game_grid" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId">
+                                            <img width="315" class="lazy_loaded" height="250" src="@game.CoverImage" />
                                         </a>
                                     </div>
+                                    <div class="game_cell_data">
+                                        <div class="game_title">
+                                            <a data-label="" class="title game_link" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId" data-action="game_grid">@game.Title</a>
+                                        </div>
+                                        <div title="@game.ShortDescription" class="game_text">@game.ShortDescription</div>
+                                        <div class="game_author">
+                                            <a href="https://steelkrill.itch.io" data-action="game_grid" data-label="">@game.CreatorName</a>
+                                        </div>
+                                        <div class="game_genre">@game.GenreName</div>
+                                        <div class="game_platform">
+                                            <span class="icon icon-windows8" title="Download for Windows" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="game_cell_data">
-                                    <div class="game_title">
-                                        <a data-label="game:2765061:title" class="title game_link" href="https://steelkrill.itch.io/baby-blues-nightmares-chapter-1" data-action="game_grid">Baby Blues Nightmares - Chapter 1</a>
-                                    </div>
-                                    <div title="Baby Blues Nightmares is a toddler horror game where you play with a baby on a tricycle to find your lost dolls" class="game_text">Baby Blues Nightmares is a toddler horror game where you play with a baby on a tricycle to find your lost dolls</div>
-                                    <div class="game_author">
-                                        <a href="https://steelkrill.itch.io" data-action="game_grid" data-label="user:258836">@game.CreatorName</a>
-                                    </div>
-                                    <div class="game_genre">@game.GenreName</div>
-                                    <div class="game_platform">
-                                        <span class="icon icon-windows8" title="Download for Windows" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                            </div>
 
                             }
                             <div dir="auto" class="game_cell has_cover lazy_images" data-game_id="2774474">
@@ -1227,5 +1245,3 @@
 
         </div>
     </div>
-
-
