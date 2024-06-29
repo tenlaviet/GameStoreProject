@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZgVSrRQso3NBmQ7hXVd0d4uFd9HezMnEoW6HjoHm5hY=",
+  "Hash": "yWhk1QFfzh0TFHjdL2Dxs8Bi7KMxuWu6MsfzUbVv8+w=",
   "Source": "AspMVC",
   "BasePath": "_content/AspMVC",
   "Mode": "Default",
@@ -5251,6 +5251,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\0813_image001.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/0813_image001.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\0813_image001.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\b.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\b.jpg"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg",

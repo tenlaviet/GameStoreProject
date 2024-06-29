@@ -453,6 +453,7 @@ namespace AspMVC.Areas.Blog.Controllers
                     foreach (var file in projectPageModel.FileUpload)
                     {
                         string projectFileStorageDir = project.ProjectFilesDir;
+                        string size = file.Length.Bytes().Humanize();
                         string uploadedFile = Path.Combine(projectFileStorageDir, file.FileName);
                         using (var fileStream = System.IO.File.Create(uploadedFile))
                         {
@@ -462,7 +463,8 @@ namespace AspMVC.Areas.Blog.Controllers
                         {
                             ProjectPageID = project.ProjectId,
                             ProjectFile = uploadedFile,
-                            FileName = file.FileName
+                            FileName = file.FileName,
+                            FileSize = size
                         };
                         await _context.ProjectUploadedFile.AddAsync(addUploadedFile);
                     }
