@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Net.Mail;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -24,7 +25,7 @@ public interface IEmailSender
 public class SendMailService : IEmailSender
 {
 
-
+    
     private readonly MailSettings mailSettings;
 
     private readonly ILogger<SendMailService> logger;
@@ -37,6 +38,7 @@ public class SendMailService : IEmailSender
         mailSettings = _mailSettings.Value;
         logger = _logger;
         logger.LogInformation("Create SendMailService");
+        
     }
 
 
