@@ -1233,8 +1233,28 @@
       "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\0813_image001.jpg"
     },
     {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\FO02_NPC_Frank_Horrigan.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\FO02_NPC_Frank_Horrigan.png"
+    },
+    {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\b.jpg",
       "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\CoverImage\\rjxu8q8u1ga91.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\CoverImage\\rjxu8q8u1ga91.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\Screenshots\\obsidian_leshy_obsidian_ls.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\Screenshots\\obsidian_leshy_obsidian_ls.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\Screenshots\\sf_souls_tyrant_ls.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\Screenshots\\sf_souls_tyrant_ls.png"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg",

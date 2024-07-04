@@ -4944,6 +4944,86 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\admin\Projects\Super Mario Odyssey\Screenshots\b.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\admin\Projects\Super Mario Odyssey\Screenshots\FO02_NPC_Frank_Horrigan.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>AspMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AspMVC</BasePath>
+      <RelativePath>uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/FO02_NPC_Frank_Horrigan.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\admin\Projects\Super Mario Odyssey\Screenshots\FO02_NPC_Frank_Horrigan.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\admin\Projects\Super Mario Odyssey\Screenshots\obsidian_leshy_obsidian_ls.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>AspMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AspMVC</BasePath>
+      <RelativePath>uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/obsidian_leshy_obsidian_ls.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\admin\Projects\Super Mario Odyssey\Screenshots\obsidian_leshy_obsidian_ls.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\CoverImage\rjxu8q8u1ga91.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>AspMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AspMVC</BasePath>
+      <RelativePath>uploads/Users/kazekami12344/Projects/Dota 2/CoverImage/rjxu8q8u1ga91.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\CoverImage\rjxu8q8u1ga91.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\Screenshots\obsidian_leshy_obsidian_ls.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>AspMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AspMVC</BasePath>
+      <RelativePath>uploads/Users/kazekami12344/Projects/Dota 2/Screenshots/obsidian_leshy_obsidian_ls.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\Screenshots\obsidian_leshy_obsidian_ls.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\Screenshots\sf_souls_tyrant_ls.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>AspMVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AspMVC</BasePath>
+      <RelativePath>uploads/Users/kazekami12344/Projects/Dota 2/Screenshots/sf_souls_tyrant_ls.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\Dota 2\Screenshots\sf_souls_tyrant_ls.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\Users\kazekami12344\Projects\test123\CoverImage\b.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>AspMVC</SourceId>

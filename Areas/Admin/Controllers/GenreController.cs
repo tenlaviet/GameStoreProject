@@ -7,10 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AspMVC.Data;
 using AspMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace AspMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = RoleName.Administrator)]
+
     public class GenreController : Controller
     {
         private readonly AppDbContext _context;
@@ -57,15 +62,28 @@ namespace AspMVC.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GenreName")] Genre genre)
+        public async Task<IActionResult> Create([Bind("GenreId,GenreName")] CreateGenreVM genreVM)
         {
             if (ModelState.IsValid)
             {
+                var duplicateCheck = await _context.Genres.FirstOrDefaultAsync(g => g.GenreName == genreVM.GenreName);
+
+                if (duplicateCheck != null)
+                {
+                    ModelState.AddModelError("GenreName", $"Genre có tên {genreVM.GenreName} bị trùng");
+                    return View(genreVM);
+                }
+                var slug = genreVM.GenreName.Replace(" ", "-").ToLower();
+                Genre genre = new Genre()
+                {
+                    GenreName = genreVM.GenreName,
+                    GenreSlug = slug
+                };
                 _context.Add(genre);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(genre);
+            return View(genreVM);
         }
 
         // GET: Admin/Genre/Edit/5
@@ -81,7 +99,12 @@ namespace AspMVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(genre);
+            CreateGenreVM genreEditVM = new CreateGenreVM()
+            {
+                GenreId = id.Value,
+                GenreName = genre.GenreName
+            };
+            return View(genreEditVM);
         }
 
         // POST: Admin/Genre/Edit/5
@@ -89,23 +112,25 @@ namespace AspMVC.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GenreName")] Genre genre)
+        public async Task<IActionResult> Edit(CreateGenreVM genreVM)
         {
-            if (id != genre.GenreId)
-            {
-                return NotFound();
-            }
+
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(genre);
+                    var genre = await _context.Genres.FindAsync(genreVM.GenreId);
+                    if (genre != null)
+                    { 
+                        genre.GenreName = genreVM.GenreName;
+                        genre.GenreSlug = genreVM.GenreName.Replace(" ", "-").ToLower();
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GenreExists(genre.GenreId))
+                    if (!GenreExists(genreVM.GenreId))
                     {
                         return NotFound();
                     }
@@ -116,7 +141,7 @@ namespace AspMVC.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(genre);
+            return View(genreVM);
         }
 
         // GET: Admin/Genre/Delete/5

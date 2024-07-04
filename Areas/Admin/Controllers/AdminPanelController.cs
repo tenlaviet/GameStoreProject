@@ -6,10 +6,10 @@ using System.Data;
 namespace AspMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = RoleName.Administrator)]
+    [Authorize(Roles = RoleName.Administrator)]
     public class AdminPanelController : Controller
     {
-        [Route("admin")]
+        [HttpGet("admin")]
         public IActionResult Index()
         {
             return View();

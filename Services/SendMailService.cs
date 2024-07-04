@@ -16,6 +16,15 @@ public class MailSettings
 
 }
 
+// Chứa thông tin Email sẽ gửi (Trường hợp này chưa hỗ trợ đính kém file)
+public class MailContent
+{
+    public string To { get; set; }              // Địa chỉ gửi đến
+    public string Subject { get; set; }         // Chủ đề (tiêu đề email)
+    public string Body { get; set; }            // Nội dung (hỗ trợ HTML) của email
+
+}
+
 public interface IEmailSender
 {
     Task SendEmailAsync(string email, string subject, string message);
@@ -26,18 +35,18 @@ public class SendMailService : IEmailSender
 {
 
     
-    private readonly MailSettings mailSettings;
+    private readonly MailSettings _mailSettings;
 
-    private readonly ILogger<SendMailService> logger;
+    private readonly ILogger<SendMailService> _logger;
 
 
     // mailSetting được Inject qua dịch vụ hệ thống
     // Có inject Logger để xuất log
-    public SendMailService(IOptions<MailSettings> _mailSettings, ILogger<SendMailService> _logger)
+    public SendMailService(IOptions<MailSettings> mailSettings, ILogger<SendMailService> logger)
     {
-        mailSettings = _mailSettings.Value;
-        logger = _logger;
-        logger.LogInformation("Create SendMailService");
+        _mailSettings = mailSettings.Value;
+        _logger = logger;
+        _logger.LogInformation("Create SendMailService");
         
     }
 
@@ -45,8 +54,8 @@ public class SendMailService : IEmailSender
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
         var message = new MimeMessage();
-        message.Sender = new MailboxAddress(mailSettings.DisplayName, mailSettings.Mail);
-        message.From.Add(new MailboxAddress(mailSettings.DisplayName, mailSettings.Mail));
+        message.Sender = new MailboxAddress(_mailSettings.DisplayName, _mailSettings.Mail);
+        message.From.Add(new MailboxAddress(_mailSettings.DisplayName, _mailSettings.Mail));
         message.To.Add(MailboxAddress.Parse(email));
         message.Subject = subject;
 
@@ -60,8 +69,8 @@ public class SendMailService : IEmailSender
 
         try
         {
-            smtp.Connect(mailSettings.Host, mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(mailSettings.Mail, mailSettings.Password);
+            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
             await smtp.SendAsync(message);
         }
 
@@ -72,13 +81,13 @@ public class SendMailService : IEmailSender
             var emailsavefile = string.Format(@"mailssave/{0}.eml", Guid.NewGuid());
             await message.WriteToAsync(emailsavefile);
 
-            logger.LogInformation("Lỗi gửi mail, lưu tại - " + emailsavefile);
-            logger.LogError(ex.Message);
+            _logger.LogInformation("Lỗi gửi mail, lưu tại - " + emailsavefile);
+            _logger.LogError(ex.Message);
         }
 
         smtp.Disconnect(true);
 
-        logger.LogInformation("send mail to " + email);
+        _logger.LogInformation("send mail to " + email);
 
 
     }

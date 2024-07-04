@@ -1,5 +1,20 @@
 ﻿@model AspMVC.Areas.Main.Models.BrowseViewModel
 @{
+    string browse_header = "";
+    switch (ViewBag.Sort)
+    {
+        case "most-popular":
+            browse_header = "Top";
+            break;
+        case "most-recent":
+            browse_header = "Latest";
+            break;
+        case "top-rated":
+            //cac game duoc danh gia cao nhat
+            break;
+        default:
+            break;
+    }
 }
 
     <div class="browse_games_page browse_base_page page_widget base_widget" id="browse_games_6775496">
@@ -264,7 +279,7 @@
                             </button>
                         </div>
                         <h2>
-                            <span>Top Games</span>
+                            <span>Results: @Model.GameCells.Count() Games</span>
                             <nobr class="game_count"> (969,031 results)</nobr>
                         </h2>
                         <div class="browse_sort_options_widget base_widget" id="browse_sort_options_8822924">

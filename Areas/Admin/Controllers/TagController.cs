@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AspMVC.Data;
 using AspMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AspMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = RoleName.Administrator)]
+
     [Area("Admin")]
     public class TagController : Controller
     {

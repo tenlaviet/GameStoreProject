@@ -107,6 +107,8 @@ namespace AspMVC.Areas.Blog.Controllers
         public IActionResult Create()
         {
             ViewData["GenreId"] = new SelectList(_context.Genres, "GenreId", "GenreName");
+            ViewData["PlatformId"] = new SelectList(_context.Platform, "PlatformId", "PlatformName");
+
             return View();
         }
 
@@ -573,7 +575,16 @@ namespace AspMVC.Areas.Blog.Controllers
 
         }
 
+        public IActionResult ProjectRandomizer()
+        {
+            if (_context.ProjectPages == null)
+            { 
+                return NotFound(); 
+            }
+            var randomProject = _context.ProjectPages.OrderBy(r => Guid.NewGuid()).Skip(1).Take(1).FirstOrDefault();
+            return RedirectToAction("Details", "ProjectPage",new {id = randomProject.ProjectId });
 
+        }
 
     }
 }

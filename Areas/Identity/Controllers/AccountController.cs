@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AspMVC.Areas.Identity.Controllers
@@ -27,6 +28,8 @@ namespace AspMVC.Areas.Identity.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
         private readonly IEmailSender _emailSender;
         private readonly ILogger<AccountController> _logger;
 
@@ -34,12 +37,14 @@ namespace AspMVC.Areas.Identity.Controllers
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _roleManager = roleManager;
         }
 
         // GET: /Account/Login
@@ -100,7 +105,17 @@ namespace AspMVC.Areas.Identity.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Không đăng nhập được.");
+                    var user = await _userManager.FindByNameAsync(model.UserNameOrEmail);
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("UserNameOrEmail", "User doesn't exist.");
+                    }
+                    else if (!await _userManager.CheckPasswordAsync(user, model.Password))
+                    {
+                        ModelState.AddModelError("Password", "Wrong password. Try again or click forgot password to reset it.");
+                    }
+
+                    //ModelState.AddModelError("Không đăng nhập được.");
                     return View(model);
                 }
             }
@@ -174,6 +189,19 @@ namespace AspMVC.Areas.Identity.Controllers
                     }
 
                 }
+                else
+                {
+                    var usernameCheck = await _userManager.FindByNameAsync(model.UserName);
+                    var emailCheck = await _userManager.FindByEmailAsync(model.Email);
+                    if(usernameCheck != null)
+                    {
+                        ModelState.AddModelError("UserName", "This username is already taken.");
+                    }
+                    if(emailCheck != null)
+                    {
+                        ModelState.AddModelError("Email", "This email is already taken.");
+                    }
+                }
 
                 ModelState.AddModelError(result);
             }
@@ -204,9 +232,18 @@ namespace AspMVC.Areas.Identity.Controllers
             {
                 return View("ErrorConfirmEmail");
             }
+            
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "ErrorConfirmEmail");
+            if(!result.Succeeded)
+            {
+                return View("ErrorConfirmEmail");
+            }
+
+            List<string> roleNames = await _roleManager.Roles.Where(r => r.Name =="Member").Select(r => r.Name).ToListAsync();
+            var resultAdd = await _userManager.AddToRolesAsync(user, roleNames);
+
+            return View("ConfirmEmail");
         }
 
         //
@@ -674,7 +711,7 @@ namespace AspMVC.Areas.Identity.Controllers
             }
         }
 
-        [Route("/khongduoctruycap.html")]
+        [Route("/accessdenied")]
         [AllowAnonymous]
         public IActionResult AccessDenied()
         {

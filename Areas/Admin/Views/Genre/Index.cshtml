@@ -1,21 +1,23 @@
 ﻿@model IEnumerable<AspMVC.Models.Genre>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách các Genre";
 }
 
+<h2>@ViewData["Title"]</h2>
 
-
-<p>
-    <a asp-action="Create">Create New Genre</a>
-</p>
+<div class="mb-2">
+    <a class="btn btn-secondary" asp-action="Create">Tạo Genre mới</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.GenreName)
             </th>
-            <th></th>
+            <th>
+                Tác vụ
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +27,7 @@
                 @Html.DisplayFor(modelItem => item.GenreName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.GenreId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.GenreId">Delete</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.GenreId">Delete</a>
             </td>
         </tr>
 }

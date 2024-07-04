@@ -206,11 +206,20 @@
 <script name ="edit-comment">
     //script sua comment
     $(document).ready(function () {
+
+        var currentOrgContent;
+        var currentEditBool = 0;
         //bat tat edit comment
         $('#comment-list').on('click', 'a.edit-comment-button', function () {
-            var commentCard = $(this).closest('div').prev('div'); // comment-card
+            if (currentEditBool == 1) {
+                alert('Please finish editing before trying to perform other actions');
+                return;
+            }
+            var commentCard = $(this).closest('div').siblings('div.comment-card'); // comment-card
             commentCard.children('form').toggle();//toggle form edit
             commentCard.children('.comment-content').toggle(); //toggle comment content
+            currentEditBool = 1;
+            currentOrgContent = commentCard.children('div.comment-content').html();
         });
         //submit comment sau khi edit
         $('#comment-list').on('submit', 'form.edit-comment-form', function (e) {
@@ -236,7 +245,35 @@
         });
 
         $('.cancel-edit-comment-button').click(function () {
-            $('.edit-comment-form').hide();
+            var commentCard = $(this).closest('.comment-card');//comment card
+            commentCard.children('form').toggle();//toggle form edit
+            commentCard.children('.comment-content').toggle(); //toggle comment content
+            commentCard.find('div.note-editable').html(currentOrgContent);
+            currentOrgContent = '';
+            currentEditBool = 0;
+        });
+
+        $('#comment-list').on('click', 'a.delete-comment-button', function (e) {
+            if (currentEditBool == 1) {
+                alert('Please finish editing before trying to edit other comments');
+                return;
+            }
+            e.preventDefault();
+            var commentCon = $(this).parents('div.comment_con')// comment con
+            var id = commentCon.attr('data-comment-id');// id comment
+            if (confirm("Are you sure you want to delete this comment?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteComment", "Comment")',
+                    type: 'POST',
+                    data: {
+                        commentID: id
+                    },
+                    success: function (result) {
+                        alert("comment succesfully deleted");
+                        commentCon.remove();
+                    }
+                });
+            }
         });
     });
 
@@ -248,24 +285,7 @@
 <script name ="delete-comment">
     //script xoa comment
         $(document).ready(function () {
-            $('#comment-list').on('click', 'a.delete-comment-button', function (e) {
-                e.preventDefault();
-                var commentCon = $(this).parents('div.comment_con')// comment con
-                var id = commentCon.attr('data-comment-id');// id comment
-                if (confirm("Are you sure you want to delete this comment?")) {
-                    $.ajax({
-                        url: '@Url.Action("DeleteComment", "Comment")',
-                        type: 'POST',
-                        data: {
-                            commentID: id
-                        },
-                        success: function (result) {
-                            alert("xoa thanh cong");
-                            commentCon.remove();
-                        }
-                    });
-                }
-            });
+            
 
         });
         

@@ -88,7 +88,7 @@ namespace AspMVC
             {
                 options.LoginPath = "/login/";
                 options.LogoutPath = "/logout/";
-                options.AccessDeniedPath = "/khongduoctruycap.html";
+                options.AccessDeniedPath = "/accessdenied";
             });
 
             builder.Services.AddAuthentication()
@@ -124,14 +124,6 @@ namespace AspMVC
 
                 });
 
-                //options.AddPolicy("InGenZ", policyBuilder => {
-                //    policyBuilder.RequireAuthenticatedUser();
-                //    // policyBuilder.RequireClaim("canedit", "user");
-                //    policyBuilder.Requirements.Add(new GenZRequirement()); // GenZRequirement
-
-                //    // new GenZRequirement() -> Authorization handler
-
-                //});
 
                 options.AddPolicy("ShowAdminMenu", pb =>
                 {
@@ -187,6 +179,8 @@ namespace AspMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            
 
             app.Run();
         }
