@@ -4,40 +4,6 @@
     ViewData["Title"] = "Details";
     //var commentSectionVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
 }
-<style>
-    .header {
-        overflow: hidden
-    }
-
-        .header img {
-            display: none
-        }
-
-        .header.has_image {
-            font-size: 0
-        }
-
-            .header.has_image img {
-                display: inline-block;
-                max-width: 100%;
-
-                
-            }
-
-            .header.has_image h1 {
-                display: none
-            }
-
-        .header.align_center {
-
-            text-align: center
-        }
-
-        .header.align_right {
-            text-align: right
-        }
-</style>
-<div id="header" class="header has_image align_center"><h1 itemprop="name" class="game_title">idle city</h1><img src="https://img.itch.zone/aW1nLzE2NDM1MzAxLmpwZw==/original/tKgTkn.jpg" alt="camera feed"></div>
 <h1>@Model.ProjectPage.Title</h1>
 
 <div class="view_game_page">

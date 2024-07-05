@@ -27,12 +27,8 @@ namespace AspMVC.Controllers
         [Route("/testemail")]
         public async Task<IActionResult> testemail()
         {
-            await _emailSender.SendEmailAsync("notviet068@gmail.com",
-                        "Xác nhận địa chỉ email",
-                        @$"Bạn đã đăng ký tài khoản trên GameStore, 
-                           hãy <a href=''>bấm vào đây</a> 
-                           để kích hoạt tài khoản.");
-            return View();
+
+            return RedirectToAction("Index","HomePage", new { Area = "Main" });
         }
     }
 }

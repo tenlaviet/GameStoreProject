@@ -19,11 +19,11 @@ namespace AspMVC.ViewModels
     public class CreateProjectPageViewModel
     {
         public int ProjectID { get; set;}
-        [Required(ErrorMessage = "Phải có tên Title")]
+        [Required(ErrorMessage = "Project must have a title")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
         [Display(Name = "Title")]
         public string Title { get; set; }
-        [Required(ErrorMessage = "Phải tạo url")]
+        [Required(ErrorMessage = "must create url")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} dài {1} đến {2}")]
         [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Chỉ dùng các ký tự [a-z0-9-]")]
         [Display(Name = "Project Url")]
@@ -44,26 +44,29 @@ namespace AspMVC.ViewModels
         public int PlatformId { get; set; }
 
         [DataType(DataType.Upload)]
-        [Display(Name = "Chọn file upload")]
+        [Display(Name = "Upload Files")]
         //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]
         //[Required(ErrorMessage = "Chọn một file")]
         public ICollection<IFormFile>? FileUpload { get; set; }
         
         [DataType(DataType.Upload)]
-        [Display(Name = "Chọn picture upload")]
+        [Display(Name = "Upload Screenshots")]
         //[FileExtensions(Extensions = "png,jpg,jpeg,gif")]
         //[Required(ErrorMessage = "Chọn một file")]
         public ICollection<IFormFile>? PictureUpload { get; set; }
+        [Display(Name = "Upload Cover Image")]
         public IFormFile? CoverPictureUpload { get; set; }
 
     }
     public class EditProjectPageViewModel : CreateProjectPageViewModel
     {
-
-        public ProjectUploadedCoverImage? ProjectCover { get; set; }
-        public RemovePictureCheckBox? RemoveCover { get; set; }
         public List<ProjectUploadedPicture>? ProjectGallery { get; set; }
+        public ProjectUploadedCoverImage? ProjectCover { get; set; }
+        [Display(Name = "Remove Cover Image")]
+        public RemovePictureCheckBox? RemoveCover { get; set; }
+        [Display(Name = "Remove Screenshots")]
         public List<RemovePictureCheckBox>? RemoveGallery { get;set; }
+        [Display(Name = "Remove Files")]
         public List<int>? RemoveFileIDs { get; set; }
 
     }

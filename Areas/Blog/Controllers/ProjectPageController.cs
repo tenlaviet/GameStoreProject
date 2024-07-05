@@ -102,7 +102,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
             return View(detailViewModel);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin, Member")]
         // GET: Blog/ProjectPage/Create
         public IActionResult Create()
         {
