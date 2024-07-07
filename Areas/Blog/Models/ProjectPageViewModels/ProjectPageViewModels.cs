@@ -7,10 +7,17 @@ using AspMVC.Models.EF;
 
 namespace AspMVC.ViewModels
 {
+    public class CreatorPageViewModel
+    {
+        public List<ProjectPageModel> Projects { get; set; }
+        public string CreatorName { get; set; }
+    }
     public class ProjectPageDetailViewModel
     {
         public ProjectPageModel ProjectPage { get; set; }
         public CommentSectionViewModel CommentSection { get; set; }
+
+        public RatingSectionViewModel? RatingSection { get; set; }
     }
     public class DashboardViewModel
     {

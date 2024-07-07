@@ -1,4 +1,4 @@
-﻿@font-face {
+﻿/*@font-face {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -52,7 +52,7 @@
     font-style: normal;
     font-weight: 900;
     src: url("fonts/Lato-Black.woff2") format("woff2"),url("fonts/Lato-Black.woff") format("woff"),local("Lato Black"),local("Lato-Black")
-}
+}*/
 
 :root {
     --itchio_white_back: #fff;
@@ -29865,13 +29865,13 @@ html[dir=rtl] .forms_markdown_input_widget .markdown_toolbar > li {
             cursor: default
         }
 
-@font-face {
+/*@font-face {
     font-family: 'icomoon';
     src: url("icons/fonts/icomoon.eot?4ibnvg");
     src: url("icons/fonts/icomoon.eot?4ibnvg#iefix") format("embedded-opentype"),url("icons/fonts/icomoon.ttf?4ibnvg") format("truetype"),url("icons/fonts/icomoon.woff?4ibnvg") format("woff"),url("icons/fonts/icomoon.svg?4ibnvg#icomoon") format("svg");
     font-weight: normal;
     font-style: normal
-}
+}*/
 
 [class^="icon-"], [class*=" icon-"] {
     font-family: 'icomoon' !important;

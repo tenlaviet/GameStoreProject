@@ -120,27 +120,11 @@
                         </div>
                         <div class="game_text" title="@game.ShortDescription">@game.ShortDescription</div>
                         <div class="game_author">
-                            <a data-action="game_grid" href="" data-label="user:218217">Author</a>
+                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="CreatorPage" asp-route-creatorId="@game.CreatorID">@game.CreatorName</a>
                         </div>
-                        <div class="game_rating" title="5.00 average rating from 1 total ratings">
-                            <div class="star_value">
-                                <span class="screenreader_only">Rated 5.0 out of 5 stars</span>
-                                <div class="star_fill" style="width: 100.00000%">
-                                    <span aria-hidden="true" class="star icon-star"></span>
-                                    <span aria-hidden="true" class="star icon-star"></span>
-                                    <span aria-hidden="true" class="star icon-star"></span>
-                                    <span aria-hidden="true" class="star icon-star"></span>
-                                    <span aria-hidden="true" class="star icon-star"></span>
-                                </div>
-                                <div class="star_holes">
-                                    <span aria-hidden="true" class="star icon-star2"></span>
-                                    <span aria-hidden="true" class="star icon-star2"></span>
-                                    <span aria-hidden="true" class="star icon-star2"></span>
-                                    <span aria-hidden="true" class="star icon-star2"></span>
-                                    <span aria-hidden="true" class="star icon-star2"></span>
-                                </div>
-                            </div>
-                            <span class="rating_count">(1 <span class="screenreader_only"> total ratings</span>) </span>
+                        <div class="game_genre">@game.GenreName</div>
+                        <div class="game_platform">
+                            <i class="fa-brands fa-@(game.PlatformName)"></i>
                         </div>
                     </div>
                 </div>

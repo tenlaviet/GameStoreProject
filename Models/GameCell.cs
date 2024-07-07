@@ -9,5 +9,7 @@
         public string CreatorName { get; set; }
         public string GenreName { get; set; }
         public string CoverImage { get; set; }
+
+        public string PlatformName { get; set; }
     }
 }

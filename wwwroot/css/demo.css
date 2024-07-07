@@ -73,5 +73,13 @@
 .link a:last-child{
     margin: 0;
 }
+.fa-star {
+    font-size: 30px;
+    align-content: center;
+}
+
+.star-click.fa.fa-star.star-active {
+    color: yellow;
+}
 
 

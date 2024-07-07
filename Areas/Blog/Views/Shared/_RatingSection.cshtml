@@ -1,0 +1,84 @@
+﻿@model AspMVC.ViewModels.RatingSectionViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@{
+    double rate = 0;
+
+
+    if(Model != null)
+    {
+        rate = Model.RatingScore;
+    }
+}
+
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        <h3 style="">Rate this project</h3>
+        <form role="form" id="rating-form" method="post">
+            <div class="star-list">
+                <input id="Rating" class="game-rating" type="hidden" value="@rate">
+                <input id="PageId" type="hidden" class="game-rating" value="@Model.PageId">
+                <input id="UserId" type="hidden" class="game-rating" value="@Model.UserId">
+
+                <i class="star-click fa fa-star" aria-hidden="true" id="st1" data-star-value="1"></i>
+                <i class="star-click fa fa-star" aria-hidden="true" id="st2" data-star-value="2"></i>
+                <i class="star-click fa fa-star" aria-hidden="true" id="st3" data-star-value="3"></i>
+                <i class="star-click fa fa-star" aria-hidden="true" id="st4" data-star-value="4"></i>
+                <i class="star-click fa fa-star" aria-hidden="true" id="st5" data-star-value="5"></i>
+                <button id="post-rating-button" name="post-rating-button" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+
+        var orgRatingScore = @rate;
+        var starRatingValue = 0;
+        var ratingInput = $("div.star-list").children('input.game-rating').eq(0);
+        var starArray = $("div.star-list").children('i.star-click.fa.fa-star').toArray();
+        for (let i = 0; i < orgRatingScore; i++) {
+            starArray[i].className = "star-click fa fa-star star-active";
+        }
+
+        $("i.star-click").click(function () {
+            starRatingValue = $(this).data("star-value");
+            ratingInput.val(starRatingValue)
+            //console.log(ratingValue);
+            for (let i = starRatingValue; i < 5; i++) {
+                starArray[i].className = "star-click fa fa-star";
+            }
+            for (let i = 0; i < starRatingValue; i++) {
+                starArray[i].className = "star-click fa fa-star star-active";
+            }
+        });
+        $("#rating-form").submit(function (e) {
+            e.preventDefault();
+            console.log('test');
+            var rating = $("#Rating").val();
+            var pageid = $("#PageId").val();
+            var userid = $("#UserId").val();
+            $.ajax({
+                url: '@Url.Action("RateProject", "Comment")',
+                type: 'POST',
+                data: {
+                    PageId: pageid,
+                    UserId: userid,
+                    RatingScore: rating,
+
+                },
+                success: function (result) {
+                    alert("Review sent");
+
+                }
+            });
+        });
+
+
+
+    });
+</script>
+
+

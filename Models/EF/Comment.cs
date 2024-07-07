@@ -19,13 +19,6 @@ namespace AspMVC.Models
         public int? ProjectPageId { get; set; }
         [ForeignKey("ProjectPageId")]
         public ProjectPageModel? ProjectPage { get; set; }
-
-        public int? ParentCommentId { get; set; }
-        [ForeignKey("ParentCommentId")]
-        public Comment? ParentComment { get; set; }
-        public ICollection<Comment> CommentChildren { get; set; }
-
-
         public bool IsDeleted { get; set; }
 
 

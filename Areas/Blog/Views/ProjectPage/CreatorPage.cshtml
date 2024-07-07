@@ -1,0 +1,99 @@
+﻿@model AspMVC.ViewModels.CreatorPageViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Games and other projects made by @Model.CreatorName</h1>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            @foreach(var project in Model.Projects)
+            {
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        @if (project.ProjectCoverImage == null)
+                        {
+                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@project.ProjectId">
+                                <img src="/images/no-image.jpg" style="width:100%;  height:200px">
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@project.ProjectId">
+                                <img src="@project.ProjectCoverImage.ProjectCoverImageRelativePath" style="width:100%;  height:200px">
+                            </a>
+                        }                        
+                        <div class="card-body">
+                            <a class="card-title link-underline-dark text-black" style="text-decoration: none;" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@project.ProjectId">
+                                <h5 class="card-title">@project.Title</h5>
+                            </a>
+                            <p class="card-text">@project.ShortDescription</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+           @* <div dir="auto" class="game_cell has_cover lazy_images" data-game_id="@game.GameId">
+                <div style="background-color:#000000;" class="game_thumb">
+                    <a tabindex="-1" class="thumb_link game_link" data-action="game_grid" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId">
+                        <img width="315" class="lazy_loaded" height="250" src="@game.CoverImage" />
+                    </a>
+                </div>
+                <div class="game_cell_data">
+                    <div class="game_title">
+                        <a data-label="" class="title game_link" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@game.GameId" data-action="game_grid">@game.Title</a>
+                    </div>
+                    <div title="@game.ShortDescription" class="game_text">@game.ShortDescription</div>
+                    <div class="game_author">
+                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="CreatorPage" asp-route-creatorId="@game.CreatorID">@game.CreatorName</a>
+                    </div>
+                    <div class="game_genre">@game.GenreName</div>
+                    <div class="game_platform">
+                        <span class="icon icon-windows8" title="Download for Windows" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>*@
+
+
+        </div>
+    </div>
+</div>
+@*<div class="dashboard-column">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    @if (item.ProjectCoverImage == null)
+                    {
+                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                            <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:100px;width:180px">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
+                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:100px;width:180px">
+                        </a>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a class="card-title link-underline-dark text-black" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" style="text-decoration: none;">
+                            <h5 class="card-title">@item.Title</h5>
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>*@
+
+

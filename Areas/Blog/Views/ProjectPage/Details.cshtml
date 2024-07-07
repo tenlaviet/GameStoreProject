@@ -1,9 +1,32 @@
 ﻿@model AspMVC.ViewModels.ProjectPageDetailViewModel
-
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
 @{
     ViewData["Title"] = "Details";
     //var commentSectionVM = new CommentSectionViewModel(){ PageId = Model.Id, Comments = Model.Comments};
 }
+@{
+    string username = "";
+    string userid = "";
+    bool isLoggedIn = false;
+    bool isCreator = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        userid = userManager.GetUserId(User);
+        if (userid == Model.ProjectPage.CreatorId)
+        {
+            isCreator = true;
+        }
+        isLoggedIn = true;
+    }
+
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/css/demo.css">
+<script src="~/lib/summernote/summernote-lite.min.js"></script>
+<link rel="stylesheet" href="~/lib/summernote/summernote-lite.min.css" />
+
 <h1>@Model.ProjectPage.Title</h1>
 
 <div class="view_game_page">
@@ -26,7 +49,10 @@
                 
 
             }
-            
+            @if (isLoggedIn && !isCreator)
+            {
+                await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_RatingSection.cshtml", Model.RatingSection);
+            }
             @{
                 await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
             }

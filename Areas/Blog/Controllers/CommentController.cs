@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging.Signing;
 using System.Security.Claims;
+using AspMVC.Migrations;
+using AspMVC.Models.EF;
 
 namespace AspMVC.Areas.Blog.Controllers
 {
@@ -81,7 +83,7 @@ namespace AspMVC.Areas.Blog.Controllers
             }
             return Json(new { success = true });
         }
-        [HttpPost("/DeleteComment")]
+        [HttpPost]
         public async Task<IActionResult> DeleteComment(int commentID)
         {
             var com = await _context.Comments.FindAsync(commentID); 
@@ -91,6 +93,34 @@ namespace AspMVC.Areas.Blog.Controllers
                 await _context.SaveChangesAsync();
             }
             return Json(new { success = true });
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> RateProject(RatingSectionViewModel result)
+        {
+            
+            var currentUserRating = await _context.ProjectRatings
+               .Where(p => p.ProjectPageId == result.PageId)
+               .Where(p => p.UserId == result.UserId).FirstOrDefaultAsync();
+            if(currentUserRating != null)
+            {
+                currentUserRating.RatingScore = result.RatingScore;
+                await _context.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+            
+            ProjectRating rate = new ProjectRating()
+            {
+                ProjectPageId = result.PageId,
+                UserId = result.UserId,
+                RatingScore = result.RatingScore,
+            };
+            _context.ProjectRatings.Add(rate);
+            await _context.SaveChangesAsync();
+            
+            return Json(new { success = true });
+
         }
 
     }

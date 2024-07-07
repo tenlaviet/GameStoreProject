@@ -44,6 +44,8 @@ namespace AspMVC.Data
 
 
 
+
+
         }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -52,6 +54,7 @@ namespace AspMVC.Data
         public DbSet<ProjectUploadedPicture> ProjectUploadedPicture { get; set; }
         public DbSet<ProjectUploadedFile> ProjectUploadedFile { get; set; }
         public DbSet<ProjectUploadedCoverImage> ProjectUploadedCoverImage { get; set; }
+        public DbSet<ProjectRating> ProjectRatings { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
         //public DbSet<ProjectModel> ProjectModels { get; set; }

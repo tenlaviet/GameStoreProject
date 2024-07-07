@@ -41,14 +41,29 @@ namespace AspMVC.Areas.Blog.Controllers
             _logger = logger;
 
         }
-        
 
         // GET: Blog/ProjectPage
+        [Authorize(Roles = "Admin, Member")]
+
         public async Task<IActionResult> Index()
         {
             var userid = _userManager.GetUserId(HttpContext.User);
-            var indexModel = _context.ProjectPages.Where(u => u.CreatorId == userid).Include(p => p.Genre).Include(c=>c.ProjectCoverImage);
-            return View(await indexModel.ToListAsync());
+            var model = _context.ProjectPages.Where(u => u.CreatorId == userid).Include(p => p.Genre).Include(c=>c.ProjectCoverImage);
+            
+            return View(await model.ToListAsync());
+        }
+        public async Task<IActionResult> CreatorPage(string creatorId)
+        {
+            var games = await _context.ProjectPages.Where(u => u.CreatorId == creatorId).Include(p => p.Genre).Include(c => c.ProjectCoverImage).ToListAsync();
+            //var creatorName = _userManager.FindByIdAsync(creatorId);
+            var creatorName = (await _context.Users.FirstOrDefaultAsync(u => u.Id == creatorId)).UserName;
+            CreatorPageViewModel model = new CreatorPageViewModel()
+            {
+                Projects = games,
+                CreatorName = creatorName,
+            };
+            return View(model);
+
         }
 
         // GET: Blog/ProjectPage/Details/5
@@ -58,45 +73,70 @@ namespace AspMVC.Areas.Blog.Controllers
             {
                 return NotFound();
             }
-            //var query = await (from p in _context.ProjectPages
-            //             join g in _context.Genres on p.GenreId equals g.Id
-            //             join c in _context.Comments on p.Id equals c.ProjectPageId
-            //             join u in _context.Users on c.UserId equals u.Id
-            //             select new
-            //             {
-            //                 pageID = p.Id,
-            //                 projectTitle = p.Title,
-            //                 projectDescription = p.Description,
-            //                 projectGenre = p.Genre,
-            //                 pageComments = p.Comments,
-            //                 commentAuthor = u.UserName
-            //             }).FirstOrDefaultAsync();
+            string? currentUserName= null;
+            string? currentUserID = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                ClaimsPrincipal currentUser = this.User;
+                currentUserName = currentUser.Identity.Name;
+                currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
+            
 
             var projectPage = await _context.ProjectPages
                 .Include(p => p.Genre).Include(c => c.Comments).Include(f =>f.ProjectFiles).Include(p => p.ProjectPictures)
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
-
+            if (projectPage == null)
+            {
+                return NotFound();
+            }
             var pageCommentsList = await _context.Comments
                 .Where(cp => cp.ProjectPageId == id)
                 .Include(u => u.Author)
                 .OrderByDescending(t => t.TimeStamp)
                 .ToListAsync();
-
-            if (projectPage == null)
+            ProjectRating? currentUserRating = null;
+            if (!String.IsNullOrEmpty(currentUserID))
             {
-                return NotFound();
+                currentUserRating = await _context.ProjectRatings
+                .Where(p => p.ProjectPageId == id)
+                .Where(p => p.UserId == currentUserID).FirstOrDefaultAsync();
             }
+            
+            
+            
             CommentSectionViewModel commentSectionViewModel = new CommentSectionViewModel()
             {
-                PageId = id,
+                PageId = id.Value,
                 Comments = pageCommentsList
             };
+
             ProjectPageDetailViewModel detailViewModel = new ProjectPageDetailViewModel()
             {
                 ProjectPage = projectPage,
-                CommentSection = commentSectionViewModel
-
+                CommentSection = commentSectionViewModel,       
             };
+            if (currentUserRating != null)
+            {
+                RatingSectionViewModel ratingSectionViewModel = new RatingSectionViewModel()
+                {
+                    RatingScore = currentUserRating.RatingScore,
+                    PageId = id.Value,
+                    UserId = currentUserRating.UserId
+                };
+                detailViewModel.RatingSection = ratingSectionViewModel;
+            }
+            else
+            {
+                RatingSectionViewModel ratingSectionViewModel = new RatingSectionViewModel()
+                {
+
+                    PageId = id.Value,
+                    UserId = currentUserID
+                };
+                detailViewModel.RatingSection = ratingSectionViewModel;
+
+            }
             projectPage.ViewCount++;
             _context.SaveChanges();
 
@@ -250,6 +290,8 @@ namespace AspMVC.Areas.Blog.Controllers
         }
 
         // GET: Blog/ProjectPage/Edit/5
+        [Authorize(Roles = "Admin, Member")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ProjectPages == null)
@@ -489,6 +531,9 @@ namespace AspMVC.Areas.Blog.Controllers
         }
 
         // GET: Blog/ProjectPage/Delete/5
+        [Authorize(Roles = "Admin, Member")]
+
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ProjectPages == null)
@@ -505,6 +550,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
             return View(projectPageModel);
         }
+        [Authorize(Roles = "Admin, Member")]
 
         //POST: Blog/ProjectPage/Delete/5
         [HttpPost, ActionName("Delete")]

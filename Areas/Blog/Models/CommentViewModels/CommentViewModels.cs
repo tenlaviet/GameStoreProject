@@ -7,7 +7,7 @@ namespace AspMVC.ViewModels
     public class CommentSectionViewModel
     {
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
-        public int? PageId { get; set; }
+        public int PageId { get; set; }
 
     }
     public class CreateCommentViewModel
@@ -20,17 +20,17 @@ namespace AspMVC.ViewModels
     }
     public class CommentCardViewModel
     {
-        public int? CommentID { get; set; }
-        public string? AuthorName { get; set; }
-        public string? Content { get; set; }
-        public string? LastSent { get; set; }
+        public int CommentID { get; set; }
+        public string AuthorName { get; set; }
+        public string Content { get; set; }
+        public string LastSent { get; set; }
         public bool isAuthor { get; set; }
     }
-    //public class ReplyCommentActionModel
-    //{
-    //    public int ID { get; set; }
-    //    public int CommentID { get; set; }
-    //    public string Text { get; set; }
-    //    public int ProductID { get; set; }
-    //}
+    public class RatingSectionViewModel
+    {
+        public int PageId { get; set; }
+        public double RatingScore { get; set; }
+        public string UserId { get; set;}
+    }
+
 }

@@ -63,10 +63,6 @@ namespace AspMVC.Models
         [ForeignKey("PlatformId")]
         [Display(Name = "Platform")]
         public Platform Platform { set; get; }
-        //Tag
-        //Coverimage
-        //VideoLink
-        //Screenshots
 
         public string ProjectImagesDir { get; set; }
         public string ProjectFilesDir { get; set; }
@@ -75,13 +71,16 @@ namespace AspMVC.Models
         [Display(Name = "CoverImage")]
         public ProjectUploadedCoverImage? ProjectCoverImage { get; set; }
 
-        public ICollection<ProjectUploadedFile> ProjectFiles { get; } = new List<ProjectUploadedFile>();
+        public ICollection<ProjectUploadedFile> ProjectFiles { get; }
 
-        public ICollection<ProjectUploadedPicture> ProjectPictures { get; } = new List<ProjectUploadedPicture>();
+        public ICollection<ProjectUploadedPicture> ProjectPictures { get; }
+
+        public ICollection<Comment> Comments { get; }
+
+        public ICollection<ProjectRating> Ratings { get; }
 
         public int ViewCount { get; set; }
-
-        public ICollection<Comment> Comments { get; } = new List<Comment>();
+        
 
     }
 }

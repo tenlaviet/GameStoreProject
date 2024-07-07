@@ -130,7 +130,8 @@ namespace AspMVC.Areas.Main.Controllers
                 CreatorName = c.Creator.UserName,
                 ShortDescription = c.ShortDescription,
                 GenreName = c.Genre.GenreName,
-                CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath
+                CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                PlatformName = c.Platform.PlatformName,
             }).ToListAsync();
 
             BrowseViewModel vm = new BrowseViewModel()
@@ -167,7 +168,8 @@ namespace AspMVC.Areas.Main.Controllers
                     CreatorName = c.Creator.UserName,
                     ShortDescription = c.ShortDescription,
                     GenreName = c.Genre.GenreName,
-                    CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath
+                    CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                    PlatformName = c.Platform.PlatformName,
                 }).ToListAsync();
                 ViewData["q"] = q;
                 return View(games);

@@ -338,11 +338,11 @@
                                         </div>
                                         <div title="@game.ShortDescription" class="game_text">@game.ShortDescription</div>
                                         <div class="game_author">
-                                            <a href="https://steelkrill.itch.io" data-action="game_grid" data-label="">@game.CreatorName</a>
+                                        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="CreatorPage" asp-route-creatorId="@game.CreatorID">@game.CreatorName</a>
                                         </div>
                                         <div class="game_genre">@game.GenreName</div>
                                         <div class="game_platform">
-                                            <span class="icon icon-windows8" title="Download for Windows" aria-hidden="true"></span>
+                                            <i class="fa-brands fa-@(game.PlatformName)"></i>
                                         </div>
                                     </div>
                                 </div>

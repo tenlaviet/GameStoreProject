@@ -113,9 +113,6 @@ namespace AspMVC.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ParentCommentId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ProjectPageId")
                         .HasColumnType("int");
 
@@ -126,11 +123,9 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("ParentCommentId");
-
                     b.HasIndex("ProjectPageId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("AspMVC.Models.Contact", b =>
@@ -165,7 +160,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.Platform", b =>
@@ -188,7 +183,34 @@ namespace AspMVC.Migrations
 
                     b.HasKey("PlatformId");
 
-                    b.ToTable("Platform", (string)null);
+                    b.ToTable("Platform");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectRating", b =>
+                {
+                    b.Property<int>("RateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RateId"), 1L, 1);
+
+                    b.Property<int>("ProjectPageId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("RatingScore")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RateId");
+
+                    b.HasIndex("ProjectPageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProjectRatings");
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
@@ -218,7 +240,7 @@ namespace AspMVC.Migrations
                     b.HasIndex("ProjectPageID")
                         .IsUnique();
 
-                    b.ToTable("ProjectUploadedCoverImage", (string)null);
+                    b.ToTable("ProjectUploadedCoverImage");
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedFile", b =>
@@ -247,7 +269,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedFile", (string)null);
+                    b.ToTable("ProjectUploadedFile");
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedPicture", b =>
@@ -276,7 +298,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedPicture", (string)null);
+                    b.ToTable("ProjectUploadedPicture");
                 });
 
             modelBuilder.Entity("AspMVC.Models.Genre", b =>
@@ -299,7 +321,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
@@ -363,7 +385,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("Slug");
 
-                    b.ToTable("ProjectPage", (string)null);
+                    b.ToTable("ProjectPage");
                 });
 
             modelBuilder.Entity("AspMVC.Models.Tag", b =>
@@ -381,7 +403,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -525,10 +547,6 @@ namespace AspMVC.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AspMVC.Models.Comment", "ParentComment")
-                        .WithMany("CommentChildren")
-                        .HasForeignKey("ParentCommentId");
-
                     b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
                         .WithMany("Comments")
                         .HasForeignKey("ProjectPageId")
@@ -536,9 +554,26 @@ namespace AspMVC.Migrations
 
                     b.Navigation("Author");
 
-                    b.Navigation("ParentComment");
+                    b.Navigation("ProjectPage");
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.ProjectRating", b =>
+                {
+                    b.HasOne("AspMVC.Models.ProjectPageModel", "ProjectPage")
+                        .WithMany("Ratings")
+                        .HasForeignKey("ProjectPageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AspMVC.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ProjectPage");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
@@ -659,11 +694,6 @@ namespace AspMVC.Migrations
                     b.Navigation("Projects");
                 });
 
-            modelBuilder.Entity("AspMVC.Models.Comment", b =>
-                {
-                    b.Navigation("CommentChildren");
-                });
-
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
                     b.Navigation("Comments");
@@ -673,6 +703,8 @@ namespace AspMVC.Migrations
                     b.Navigation("ProjectFiles");
 
                     b.Navigation("ProjectPictures");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }
