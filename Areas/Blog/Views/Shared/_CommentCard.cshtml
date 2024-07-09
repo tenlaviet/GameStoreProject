@@ -22,7 +22,7 @@
                 <input type="hidden" class="comment-id" value="@Model.CommentID">
                 <div class="col-md-offset-2 col-md-10">
                     <button name="post-edit-comment-button" type="submit" class="btn btn-primary post-edit-comment-button">Save</button>
-                    <a href="javascript:;" class="cancel-edit-comment-button">Cancel</a>
+                    <a href="javascript:" class="cancel-edit-comment-button">Cancel</a>
                 </div>
                 
             </form>
@@ -31,17 +31,18 @@
         @if(Model.isAuthor)
         {
             <div class="comment-card-footer">
-                <a href="javascript:;" class="reply-comment-button">Reply</a>
                 <a href="javascript:;" class="edit-comment-button">Edit</a>
                 <a href="javascript:;" class="delete-comment-button">Delete</a>
             </div>
         }
         else
         {
-            <div class="comment-card-footer">
-                <a href="javascript:;" class="reply-comment-button">Reply</a>
-                <a href="javascript:;" class="report-comment-button">Report</a>
-            </div>
+            if(Model.isCreatorOrAdmin)
+            {
+                <div class="comment-card-footer">
+                    <a href="javascript:;" class="delete-comment-button">Delete</a>
+                </div>
+            }
         }
     </div>
 </div>

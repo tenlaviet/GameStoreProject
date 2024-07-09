@@ -3,9 +3,11 @@ using AspMVC.Data;
 using AspMVC.Models;
 using AspMVC.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -139,6 +141,16 @@ namespace AspMVC
             builder.Services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             builder.Services.AddTransient<AdminSidebarService>();
 
+            builder.Services.Configure<IISServerOptions>(options =>
+            {
+                options.MaxRequestBodySize = int.MaxValue;
+            });
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.ValueLengthLimit = int.MaxValue;
+                options.MultipartBodyLengthLimit = int.MaxValue; // if don't set default value is: 128 MB
+                options.MultipartHeadersLengthLimit = int.MaxValue;
+            });
             //builder.Services.AddTransient<SignInManager<AppUser>>();
             //builder.Services.AddTransient<UserManager<AppUser>>();
             var app = builder.Build();
@@ -178,7 +190,7 @@ namespace AspMVC
             });
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Browse}/{id?}");
 
             
 

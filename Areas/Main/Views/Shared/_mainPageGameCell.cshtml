@@ -1,0 +1,23 @@
+﻿@model GameCell
+
+<div data-game_id="@Model.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
+    <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
+        @if (Model.CoverImage == "")
+        {
+            <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@Model.ProjectId">
+                <img src="/images/no-image.jpg" height="240" width="300" class="lazy_loaded">
+            </a>
+
+        }
+        else
+        {
+            <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@Model.ProjectId">
+                <img src="@Model.CoverImage" height="240" width="300" class="lazy_loaded">
+            </a>
+        }
+    </div>
+    <div class="label">
+        <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@Model.ProjectId" title="@Model.Title" class="title">@Model.Title</a>
+    </div>
+    <div class="sub">@Model.ShortDescription</div>
+</div>

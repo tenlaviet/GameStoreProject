@@ -6,7 +6,11 @@ namespace AspMVC.Areas.Main.Models
 
     public class HomePageViewModel
     {
-        public IEnumerable<GameCell> gameLists { get; set; }
+        public List<GameCell> featured { get; set; }
+        public List<GameCell> lastest { get; set; }
+        public List<GameCell> recentPopuplar { get; set; }
+        public List<GameCell> recentHighrated { get; set; }
+
     }
 
     public class BrowseViewModel

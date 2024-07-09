@@ -10,14 +10,20 @@
     string userid = "";
     bool isLoggedIn = false;
     bool isCreator = false;
+    bool isAdmin = false;
     if (User.Identity.IsAuthenticated)
     {
+        isLoggedIn = true;
+
         userid = userManager.GetUserId(User);
         if (userid == Model.ProjectPage.CreatorId)
         {
             isCreator = true;
         }
-        isLoggedIn = true;
+        if (User.IsInRole("Administrator"))
+        {
+            isAdmin = true;
+        }
     }
 
 }
@@ -54,6 +60,13 @@
                 await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_RatingSection.cshtml", Model.RatingSection);
             }
             @{
+                if (isLoggedIn)
+                {
+                    if (isCreator || isAdmin)
+                    {
+                        Model.CommentSection.isCreatorOrAdmin = true;
+                    }
+                }
                 await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentSection.cshtml", Model.CommentSection);
             }
         </div>

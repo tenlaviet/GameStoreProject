@@ -52,13 +52,30 @@ namespace AspMVC.Areas.Admin.Controllers
         //
         // GET: /ManageUser/Index
         [HttpGet]
-        public async Task<IActionResult> Index([FromQuery(Name = "p")] int currentPage)
+        public async Task<IActionResult> Index([FromQuery(Name = "p")] int currentPage, string? s)
         {
             var model = new UserListModel();
-            model.currentPage = currentPage;
-
             var qr = _userManager.Users.OrderBy(u => u.UserName);
+            if(s !=null)
+            {
 
+                var searchedResult = qr.Where(u => u.UserName.Contains(s)).Select(u => new UserAndRole()
+                {
+                    Id = u.Id,
+                    UserName = u.UserName,
+                });
+
+                model.users = await searchedResult.ToListAsync();
+
+                foreach (var user in model.users)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    user.RoleNames = string.Join(",", roles);
+                }
+                return View(model);
+
+            }
+            model.currentPage = currentPage;
             model.totalUsers = await qr.CountAsync();
             model.countPages = (int)Math.Ceiling((double)model.totalUsers / model.ITEMS_PER_PAGE);
 

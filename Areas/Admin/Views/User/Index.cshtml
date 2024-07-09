@@ -6,6 +6,12 @@
 <partial name="_StatusMessage"></partial>
 <p>Tổng số thành viên: @Model.totalUsers</p>
 
+<form asp-area="Admin" asp-controller="User" asp-action="Index" role="form" method="get" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <div class="input-group">
+        <input class="form-control" name="s" type="text" required placeholder="Tìm người dùng..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+</form>
 <table class="table">
     <tr>
         <th>Tên user</th>

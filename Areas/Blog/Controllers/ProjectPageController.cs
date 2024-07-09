@@ -43,7 +43,7 @@ namespace AspMVC.Areas.Blog.Controllers
         }
 
         // GET: Blog/ProjectPage
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Administrator, Member")]
 
         public async Task<IActionResult> Index()
         {
@@ -142,7 +142,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
             return View(detailViewModel);
         }
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Administrator, Member")]
         // GET: Blog/ProjectPage/Create
         public IActionResult Create()
         {
@@ -156,6 +156,7 @@ namespace AspMVC.Areas.Blog.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [RequestSizeLimit(300_000_000)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProjectPageViewModel projectPageModel)
         {
@@ -290,7 +291,7 @@ namespace AspMVC.Areas.Blog.Controllers
         }
 
         // GET: Blog/ProjectPage/Edit/5
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Administrator, Member")]
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -350,6 +351,7 @@ namespace AspMVC.Areas.Blog.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [RequestSizeLimit(300_000_000)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditProjectPageViewModel projectPageModel)
         {
@@ -448,6 +450,10 @@ namespace AspMVC.Areas.Blog.Controllers
                     foreach (var file in projectPageModel.PictureUpload)
                     {
                         string projectImageGalleryStorageDir = Path.Combine(project.ProjectImagesDir, "Screenshots");
+                        if (!Directory.Exists(projectImageGalleryStorageDir))
+                        {
+                            Directory.CreateDirectory(projectImageGalleryStorageDir);
+                        }
                         string uploadedFile = Path.Combine(projectImageGalleryStorageDir, file.FileName);
                         using (var fileStream = System.IO.File.Create(uploadedFile))
                         {
@@ -471,6 +477,10 @@ namespace AspMVC.Areas.Blog.Controllers
                     var file = projectPageModel.CoverPictureUpload;
 
                     string projectCoverImageDir = Path.Combine(project.ProjectImagesDir, "CoverImage");
+                    if (!Directory.Exists(projectCoverImageDir))
+                    {
+                        Directory.CreateDirectory(projectCoverImageDir);
+                    }
                     string uploadedFile = Path.Combine(projectCoverImageDir, file.FileName);
                     using (var fileStream = System.IO.File.Create(uploadedFile))
                     {
@@ -484,7 +494,7 @@ namespace AspMVC.Areas.Blog.Controllers
                         ProjectCoverImageRelativePath = fileRelativePath,
                         CoverName = file.FileName
                     };
-                    if(project.ProjectCoverImage !=null)
+                    if (project.ProjectCoverImage != null)
                     {
                         _context.ProjectUploadedCoverImage.Remove(project.ProjectCoverImage);
                     }
@@ -497,6 +507,10 @@ namespace AspMVC.Areas.Blog.Controllers
                     foreach (var file in projectPageModel.FileUpload)
                     {
                         string projectFileStorageDir = project.ProjectFilesDir;
+                        if (!Directory.Exists(projectFileStorageDir))
+                        {
+                            Directory.CreateDirectory(projectFileStorageDir);
+                        }
                         string size = file.Length.Bytes().Humanize();
                         string uploadedFile = Path.Combine(projectFileStorageDir, file.FileName);
                         using (var fileStream = System.IO.File.Create(uploadedFile))
@@ -531,7 +545,7 @@ namespace AspMVC.Areas.Blog.Controllers
         }
 
         // GET: Blog/ProjectPage/Delete/5
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Administrator, Member")]
 
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
@@ -550,7 +564,7 @@ namespace AspMVC.Areas.Blog.Controllers
 
             return View(projectPageModel);
         }
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize(Roles = "Administrator, Member")]
 
         //POST: Blog/ProjectPage/Delete/5
         [HttpPost, ActionName("Delete")]

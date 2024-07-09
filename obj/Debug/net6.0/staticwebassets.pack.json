@@ -1221,8 +1221,44 @@
       "PackagePath": "staticwebassets\\lib\\summernote\\summernote.min.js"
     },
     {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Counter-Strike 2\\CoverImage\\cs2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Counter-Strike 2\\CoverImage\\cs2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\DOOM\\CoverImage\\DOOM2016.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\DOOM\\CoverImage\\DOOM2016.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Doom Eternal\\CoverImage\\DoomEternal.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Doom Eternal\\CoverImage\\DoomEternal.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Fallout 3\\CoverImage\\Fallout_3_cover_art.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Fallout 3\\CoverImage\\Fallout_3_cover_art.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Fallout 4\\CoverImage\\Fallout_4_cover_art.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Fallout 4\\CoverImage\\Fallout_4_cover_art.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Fallout New Vegas\\CoverImage\\fonv.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Fallout New Vegas\\CoverImage\\fonv.jpg"
+    },
+    {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png",
       "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Grand Theft Auto V\\CoverImage\\Grand_Theft_Auto_V.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\HoloCure\\CoverImage\\Holocure.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\HoloCure\\CoverImage\\Holocure.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Mortal Kombat 11\\CoverImage\\mk11.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Mortal Kombat 11\\CoverImage\\mk11.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Mortal Kombat X\\CoverImage\\mkx.png",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Mortal Kombat X\\CoverImage\\mkx.png"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\CoverImage\\6-1-624965-52.jpg",
@@ -1243,6 +1279,14 @@
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png",
       "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\The Elder Scrolls V Skyrim\\CoverImage\\Skyrim.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\The Elder Scrolls V Skyrim\\CoverImage\\Skyrim.jpg"
+    },
+    {
+      "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\The Elder Scrolls V Skyrim\\Screenshots\\Skyrim.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Users\\admin\\Projects\\The Elder Scrolls V Skyrim\\Screenshots\\Skyrim.jpg"
     },
     {
       "Id": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\CoverImage\\rjxu8q8u1ga91.jpg",

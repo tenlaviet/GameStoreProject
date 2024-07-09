@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="uploads\**" />
+    <Content Remove="uploads\**" />
+    <EmbeddedResource Remove="uploads\**" />
+    <None Remove="uploads\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.29" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.29" />
@@ -29,12 +36,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Blog\Data\kazekami12344\" />
-    <Folder Include="Areas\ContactArea\Data\" />
-    <Folder Include="Areas\ContactArea\Models\" />
     <Folder Include="Areas\Main\Data\" />
-    <Folder Include="Areas\Main\Views\Shared\" />
     <Folder Include="mailssave\" />
-    <Folder Include="uploads\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -43,7 +46,7 @@
     <Folder Include="wwwroot\lib\jquery-validation\dist\" />
     <Folder Include="wwwroot\lib\jquery\" />
     <Folder Include="wwwroot\lib\jquery\dist\" />
-    <Folder Include="wwwroot\uploads\Users\" />
+    <Folder Include="wwwroot\uploads\Users\admin\Projects\Counter-Strike 2\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -152,38 +152,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQmxvZ1xWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/Contacts/test.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcQ29udGFjdHNcdGVzdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/viet/Source/repos/AspMVC/Areas/ContactArea/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29udGFjdEFyZWFcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/viet/Source/repos/AspMVC/Areas/Database/Views/DbManage/DeleteDb.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRGF0YWJhc2VcVmlld3NcRGJNYW5hZ2VcRGVsZXRlRGIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -330,6 +298,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/viet/Source/repos/AspMVC/Areas/Main/Views/HomePage/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFpblxWaWV3c1xIb21lUGFnZVxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Areas/Main/Views/Shared/_browsePageGameCell.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFpblxWaWV3c1xTaGFyZWRcX2Jyb3dzZVBhZ2VHYW1lQ2VsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Areas/Main/Views/Shared/_mainPageGameCell.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFpblxWaWV3c1xTaGFyZWRcX21haW5QYWdlR2FtZUNlbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/viet/Source/repos/AspMVC/Areas/Main/Views/Shared/_searchPageGameCell.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFpblxWaWV3c1xTaGFyZWRcX3NlYXJjaFBhZ2VHYW1lQ2VsbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/viet/Source/repos/AspMVC/Areas/Main/Views/_ViewImports.cshtml]

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AspMVC.Models.ProjectPageModel>
+﻿@model AspMVC.Areas.Main.Models.HomePageViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -49,60 +49,14 @@
         <div class="grid_groups">
             <section class="game_section">
                 <div class="section_header">
-                    <h2>Latest Featured Games</h2>
+                    <h2>Featured Games</h2>
                     <a href="/games/new-and-popular/featured" class="button outline forward_link">View all</a>
                 </div>
                 <div id="featured_game_grid" class="featured_game_grid_widget base_widget">
-                        @for(int i = 0; i < 10; i++)
+                    @foreach (var item in Model.featured)
                     {
-                        @foreach (var item in Model)
-                        {
-                            <div data-game_id="@item.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
-                                <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
-                                    @if (item.ProjectCoverImage == null)
-                                    {
-                                        <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                            <img src="/images/no-image.jpg" height="240" width="300" class="lazy_loaded">
-                                        </a>
+                        await Html.RenderPartialAsync("~/Areas/Main/Views/Shared/_mainPageGameCell.cshtml", item);
 
-                                    }
-                                    else
-                                    {
-                                        <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" height="240" width="300" class="lazy_loaded">
-                                        </a>
-                                    }
-                                </div>
-                                <div class="label">
-                                    <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" title="@item.Title" class="title">@item.Title</a>
-                                </div>
-                                <div class="sub">@item.ShortDescription</div>
-                            </div>
-                        }
-                    }
-                    @foreach (var item in Model)
-                    {
-                        <div data-game_id="@item.ProjectId" dir="auto" class="game_cell index_game_cell_widget has_cover image_loading lazy_images">
-                            <div style="background-color: rgba(34, 32, 52, 0.5)" class="bordered">
-                                @if (item.ProjectCoverImage == null)
-                                {
-                                    <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                        <img src="/images/no-image.jpg" height="240" width="300" class="lazy_loaded">
-                                    </a>
-
-                                }
-                                else
-                                {
-                                    <a aria-hidden="true" tabindex="-1" data-action="game_grid" class="game_thumb" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                                        <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" height="240" width="300" class="lazy_loaded">
-                                    </a>
-                                }
-                            </div>
-                            <div class="label">
-                                <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" title="@item.Title" class="title">@item.Title</a>
-                            </div>
-                            <div class="sub">@item.ShortDescription</div>
-                        </div>
                     }
                 </div>
             </section>
@@ -111,13 +65,41 @@
                     <h2>Fresh Games</h2>
                     <a asp-action="Browse" asp-route-sort="most-recent" class="button outline forward_link">View more</a>
                 </div>
-            </section>
-            <section data-ca_source="7" class="game_section solid">
-                <div class="section_header">
-                    <h2>Recommended for you</h2>
-                    <a href="/library/recommendations" data-label="view_all_recs" class="button outline forward_link">View all</a>
+                <div id="featured_game_grid" class="featured_game_grid_widget base_widget">
+                    @foreach (var item in Model.lastest)
+                    {
+                        await Html.RenderPartialAsync("~/Areas/Main/Views/Shared/_mainPageGameCell.cshtml", item);
+
+                    }
                 </div>
             </section>
+            <section class="game_section">
+                <div class="section_header">
+                    <h2>Recent Popular</h2>
+                    <a asp-action="Browse" asp-route-sort="most-recent" class="button outline forward_link">View more</a>
+                </div>
+                <div id="featured_game_grid" class="featured_game_grid_widget base_widget">
+                    @foreach (var item in Model.recentPopuplar)
+                    {
+                        await Html.RenderPartialAsync("~/Areas/Main/Views/Shared/_mainPageGameCell.cshtml", item);
+
+                    }
+                </div>
+            </section>
+            <section class="game_section">
+                <div class="section_header">
+                    <h2>Recent High rated</h2>
+                    <a asp-action="Browse" asp-route-sort="most-recent" class="button outline forward_link">View more</a>
+                </div>
+                <div id="featured_game_grid" class="featured_game_grid_widget base_widget">
+                    @foreach (var item in Model.recentHighrated)
+                    {
+                        await Html.RenderPartialAsync("~/Areas/Main/Views/Shared/_mainPageGameCell.cshtml", item);
+
+                    }
+                </div>
+            </section>
+
 
 
         </div>

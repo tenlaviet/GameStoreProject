@@ -19,44 +19,7 @@
     }
 
 }
-@*<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-        @{
-            if(isAdmin)
-            {
-                <a class="dropdown-item" asp-action="Index" asp-controller="Genre" asp-area="Admin">
-                    Genres Manage
-                </a>
-                <a class="dropdown-item" asp-action="Index" asp-controller="Tag" asp-area="Admin">
-                    Tag Manager
-                </a>
-                <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
-                    Manage User(admin)
-                </a>
-                <a class="dropdown-item" asp-action="Index" asp-controller="Role" asp-area="Identity">
-                    Manage Role(Admin)
-                </a>
-            }
-        }
-        <li>
-            <a class="dropdown-item" asp-area="Blog" asp-controller="ProjectPage" asp-action="Index">
-                Dashboard
-            </a>
-        </li>
-        <li><hr class="dropdown-divider"></li>
-        <li><h6 class="dropdown-header">Dropdown header</h6></li>
-        <li><hr class="dropdown-divider"></li>
-        <li>
-            <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
-                View Profile
-            </a>
-        </li>
- 
-    </ul>
-</div>*@
+
 
 
 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -67,24 +30,12 @@
                 if (isAdmin)
                 {
                     <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Genre" asp-area="Admin">
-                            Genres Manage
+                        <a class="dropdown-item" asp-action="Index" asp-controller="AdminPanel" asp-area="Admin">
+                            Admin Panel
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Tag" asp-area="Admin">
-                            Tag Manager
-                        </a>
-                    </li>
-                            <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
-                            Manage User(admin)
-                        </a>
-                    </li>
-                            <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Role" asp-area="Identity">
-                            Manage Role(Admin)
-                        </a>
+                        <hr class="dropdown-divider">
                     </li>
                 }
             }
@@ -93,7 +44,7 @@
                     Dashboard
                 </a>
             </li>
-            <li class="nav-item">
+            <li>
                 <a class="dropdown-item" asp-area="Blog" asp-controller="ProjectPage" asp-action="Create">Upload new project</a>
             </li>
             <li>
@@ -103,6 +54,16 @@
                 <a class="dropdown-item" asp-action="Index" asp-controller="Manage" asp-area="Identity">
                     View Profile
                 </a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <form asp-area="Identity" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                    <button type="submit" class="dropdown-item">
+                        Log out
+                    </button>
+                </form>
             </li>
         </ul>
     </li>

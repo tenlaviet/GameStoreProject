@@ -34,7 +34,7 @@ namespace AspMVC.AdminMenu
                 Type = AdminSidebarItemType.NavItem,
                 Title = "Quản lý thành viên",
                 AwesomeIcon = "far fa-folder",
-                collapseID = "role",
+                collapseID = "member",
                 Items = new List<AdminSidebarItem>() {
                         new AdminSidebarItem() {
                                 Type = AdminSidebarItemType.NavItem,

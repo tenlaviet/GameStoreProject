@@ -29,6 +29,10 @@ namespace AspMVC.Controllers
         {
             return View();
         }
+        public IActionResult Browse()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

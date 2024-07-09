@@ -8,11 +8,11 @@
     string userid = "";
     if (User.Identity.IsAuthenticated)
     {
-        
+
         userid = userManager.GetUserId(User);
         username = userManager.GetUserName(User);
     }
-    
+
 }
 <div class="row">
     <div id="comment-section-div" class="col-md-6">
@@ -95,7 +95,9 @@
                 AuthorName = comment.Author.UserName,
                 Content = comment.CommentContent,
                 LastSent = timeSpanText,
-                isAuthor = isAuthor
+                isAuthor = isAuthor,
+                isCreatorOrAdmin = Model.isCreatorOrAdmin
+                
             };
             await Html.RenderPartialAsync("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", commentCardVM);
         }
@@ -171,7 +173,7 @@
         {
             $('.edit-comment').summernote({
 
-                height: 150,
+                height: 50,
                 width: 500,
                 toolbar: [
                     ['style', ['style']],
@@ -184,7 +186,7 @@
             });
             $('#Content').summernote({
 
-                height: 150,
+                height: 50,
                 width: 500,
                 toolbar: [
                     ['style', ['style']],
@@ -221,6 +223,10 @@
         //submit comment sau khi edit
         $('#comment-list').on('submit', 'form.edit-comment-form', function (e) {
             e.preventDefault();
+            if (currentEditBool != 0) {
+                currentEditBool = 0;
+            }
+            console.log(currentEditBool);
             var htmlCommentEditForm = $(this);
             var htmlCommentContent = $(this).siblings('div.comment-content');
             var id = $(this).children('input.comment-id').val();
@@ -240,8 +246,7 @@
                 }
             });
         });
-
-        $('.cancel-edit-comment-button').click(function () {
+        $('#comment-list').on('click', 'a.cancel-edit-comment-button', function (e) {
             var commentCard = $(this).closest('.comment-card');//comment card
             commentCard.children('form').toggle();//toggle form edit
             commentCard.children('.comment-content').toggle(); //toggle comment content
@@ -249,6 +254,7 @@
             currentOrgContent = '';
             currentEditBool = 0;
         });
+
 
         $('#comment-list').on('click', 'a.delete-comment-button', function (e) {
             if (currentEditBool == 1) {

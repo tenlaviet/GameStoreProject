@@ -41,7 +41,6 @@ namespace AspMVC.Areas.Blog.Controllers
                 TimeStamp = DateTime.Now,
                 AuthorId = currentUserID,
                 ProjectPageId = commentForm.PageId,
-                //ParentCommentId = parentCommentId,
                 IsDeleted = false
             };
 
@@ -58,7 +57,8 @@ namespace AspMVC.Areas.Blog.Controllers
                     LastSent = "a few seconds ago",
                     AuthorName = addedComment.Author.UserName,
                     Content = addedComment.CommentContent,
-                    isAuthor = true
+                    isAuthor = true,
+
                 };
                 return PartialView("~/Areas/Blog/Views/Shared/_CommentCard.cshtml", addedCommentVM);
                 //return Json(new { success = true });

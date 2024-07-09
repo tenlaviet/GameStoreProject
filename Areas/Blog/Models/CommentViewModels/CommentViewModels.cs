@@ -8,6 +8,8 @@ namespace AspMVC.ViewModels
     {
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public int PageId { get; set; }
+        public bool isCreatorOrAdmin { get; set; }
+
 
     }
     public class CreateCommentViewModel
@@ -25,6 +27,8 @@ namespace AspMVC.ViewModels
         public string Content { get; set; }
         public string LastSent { get; set; }
         public bool isAuthor { get; set; }
+        public bool isCreatorOrAdmin { get; set; }
+
     }
     public class RatingSectionViewModel
     {

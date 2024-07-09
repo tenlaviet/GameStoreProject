@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace AspMVC.Areas.Main.Controllers
@@ -37,9 +38,68 @@ namespace AspMVC.Areas.Main.Controllers
         [Route("/main")]
         public async Task<IActionResult> Index()
         {
-            var gamesCollumn = await _context.ProjectPages.Include(c=>c.ProjectCoverImage).Take(21).ToListAsync();
+            var query = _context.ProjectPages.Include(c=>c.ProjectCoverImage).Include(c => c.Ratings);
+            var featuredList = await query.OrderByDescending(c => c.ViewCount).Take(14).Select(c => new GameCell
+            {
+                ProjectId = c.ProjectId,
+                Title = c.Title,
+                CreatorID = c.CreatorId,
+                CreatorName = c.Creator.UserName,
+                ShortDescription = c.ShortDescription,
+                GenreName = c.Genre.GenreName,
+                CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                PlatformName = c.Platform.PlatformName,
+            }).ToListAsync();
             
-            return View(gamesCollumn);
+            var latestList = await query.OrderByDescending(c => c.ProjectPageDatePosted).Take(14).Select(c => new GameCell
+            {
+                ProjectId = c.ProjectId,
+                Title = c.Title,
+                CreatorID = c.CreatorId,
+                CreatorName = c.Creator.UserName,
+                ShortDescription = c.ShortDescription,
+                GenreName = c.Genre.GenreName,
+                CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                PlatformName = c.Platform.PlatformName,
+            }).ToListAsync();
+            var recentPopuplarList = await query.
+                Where(x => x.ProjectPageDatePosted.CompareTo(DateTime.Now.AddDays(-30)) >= 0).
+                OrderByDescending(c => c.ViewCount).
+                Take(14).
+                Select(c => new GameCell
+            {
+                ProjectId = c.ProjectId,
+                Title = c.Title,
+                CreatorID = c.CreatorId,
+                CreatorName = c.Creator.UserName,
+                ShortDescription = c.ShortDescription,
+                GenreName = c.Genre.GenreName,
+                CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                PlatformName = c.Platform.PlatformName,
+            }).ToListAsync();
+            var recentHighratedList = await query.Where(x => x.ProjectPageDatePosted.CompareTo(DateTime.Now.AddDays(-30)) >= 0)
+                .Where(c=>c.Ratings.Count>0)
+                .Take(14)
+                .Select(c => new GameCell
+                {
+                    ProjectId = c.ProjectId,
+                    Title = c.Title,
+                    CreatorID = c.CreatorId,
+                    CreatorName = c.Creator.UserName,
+                    ShortDescription = c.ShortDescription,
+                    GenreName = c.Genre.GenreName,
+                    CoverImage = c.ProjectCoverImage.ProjectCoverImageRelativePath,
+                    PlatformName = c.Platform.PlatformName,
+                    AverageRating = c.Ratings.Average(c=>c.RatingScore)
+                }).OrderByDescending(c=>c.AverageRating).ToListAsync();
+            HomePageViewModel model = new HomePageViewModel()
+            {
+                featured = featuredList,
+                lastest = latestList,
+                recentHighrated = recentHighratedList,
+                recentPopuplar = recentPopuplarList,
+            };
+            return View(model);
         }
         [HttpGet("/browse")]
         public async Task<IActionResult> Browse(string? sort, string? price, string? genre, string? when, string? platform)
@@ -79,7 +139,7 @@ namespace AspMVC.Areas.Main.Controllers
                         gameQuery = gameQuery.OrderByDescending(v => v.ProjectPageDatePosted);
                         break;
                     case "top-rated":
-                        //cac game duoc danh gia cao nhat
+                        gameQuery = gameQuery.Where(v=>v.Ratings.Count>0).OrderByDescending(v => v.Ratings.Average(v=>v.RatingScore));
                         break;
                     default:
                         gameQuery = gameQuery.OrderByDescending(v => v.ViewCount);
@@ -124,7 +184,7 @@ namespace AspMVC.Areas.Main.Controllers
             
             List<GameCell> games = await gameQuery.Select(c => new GameCell
             {
-                GameId = c.ProjectId,
+                ProjectId = c.ProjectId,
                 Title = c.Title,
                 CreatorID = c.CreatorId,
                 CreatorName = c.Creator.UserName,
@@ -162,7 +222,7 @@ namespace AspMVC.Areas.Main.Controllers
 
                 List<GameCell> games = await gamesQuery.Select(c => new GameCell
                 {
-                    GameId = c.ProjectId,
+                    ProjectId = c.ProjectId,
                     Title = c.Title,
                     CreatorID = c.CreatorId,
                     CreatorName = c.Creator.UserName,
