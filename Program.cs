@@ -185,12 +185,12 @@ namespace AspMVC
             {
                 endpoints.MapControllerRoute(
                   name: "MyAreas",
-                  pattern: "{area:exists}/{controller=Contacts}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=ProjectPage}/{action=Index}/{id?}"
                 );
             });
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Browse}/{id?}");
+                pattern: "{controller=HomePage}/{action=Index}/{id?}");
 
             
 

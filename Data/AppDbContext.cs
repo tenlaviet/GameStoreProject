@@ -57,6 +57,8 @@ namespace AspMVC.Data
         public DbSet<ProjectRating> ProjectRatings { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<UserAvatar> UserAvatar { get; set; }
         //public DbSet<ProjectModel> ProjectModels { get; set; }
 
         //public async Task<IActionResult> SeedDataAsync;

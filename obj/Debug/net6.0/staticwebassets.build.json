@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L6iZMb/nApc1bOu8FvByGzTdhsZrwc8vEvWy8Q05cUg=",
+  "Hash": "NUYta7JPda+DH4/plp96/LwI3GM3UNIyGdOiZclvxWw=",
   "Source": "AspMVC",
   "BasePath": "_content/AspMVC",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\viet\\Source\\repos\\AspMVC\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\AspMVC.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\avatar\\Users\\admin\\b.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "avatar/Users/admin/b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\avatar\\Users\\admin\\b.jpg"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\css\\demo.css",
@@ -185,6 +202,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\FO02_NPC_Frank_Horrigan.png"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\frog-cyan.png",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "images/frog-cyan.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\frog-cyan.png"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\images\\no-image.jpg",
@@ -5440,12 +5474,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\b.jpg"
     },
     {
-      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\FO02_NPC_Frank_Horrigan.png",
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\smo_06.jpg",
       "SourceId": "AspMVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
       "BasePath": "_content/AspMVC",
-      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/FO02_NPC_Frank_Horrigan.png",
+      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/smo_06.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -5454,24 +5488,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\FO02_NPC_Frank_Horrigan.png"
-    },
-    {
-      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png",
-      "SourceId": "AspMVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
-      "BasePath": "_content/AspMVC",
-      "RelativePath": "uploads/Users/admin/Projects/Super Mario Odyssey/Screenshots/obsidian_leshy_obsidian_ls.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\obsidian_leshy_obsidian_ls.png"
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\admin\\Projects\\Super Mario Odyssey\\Screenshots\\smo_06.jpg"
     },
     {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\admin\\Projects\\The Elder Scrolls V Skyrim\\CoverImage\\Skyrim.jpg",
@@ -5559,6 +5576,40 @@
       "OriginalItemSpec": "wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Dota 2\\Screenshots\\sf_souls_tyrant_ls.png"
     },
     {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Fallout A Post Nuclear Role Playing Game\\CoverImage\\MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/kazekami12344/Projects/Fallout A Post Nuclear Role Playing Game/CoverImage/MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Fallout A Post Nuclear Role Playing Game\\CoverImage\\MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Fallout A Post Nuclear Role Playing Game\\Screenshots\\MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+      "SourceId": "AspMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
+      "BasePath": "_content/AspMVC",
+      "RelativePath": "uploads/Users/kazekami12344/Projects/Fallout A Post Nuclear Role Playing Game/Screenshots/MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Users\\kazekami12344\\Projects\\Fallout A Post Nuclear Role Playing Game\\Screenshots\\MV5BZThhZTNlMGYtMDE2Zi00MmMyLTk5YmEtZjFhZWE3ZWIyOTI1XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"
+    },
+    {
       "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg",
       "SourceId": "AspMVC",
       "SourceType": "Discovered",
@@ -5574,23 +5625,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\CoverImage\\b.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\Screenshots\\c.png",
-      "SourceId": "AspMVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\viet\\Source\\repos\\AspMVC\\wwwroot\\",
-      "BasePath": "_content/AspMVC",
-      "RelativePath": "uploads/Users/kazekami12344/Projects/test123/Screenshots/c.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\Users\\kazekami12344\\Projects\\test123\\Screenshots\\c.png"
     }
   ]
 }

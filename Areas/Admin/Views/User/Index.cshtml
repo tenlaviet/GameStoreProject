@@ -1,3 +1,5 @@
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 @model UserListModel
 @{
     ViewData["Title"] = "Danh sách các thành viên";
@@ -38,13 +40,8 @@
         </tr>
     }
 </table>
-@{
-    var pagingmodel = new PagingModel()
-    {
-        currentpage = Model.currentPage,
-        countpages = Model.countPages,
-        generateUrl = (int? p) => Url.Action("Index", new { p = p})
-    };
-}
-
-<partial name="_PagingXTL" model="@pagingmodel" />
+@Html.PagedListPager((IPagedList) Model.users, page => Url.Action("Index", new {s =ViewBag.Search, page = page}),
+new X.PagedList.Mvc.Core.PagedListRenderOptions {
+                    LiElementClasses = new string[] {"page-item"},
+                    PageClasses = new string[] { "page-link" }
+                    })

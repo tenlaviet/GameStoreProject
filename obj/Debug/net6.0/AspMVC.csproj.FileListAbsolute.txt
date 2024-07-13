@@ -373,6 +373,8 @@ C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\System.Security.Cryptography.
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\System.Security.Permissions.dll
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\X.PagedList.dll
+C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\af\Humanizer.resources.dll
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\ar\Humanizer.resources.dll
 C:\Users\viet\Source\repos\AspMVC\bin\Debug\net6.0\az\Humanizer.resources.dll

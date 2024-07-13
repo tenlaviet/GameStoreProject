@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using X.PagedList;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspMVC.Areas.Admin.Controllers
 {
@@ -52,54 +54,38 @@ namespace AspMVC.Areas.Admin.Controllers
         //
         // GET: /ManageUser/Index
         [HttpGet]
-        public async Task<IActionResult> Index([FromQuery(Name = "p")] int currentPage, string? s)
+        public async Task<IActionResult> Index(int? p, string? s)
         {
             var model = new UserListModel();
-            var qr = _userManager.Users.OrderBy(u => u.UserName);
+            var qr = _userManager.Users.Select(u => new UserAndRole()
+            {
+                Id = u.Id,
+                UserName = u.UserName,
+                
+            }); 
             if(s !=null)
             {
-
-                var searchedResult = qr.Where(u => u.UserName.Contains(s)).Select(u => new UserAndRole()
-                {
-                    Id = u.Id,
-                    UserName = u.UserName,
-                });
-
-                model.users = await searchedResult.ToListAsync();
-
-                foreach (var user in model.users)
-                {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    user.RoleNames = string.Join(",", roles);
-                }
-                return View(model);
-
+                ViewBag.Search = s;
+                qr = qr.Where(u => u.UserName.Contains(s));
             }
-            model.currentPage = currentPage;
-            model.totalUsers = await qr.CountAsync();
-            model.countPages = (int)Math.Ceiling((double)model.totalUsers / model.ITEMS_PER_PAGE);
 
-            if (model.currentPage < 1)
-                model.currentPage = 1;
-            if (model.currentPage > model.countPages)
-                model.currentPage = model.countPages;
 
-            var qr1 = qr.Skip((model.currentPage - 1) * model.ITEMS_PER_PAGE)
-                        .Take(model.ITEMS_PER_PAGE)
-                        .Select(u => new UserAndRole()
-                        {
-                            Id = u.Id,
-                            UserName = u.UserName,
-                        });
 
-            model.users = await qr1.ToListAsync();
-
-            foreach (var user in model.users)
+            //var qr1 = qr.Skip((model.currentPage - 1) * model.ITEMS_PER_PAGE)
+            //            .Take(model.ITEMS_PER_PAGE)
+            //            .Select(u => new UserAndRole()
+            //            {
+            //                Id = u.Id,
+            //                UserName = u.UserName,
+            //            });
+            var qrList = await qr.ToListAsync();
+            foreach (var user in qrList)
             {
                 var roles = await _userManager.GetRolesAsync(user);
                 user.RoleNames = string.Join(",", roles);
             }
-
+            model.totalUsers = qrList.Count();
+            model.users = qrList.ToPagedList();
             return View(model);
         }
 

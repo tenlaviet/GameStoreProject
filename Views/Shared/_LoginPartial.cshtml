@@ -10,7 +10,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link" asp-area="Identity" asp-controller="Manage" asp-action="Index" title="Manage">
-                    Xin chào @UserManager.GetUserName(User)!
+                    @UserManager.GetUserName(User)!
                 </a>
             </li>
             <li class="nav-item">
@@ -23,10 +23,10 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Register">Đăng ký</a>
+            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Login">Login</a>
         </li>
     </ul>
 }

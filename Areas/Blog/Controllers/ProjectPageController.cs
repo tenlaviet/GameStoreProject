@@ -176,8 +176,8 @@ namespace AspMVC.Areas.Blog.Controllers
                 {
                     CreatorId = currentUserID,
                     Title = projectPageModel.Title,
-                    ShortDescription = projectPageModel.ShortDescription,
-                    Description = projectPageModel.Description,
+                    ShortDescription = (projectPageModel.ShortDescription != null) ? projectPageModel.ShortDescription : "",
+                    Description = (projectPageModel.Description != null) ? projectPageModel.Description : "",
                     GenreId = projectPageModel.GenreId,
                     PlatformId = projectPageModel.PlatformId,
                     Slug = projectPageModel.Slug,
@@ -292,7 +292,6 @@ namespace AspMVC.Areas.Blog.Controllers
 
         // GET: Blog/ProjectPage/Edit/5
         [Authorize(Roles = "Administrator, Member")]
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ProjectPages == null)
@@ -366,8 +365,8 @@ namespace AspMVC.Areas.Blog.Controllers
                 if (project != null)
                 {
                     project.Title = projectPageModel.Title;
-                    project.ShortDescription = projectPageModel.ShortDescription;
-                    project.Description = projectPageModel.Description;
+                    project.ShortDescription = (projectPageModel.ShortDescription != null) ? projectPageModel.ShortDescription : "";
+                    project.Description = (projectPageModel.Description != null) ? projectPageModel.Description : "";
                     project.Slug = projectPageModel.Slug;
                     project.GenreId = projectPageModel.GenreId;
                     project.PlatformId = projectPageModel.PlatformId;
@@ -479,6 +478,11 @@ namespace AspMVC.Areas.Blog.Controllers
                     string projectCoverImageDir = Path.Combine(project.ProjectImagesDir, "CoverImage");
                     if (!Directory.Exists(projectCoverImageDir))
                     {
+                        Directory.CreateDirectory(projectCoverImageDir);
+                    }
+                    else
+                    {
+                        Directory.Delete(projectCoverImageDir, true);
                         Directory.CreateDirectory(projectCoverImageDir);
                     }
                     string uploadedFile = Path.Combine(projectCoverImageDir, file.FileName);

@@ -71,6 +71,10 @@ namespace AspMVC.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RealName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -80,6 +84,9 @@ namespace AspMVC.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("avatarRelative")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -125,7 +132,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Contact", b =>
@@ -160,7 +167,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.Platform", b =>
@@ -183,7 +190,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("PlatformId");
 
-                    b.ToTable("Platform");
+                    b.ToTable("Platform", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectRating", b =>
@@ -210,7 +217,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ProjectRatings");
+                    b.ToTable("ProjectRatings", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedCoverImage", b =>
@@ -240,7 +247,7 @@ namespace AspMVC.Migrations
                     b.HasIndex("ProjectPageID")
                         .IsUnique();
 
-                    b.ToTable("ProjectUploadedCoverImage");
+                    b.ToTable("ProjectUploadedCoverImage", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedFile", b =>
@@ -269,7 +276,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedFile");
+                    b.ToTable("ProjectUploadedFile", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.EF.ProjectUploadedPicture", b =>
@@ -298,7 +305,33 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("ProjectPageID");
 
-                    b.ToTable("ProjectUploadedPicture");
+                    b.ToTable("ProjectUploadedPicture", (string)null);
+                });
+
+            modelBuilder.Entity("AspMVC.Models.EF.UserAvatar", b =>
+                {
+                    b.Property<int>("AvatarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AvatarId"), 1L, 1);
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AvatarRelativePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AvatarId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserAvatar", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Genre", b =>
@@ -321,7 +354,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
@@ -339,6 +372,9 @@ namespace AspMVC.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DownloadCount")
+                        .HasColumnType("int");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
@@ -385,7 +421,7 @@ namespace AspMVC.Migrations
 
                     b.HasIndex("Slug");
 
-                    b.ToTable("ProjectPage");
+                    b.ToTable("ProjectPage", (string)null);
                 });
 
             modelBuilder.Entity("AspMVC.Models.Tag", b =>
@@ -403,7 +439,7 @@ namespace AspMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -609,6 +645,17 @@ namespace AspMVC.Migrations
                     b.Navigation("ProjectPage");
                 });
 
+            modelBuilder.Entity("AspMVC.Models.EF.UserAvatar", b =>
+                {
+                    b.HasOne("AspMVC.Models.AppUser", "User")
+                        .WithOne("UserAvatar")
+                        .HasForeignKey("AspMVC.Models.EF.UserAvatar", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>
                 {
                     b.HasOne("AspMVC.Models.AppUser", "Creator")
@@ -692,6 +739,8 @@ namespace AspMVC.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Projects");
+
+                    b.Navigation("UserAvatar");
                 });
 
             modelBuilder.Entity("AspMVC.Models.ProjectPageModel", b =>

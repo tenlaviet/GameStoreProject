@@ -7,24 +7,24 @@
 <h1>Creator Dashboard</h1>
 
 <p>
-    <a asp-action="Create">Create new project</a>
+    <a class="btn btn-success" asp-action="Create">Create new project</a>
 </p>
 <div class="dashboard-column">
     @foreach (var item in Model)
     {
         <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-4">
+            <div class="row g-0" style="max-width:100%;height:126px">
+                <div class="col-md-4" style="">
                     @if (item.ProjectCoverImage == null)
                     {
                         <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                            <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:100px;width:180px">
+                            <img src="/images/no-image.jpg" alt="..." class="img-fluid" style="height:126px;width:180px">
                         </a>
                     }
                     else
                     {
                         <a asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">
-                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:100px;width:180px">
+                            <img src="@item.ProjectCoverImage.ProjectCoverImageRelativePath" class="img-fluid" alt="..." style="height:126px;width:180px;object-fit:fill">
                         </a>
                     }
                 </div>
@@ -33,8 +33,8 @@
                         <a class="card-title link-underline-dark text-black" asp-area="Blog" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId" style="text-decoration: none;">
                             <h5 class="card-title">@item.Title</h5>
                         </a>
-                        <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
                     </div>
                 </div>
             </div>

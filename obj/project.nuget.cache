@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XwPo+sdk/I3OCF2cFWsqbSkjvOE+nVvNOML4p4BX7WeE5+Ezx4Nwor23/Ujc1oGQrap/hBbJzuh1rGcv9WsqyA==",
+  "dgSpecHash": "nfjWxB9Ca1ixtymTutlHaOuTvScv3rmV2vQwHvU4pocwZvWNO0ZdFwFmbIbFzc58s22FGdvjzHz6b4pd6Oza3Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\viet\\Source\\repos\\AspMVC\\AspMVC.csproj",
   "expectedPackageFiles": [
@@ -231,7 +231,9 @@
     "C:\\Users\\viet\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\viet\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\viet\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\viet\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\viet\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\viet\\.nuget\\packages\\x.pagedlist\\9.1.2\\x.pagedlist.9.1.2.nupkg.sha512",
+    "C:\\Users\\viet\\.nuget\\packages\\x.pagedlist.mvc.core\\9.1.2\\x.pagedlist.mvc.core.9.1.2.nupkg.sha512"
   ],
   "logs": []
 }

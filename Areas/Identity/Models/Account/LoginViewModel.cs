@@ -12,13 +12,13 @@ namespace AspMVC.Areas.Identity.Models.AccountViewModels
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Username or Email is required to login")]
-        [Display(Name = "Địa chỉ email hoặc tên tài khoản")]
+        [Display(Name = "Username or Email address")]
         public string UserNameOrEmail { get; set; }
 
 
         [Required(ErrorMessage = "Password is required to login")]
         [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember Me")]

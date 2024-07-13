@@ -9,80 +9,90 @@
 <div>
     <h4>Cập nhật thông tin tài khoản</h4>
     <hr />
-    <dl class="row">
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(m => Model.profile.UserName)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(m => Model.profile.UserName)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(m => Model.profile.UserEmail)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(m => Model.profile.UserEmail)
-            </dd>
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center">
+                <h3>Ảnh đại diện</h3>
 
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(m => Model.profile.PhoneNumber)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(m => Model.profile.PhoneNumber)
-            </dd>
-
-            <dt class="col-sm-3 text-truncate">
-                @Html.DisplayNameFor(m => Model.profile.HomeAdress)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(m => Model.profile.HomeAdress)
-            </dd>
-
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(m => Model.profile.BirthDate)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(m => Model.profile.BirthDate)
-            </dd>
-            <div>
-                <dd class="col-sm-3">
-                    <a asp-action="EditProfile" class="btn btn-primary btn-sm">Sửa</a>
-                </dd>
+                <img class="rounded" style="object-fit:cover" width="150" height="150" src="@Model.profile.AvatarRelativePath">
             </div>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(m => Model.profile.BirthDate)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayNameFor(m => Model.profile.BirthDate)
-            </dd>
-            <dt class="col-sm-3">Mật khẩu:</dt>
-            <dd class="col-sm-9">
-                @if (Model.HasPassword)
-                {
+        </div>
+        <div class="col-sm-6">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(m => Model.profile.UserName):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.UserName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(m => Model.profile.UserEmail):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.UserEmail)
+                </dd>                
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(m => Model.profile.RealName):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.RealName)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(m => Model.profile.PhoneNumber):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.PhoneNumber)
+                </dd>
+
+                <dt class="col-sm-3 text-truncate">
+                    @Html.DisplayNameFor(m => Model.profile.HomeAdress):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.HomeAdress)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(m => Model.profile.BirthDate):
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(m => Model.profile.BirthDate)
+                </dd>
+                <div>
+                    <dd class="col-sm-3">
+                        <a asp-action="EditProfile" class="btn btn-primary btn-sm">Sửa</a>
+                    </dd>
+                </div>
+                <dt class="col-sm-3">Mật khẩu:</dt>
+                <dd class="col-sm-9">
+                    @if (Model.HasPassword)
+                    {
                     <a asp-controller="Manage" asp-action="ChangePassword">Đổi mật khẩu</a>
-                }
-                else
-                {
+                    }
+                    else
+                    {
                     <a asp-controller="Manage" asp-action="SetPassword">Tạo mật khẩu</a>
-                }
-            </dd>
+                    }
+                </dd>
 
 
-        <dt class="col-sm-3">Số điện thoại:</dt>
-        <dd class="col-sm-9">
-            @(Model.PhoneNumber)
-            @if (Model.PhoneNumber != null)
-            {
-                <text>:</text>
-                <text>&nbsp;&nbsp;<a asp-controller="Manage" asp-action="AddPhoneNumber">Thay đổi</a>&nbsp;&nbsp;</text>
-                <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post" role="form">
-                    <button type="submit" class="btn btn-danger btn-sm">Loại bỏ số điện thoại</button>
-                </form>
-            }
-            else
-            {
-                <text><a asp-controller="Manage" asp-action="AddPhoneNumber">Thêm số điện thoại</a></text>
-            }
-        </dd>
+                <dt class="col-sm-3">Số điện thoại:</dt>
+                <dd class="col-sm-9">
+                    @(Model.PhoneNumber)
+                    @if (Model.PhoneNumber != null)
+                    {
+                    <text>:</text>
+                    <text>&nbsp;&nbsp;<a asp-controller="Manage" asp-action="AddPhoneNumber">Thay đổi</a>&nbsp;&nbsp;</text>
+                    <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post" role="form">
+                        <button type="submit" class="btn btn-danger btn-sm">Loại bỏ số điện thoại</button>
+                    </form>
+                    }
+                    else
+                    {
+                    <text><a asp-controller="Manage" asp-action="AddPhoneNumber">Thêm số điện thoại</a></text>
+                    }
+                </dd>
 
-    </dl>
+            </dl>
+        </div>    </div>
 </div>

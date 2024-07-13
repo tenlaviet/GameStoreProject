@@ -4,12 +4,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AspMVC.Areas.Identity.Models.ManageViewModels;
+using AspMVC.Data;
 using AspMVC.ExtendMethods;
 using AspMVC.Models;
+using AspMVC.Models.EF;
 using AspMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AspMVC.Areas.Identity.Controllers
@@ -24,17 +27,25 @@ namespace AspMVC.Areas.Identity.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ManageController> _logger;
+        private readonly IWebHostEnvironment _environment;
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly AppDbContext _context;
+
 
         public ManageController(
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         IEmailSender emailSender,
-        ILogger<ManageController> logger)
+        ILogger<ManageController> logger,
+        IWebHostEnvironment environment,
+        AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _environment = environment;
+            _context = context;
         }
 
         //
@@ -52,6 +63,7 @@ namespace AspMVC.Areas.Identity.Controllers
                 : "";
 
             var user = await GetCurrentUserAsync();
+            user = await _context.Users.Include(u=>u.UserAvatar).FirstOrDefaultAsync(u=>u.Id == user.Id);
             var model = new IndexViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user),
@@ -62,11 +74,13 @@ namespace AspMVC.Areas.Identity.Controllers
                 AuthenticatorKey = await _userManager.GetAuthenticatorKeyAsync(user),
                 profile = new EditExtraProfileModel()
                 {
+                    RealName = user.RealName,
                     BirthDate = user.BirthDate,
                     HomeAdress = user.HomeAdress,
                     UserName = user.UserName,
                     UserEmail = user.Email,
                     PhoneNumber = user.PhoneNumber,
+                    AvatarRelativePath = (user.UserAvatar!=null) ? user.UserAvatar.AvatarRelativePath : null
                 }
             };
             return View(model);
@@ -382,6 +396,8 @@ namespace AspMVC.Areas.Identity.Controllers
                 UserName = user.UserName,
                 UserEmail = user.Email,
                 PhoneNumber = user.PhoneNumber,
+                RealName = user.RealName,
+                //AvatarPath = user.UserAvatar
             };
             return View(model);
         }
@@ -390,15 +406,66 @@ namespace AspMVC.Areas.Identity.Controllers
         {
             var user = await GetCurrentUserAsync();
 
+            if(model.UploadAvatar !=null)
+            {
+                var avatar = await _context.UserAvatar.FirstOrDefaultAsync(u => u.UserId == user.Id);
+                if (avatar != null)
+                {
+                    _context.UserAvatar.Remove(avatar);
+                }
+
+                var avatarStorageDir = Path.Combine(_environment.WebRootPath, "avatar", "Users", user.UserName);
+                if (!Directory.Exists(avatarStorageDir))
+                {
+                    Directory.CreateDirectory(avatarStorageDir);
+                }
+                else
+                {
+                    string[] files = Directory.GetFiles(avatarStorageDir);
+                    foreach (string filePath in files)
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(filePath);
+                        }
+                        catch (IOException ioExp)
+                        {
+                            Console.WriteLine(ioExp.Message);
+                        }
+                    }
+                }
+                
+                string uploadedFile = Path.Combine(avatarStorageDir, model.UploadAvatar.FileName);
+                using (var fileStream = System.IO.File.Create(uploadedFile))
+                {
+                    await model.UploadAvatar.CopyToAsync(fileStream);
+                }
+                var avatarRelativePath = $"/avatar/Users/{user.UserName}/{model.UploadAvatar.FileName}";
+
+                UserAvatar record = new UserAvatar()
+                {
+                    Avatar = uploadedFile,
+                    AvatarRelativePath = avatarRelativePath,
+                    UserId = user.Id,            
+                };
+                user.avatarRelative = avatarRelativePath;
+                await _context.UserAvatar.AddAsync(record);
+            }
+            user.RealName = model.RealName;
             user.HomeAdress = model.HomeAdress;
             user.BirthDate = model.BirthDate;
             await _userManager.UpdateAsync(user);
-
+            await _context.SaveChangesAsync();
             await _signInManager.RefreshSignInAsync(user);
             return RedirectToAction(nameof(Index), "Manage");
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditUserAvatar()
+        {
+            return View();
+        }
 
     }
 }

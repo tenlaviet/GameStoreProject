@@ -4,24 +4,20 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Xóa Genre</h1>
+<partial name="_StatusMessage"></partial>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Genre</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GenreName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GenreName)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="GenreId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="GenreId" />
+            <p>Bạn có chắc chắn xóa <strong>@Model.GenreName</strong></p>
+            <div class="form-group">
+                <input type="submit" value="Đồng ý" class="btn btn-danger" />
+                <a class="btn btn-primary" asp-action="Index">Quay về danh sách</a>
+            </div>
+        </form>
+    </div>
 </div>

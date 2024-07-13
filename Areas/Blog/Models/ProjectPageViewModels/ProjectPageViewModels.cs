@@ -27,17 +27,17 @@ namespace AspMVC.ViewModels
     {
         public int ProjectID { get; set;}
         [Required(ErrorMessage = "Project must have a title")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
+        [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} expected text between {1} and {2} characters.")]
         [Display(Name = "Title")]
         public string Title { get; set; }
-        [Required(ErrorMessage = "must create url")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} dài {1} đến {2}")]
-        [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Chỉ dùng các ký tự [a-z0-9-]")]
+        [Required(ErrorMessage = "Must create url")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} expected text between {1} and {2} characters.")]
+        [RegularExpression(@"^[a-z0-9-]*$", ErrorMessage = "Only use characters from [a-z0-9-]")]
         [Display(Name = "Project Url")]
         public string? Slug { set; get; }
 
         [Display(Name = "Short Description")]
-        [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
+        [StringLength(400, MinimumLength = 1, ErrorMessage = "{0} expected text between {1} and {2} characters.")]
         public string? ShortDescription { get; set; }
 
 

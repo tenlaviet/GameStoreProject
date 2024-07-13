@@ -129,7 +129,7 @@ namespace AspMVC.Areas.Identity.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User đăng xuất");
-            return RedirectToAction("Index", "Home", new {area = ""});
+            return RedirectToAction("Index", "HomePage", new {area = ""});
         }
         //
         // GET: /Account/Register
@@ -191,6 +191,7 @@ namespace AspMVC.Areas.Identity.Controllers
                 }
                 else
                 {
+
                     var usernameCheck = await _userManager.FindByNameAsync(model.UserName);
                     var emailCheck = await _userManager.FindByEmailAsync(model.Email);
                     if(usernameCheck != null)
@@ -441,8 +442,7 @@ namespace AspMVC.Areas.Identity.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    return RedirectToAction(nameof(UserNotExist));
                 }
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -495,9 +495,11 @@ namespace AspMVC.Areas.Identity.Controllers
                 return View(model);
             }
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null)
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
-                return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                ModelState.AddModelError("Email", "Email được gửi không hợp lệ với yêu cầu");
+                return View();
+                //return RedirectToAction(nameof(AccountController.ConfirmError), "Account");
             }
             var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
 
@@ -517,8 +519,13 @@ namespace AspMVC.Areas.Identity.Controllers
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
-        }        
-
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult UserNotExist()
+        {
+            return View();
+        }
         //
         // GET: /Account/SendCode
         [HttpGet]

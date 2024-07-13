@@ -29,7 +29,7 @@ namespace AspMVC.Models
 
         // Tiều đề Category
         [Required(ErrorMessage = "Phải có tên Title")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
+        [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
         [Display(Name = "Title")]
         public string Title { get; set; }
         //chuỗi Url
@@ -41,7 +41,7 @@ namespace AspMVC.Models
         // noi dung ngan' 
         [DataType(DataType.Text)]
         [Display(Name = "Short Description")]
-        [StringLength(200, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
+        [StringLength(400, MinimumLength = 1, ErrorMessage = "{0} dài {1} đến {2}")]
         public string ShortDescription { get; set; }
 
         [DataType(DataType.DateTime)]
@@ -80,6 +80,8 @@ namespace AspMVC.Models
         public ICollection<ProjectRating> Ratings { get; }
 
         public int ViewCount { get; set; }
+
+        public int DownloadCount { get; set; }
         
 
     }

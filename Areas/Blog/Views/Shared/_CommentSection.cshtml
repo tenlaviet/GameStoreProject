@@ -21,12 +21,12 @@
         @if (User.Identity.IsAuthenticated)
         {
             <form role="form" id="commentForm" method="post">
-                <div>
+                <div style="margin-bottom:10px">
                     <textarea id="Content" name="Content" class="Content"></textarea>
                     <span id="comment-error" class="error text-danger"></span>
                 </div>
                 <input type="hidden" id="PageId" name="PageId" value="@Model.PageId">
-               <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-2 col-md-10">
                     <button id="post-comment-button" name="post-comment-button" type="submit" class="btn btn-primary">Post comment</button>
                 </div>
             </form>
@@ -150,7 +150,7 @@
             var check = false;
             var content = $("#Content").val();
             if (content === '' || content === '<p><br></p>') {
-                $('#comment-error').html('Bạn chưa nhập comment');
+                //$('#comment-error').html('');
                 check = false;
             } else {
                 $('#comment-error').html('');
@@ -239,7 +239,7 @@
                     content: edit
                 },
                 success: function (result) {
-                    alert("edit thanh cong");
+                    alert("successfully edited");
                     htmlCommentContent.html(edit);//thay content bang content moi edit
                     htmlCommentContent.toggle();//toggle hien thi content
                     htmlCommentEditForm.toggle();//toggle hien thi edit comment

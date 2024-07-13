@@ -4,17 +4,27 @@
 @{
     double rate = 0;
 
-
+    bool isRated = false;
     if(Model != null)
     {
         rate = Model.RatingScore;
+        if(rate>0)
+        {
+            isRated = true;
+        }
     }
 }
 
 @{
-    if (User.Identity.IsAuthenticated)
-    {
-        <h3 style="">Rate this project</h3>
+        @if(!isRated)
+        {
+            <h3 style="">Rate this project</h3>
+        }
+        else
+        {
+            <h3 style="">Edit your rating</h3>
+
+        }
         <form role="form" id="rating-form" method="post">
             <div class="star-list">
                 <input id="Rating" class="game-rating" type="hidden" value="@rate">
@@ -29,7 +39,7 @@
                 <button id="post-rating-button" name="post-rating-button" type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
-    }
+
 }
 
 <script>

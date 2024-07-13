@@ -1,0 +1,231 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model BrowseViewModel
+@{
+
+}
+
+    <div class="browse_games_page browse_base_page page_widget base_widget" id="browse_games_6775496">
+        <div class="grid_columns">
+        <!-- browse sidebar -->
+
+            <div class="column filter_column_outer">
+                <section class="filter_column">
+                    <div class="filters_header">
+                        <h2>Filter Results</h2>
+                    </div>
+                    <!-- Filters -->
+                    <div class="filter_pickers">
+                    <!-- Platform -->
+                    <div id="browse_filter_group_8751780" class="browse_filter_group_widget base_widget filters_open">
+                        <div class="filter_group_label">
+                            <button type="button" onclick="$(this).closest('.browse_filter_group_widget').toggleClass('filters_open')" class="group_toggle_btn">
+                                <span class="filter_arrow">
+                                    <span aria-hidden="true" class="icon icon-triangle-down"></span>
+                                    <span aria-hidden="true" class="icon icon-triangle-right"></span>
+                                </span>Platform
+                            </button>
+                            @if(ViewBag.Platform != "")
+                            {
+                                <a title="Clear filter" class="filter_clear" asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="">
+                                    <svg stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" version="1.1" aria-hidden="" class="svgicon icon_cross2" width="16" role="img" height="16" viewBox="0 0 24 24" fill="none">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </a>
+                            }
+                        </div>
+                        <ul>
+                            @foreach(var p in Model.Platforms)
+                            {
+                                <li class="@(ViewBag.Platform == p.PlatformSlug ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@p.PlatformSlug">
+                                        <i class="fa-brands fa-@(p.PlatformName)"></i> @p.PlatformName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <!-- Platform -->
+                    <!-- Price -->
+                        <div class="browse_filter_group_widget base_widget filters_open" id="browse_filter_group_200751">
+                            <div class="filter_group_label">
+                                <button class="group_toggle_btn" type="button" onclick="$(this).closest(&#039;.browse_filter_group_widget&#039;).toggleClass(&#039;filters_open&#039;)">
+                                    <span class="filter_arrow">
+                                        <span class="icon icon-triangle-down" aria-hidden="true"></span>
+                                        <span class="icon icon-triangle-right" aria-hidden="true"></span>
+                                    </span>Price
+                                </button>
+                                @if(ViewBag.Price != "")
+                                {
+                                    <a title="Clear filter" class="filter_clear" asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform">
+                                        <svg stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" version="1.1" aria-hidden="" class="svgicon icon_cross2" width="16" role="img" height="16" viewBox="0 0 24 24" fill="none">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </a>
+                                }
+                            </div>
+                            <ul>
+
+                                <li class ="@(ViewBag.Price == "free" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="free" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform">
+                                        <span class="icon icon-star" aria-hidden="true"></span>
+                                        Free
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    <!-- Price -->
+
+                    <!-- When -->
+                        <div class="browse_filter_group_widget base_widget filters_open" id="browse_filter_group_8755468">
+                            <div class="filter_group_label">
+                                <button class="group_toggle_btn" type="button" onclick="$(this).closest(&#039;.browse_filter_group_widget&#039;).toggleClass(&#039;filters_open&#039;)">
+                                    <span class="filter_arrow">
+                                        <span class="icon icon-triangle-down" aria-hidden="true"></span>
+                                        <span class="icon icon-triangle-right" aria-hidden="true"></span>
+                                    </span>When
+                                </button>
+                                @if(ViewBag.When != "")
+                                {
+                                <a title="Clear filter" class="filter_clear" asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="" asp-route-platform="@ViewBag.Platform">
+                                    <svg stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" version="1.1" aria-hidden="" class="svgicon icon_cross2" width="16" role="img" height="16" viewBox="0 0 24 24" fill="none">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </a>
+                                }
+                            </div>
+                            <ul>
+                                <li class="@(ViewBag.When == "last-day" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-day" asp-route-platform="@ViewBag.Platform">
+                                        <span class="icon icon-stopwatch" aria-hidden="true"></span>Last Day
+                                    </a>
+                                </li>
+                                <li class="@(ViewBag.When == "last-7-days" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-7-days" asp-route-platform="@ViewBag.Platform">
+                                        <span class="icon icon-stopwatch" aria-hidden="true"></span>Last 7 days
+                                    </a>
+                                </li>
+                                <li class="@(ViewBag.When == "last-30-days" ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="last-30-days" asp-route-platform="@ViewBag.Platform">
+                                        <span class="icon icon-stopwatch" aria-hidden="true"></span>Last 30 days
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    <!-- When -->
+                    <!-- Genre -->
+                        <div class="browse_filter_group_widget base_widget filters_open" id="browse_filter_group_8440">
+                            <div class="filter_group_label">
+                                <button class="group_toggle_btn" type="button" onclick="$(this).closest(&#039;.browse_filter_group_widget&#039;).toggleClass(&#039;filters_open&#039;)">
+                                    <span class="filter_arrow">
+                                        <span class="icon icon-triangle-down" aria-hidden="true"></span>
+                                        <span class="icon icon-triangle-right" aria-hidden="true"></span>
+                                    </span>Genre
+                                </button>
+                                @if(ViewBag.Genre != "")
+                                {
+                                <a title="Clear filter" class="filter_clear" asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform">
+                                    <svg stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" version="1.1" aria-hidden="" class="svgicon icon_cross2" width="16" role="img" height="16" viewBox="0 0 24 24" fill="none">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </a>
+                                }
+                            </div>
+                            <ul>
+                                @foreach (var g in Model.Genres)
+                                {
+                                    <li class="@(ViewBag.Genre == g.GenreSlug ? "active" : string.Empty)">
+                                    <a asp-action="Browse" asp-route-sort="@ViewBag.Sort" asp-route-price="@ViewBag.Price" asp-route-genre="@g.GenreSlug" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform">
+                                            <span class="icon icon-tag" aria-hidden="true"></span>
+                                            @g.GenreName
+                                        </a>
+                                    </li>
+                                }
+
+                                
+                            </ul>
+                        </div>
+                    <!-- Genre -->
+                    </div>
+                </section>
+            </div>
+        <!-- browse sidebar -->
+        <!-- game columns -->
+
+            <div class="column grid_column_outer">
+                <div class="grid_column">
+                    <div class="browse_header">
+                        <div class="mobile_filter_row">
+                            <button class="mobile_filter_btn">
+                                <svg version="1.1" class="svgicon icon_filter" viewBox="0 0 24 24" width="16" height="16" stroke-linecap="round" fill="none" stroke-linejoin="round" aria-hidden stroke-width="2" stroke="currentColor" role="img">
+                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                                </svg>Filter
+                            </button>
+                        </div>
+                        <h2>
+                            <span>Results: @Model.GameCells.Count() Games</span>
+                        </h2>
+                        <div class="browse_sort_options_widget base_widget" id="browse_sort_options_8822924">
+                            <span class="sort_label">
+                                <svg version="1.1" class="svgicon icon_sort" viewBox="0 0 455 488" aria-hidden width="16" height="17" role="img" fill="currentColor">
+                                    <path d="M304 392v48c0 4.5-3.5 8-8 8h-64c-4.5 0-8-3.5-8-8v-48c0-4.5 3.5-8 8-8h64c4.5 0 8 3.5 8 8zM184 360c0 2.25-1 4.25-2.5 6l-79.75 79.75c-1.75 1.5-3.75 2.25-5.75 2.25s-4-0.75-5.75-2.25l-80-80c-2.25-2.5-3-5.75-1.75-8.75s4.25-5 7.5-5h48v-344c0-4.5 3.5-8 8-8h48c4.5 0 8 3.5 8 8v344h48c4.5 0 8 3.5 8 8zM352 264v48c0 4.5-3.5 8-8 8h-112c-4.5 0-8-3.5-8-8v-48c0-4.5 3.5-8 8-8h112c4.5 0 8 3.5 8 8zM400 136v48c0 4.5-3.5 8-8 8h-160c-4.5 0-8-3.5-8-8v-48c0-4.5 3.5-8 8-8h160c4.5 0 8 3.5 8 8zM448 8v48c0 4.5-3.5 8-8 8h-208c-4.5 0-8-3.5-8-8v-48c0-4.5 3.5-8 8-8h208c4.5 0 8 3.5 8 8z"></path>
+                                </svg>
+                                <div>Sort by</div>
+                            </span>
+                            <ul class="sorts">
+                                <li class="">
+                                    <a asp-action="Browse" asp-route-sort="most-popular" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" data-action="sort" class="@(ViewBag.Sort == "most-popular" ? "active" : string.Empty)">
+                                    Popular
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Browse" asp-route-sort="most-recent" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" data-action="sort" class="@(ViewBag.Sort == "most-recent" ? "active" : string.Empty)">
+                                        Most Recent
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Browse" asp-route-sort="top-rated" asp-route-price="@ViewBag.Price" asp-route-genre="@ViewBag.Genre" asp-route-when="@ViewBag.When" asp-route-platform="@ViewBag.Platform" data-action="sort" class="@(ViewBag.Sort == "top-rated" ? "active" : string.Empty)">
+                                        Top rated
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid_outer">
+                        <div class="game_grid_widget base_widget browse_game_grid">
+                            @foreach(var item in Model.GameCells){
+                            await Html.RenderPartialAsync("~/Views/Shared/_browsePageGameCell.cshtml", item);
+
+
+                            }
+                        </div>
+                    </div>
+                @Html.PagedListPager((IPagedList) Model.GameCells, page => Url.Action(
+                    "Browse", new {sort = ViewBag.Sort,
+                        price = ViewBag.Price,
+                        genre = ViewBag.Genre,
+                        when = ViewBag.When,
+                        platform = ViewBag.Platform, page = page}),
+                    new X.PagedList.Mvc.Core.PagedListRenderOptions {
+                    LiElementClasses = new string[] {"page-item"},
+                    PageClasses = new string[] { "page-link" }
+                    })
+                    <div class="grid_loader">
+@*                        <div class="on_loading">
+                            <div class="loader_spinner"></div>Loading more games...
+                        </div>
+                        <div class="next_page forward_link">
+                            <a href="?page=2">Next page</a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        <!-- game columns -->
+
+        </div>
+    </div>
